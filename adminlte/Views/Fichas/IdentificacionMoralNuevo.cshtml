@@ -1,0 +1,813 @@
+﻿@{
+    ViewBag.Title = "Ficha de Identificación Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+        input {
+            text-transform: uppercase;
+        }
+        #map, #mapD {
+            height: 250px;
+            width: 500px;
+        }
+
+        .gallery img {
+            width: 200px
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUSWbri5yyzK1kh1lEj9fxX21WyM3Gaow&sensor=false" async defer type="text/javascript"></script>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Nueva
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Ficha de Identificación</a></li>
+            <li class="active">Ficha de Identificación Nuevo Cliente Moral</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Ficha de Identificación Nueva</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-11 col-md-4">
+                                <label>Documento:</label><br />
+                                <select class="form-control select2" id="tipo_check">
+                                    <option selectd value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-md-2">
+                                <label>Fecha de Levantamiento</label>
+                                <input type="text" class="form-control fca" id="fecha_lev" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Cliente</label>
+                                <select id="cliente" class="form-control select2"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <label>Nombre Comercial</label>
+                                <input type="text" class="form-control" id="nombre_comercial" style="text-transform:uppercase" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-6">
+                                <label>Nombre o Razón Social del Cliente</label>
+                                <input type="text" class="form-control" id="nombre_razon_cli" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>RFC</label>
+                                <input type="text" class="form-control" id="rfc" maxlength="13" />
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <label>Fecha de Constitución</label>
+                                <input type="text" class="form-control fca" id="fecha_const" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Número Serie FIEL (firma electrónica avanzada)</label>
+                                <input type="text" class="form-control" id="numero_serie" maxlength="20" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Nacionalidad</label>
+                                <input type="text" class="form-control" id="nacionalidad" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">DATOS DEL DOMICILIO FISCAL</h2>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Estado</label>
+                                <select class="form-control select2" id="estado"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Municipio</label>
+                                <select class="form-control select2" id="municipio_fiscal"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Colonia</label>
+                                <select class="form-control select2" id="colonia_fiscal"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Código Postal</label>
+                                <input type="text" class="form-control" id="cp_fiscal" disabled>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Calle</label>
+                                <input type="text" class="form-control" id="calle_fiscal" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Número</label>
+                                <input type="text" class="form-control" id="numero_calle_fiscal" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Referencia de Localización</label>
+                                <textarea class="form-control" id="referencia_loc"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Oficina, local y/o instalaciones:</label>
+                                <select class="form-control select2" id="inmueble">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">PROPIOS</option>
+                                    <option value="2">RENTADOS</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Teléfono fijo/celular propio para recados</label>
+                                <input type="text" id="tel_fijo" class="form-control" maxlength="12" onkeypress="return isNumberKey(event)">
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">DATOS DEL REPRESENTANTE LEGAL</h2>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Nombre(s)</label>
+                                <input id="nombre_representante" type="text" class="form-control" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Apellido Paterno</label>
+                                <input type="text" class="form-control" id="app_representante" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Apellido Materno</label>
+                                <input type="text" id="apm_representante" class="form-control" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Fecha de Nacimiento</label>
+                                <input type="text" class="form-control fca" id="fecha_nac_representante" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Rol(es) que desempeña en la empresa</label>
+                                <textarea class="form-control" id="roles_cliente"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Es accionista</label>
+                                <br />
+                                <input type="checkbox" class="minimal" name="accionista_res" id="accionista_res" />
+                            </div>
+                            <div class="col-xs-6 col-md-3" id="div_esp_porc" style="display:none">
+                                <label>Especificar porcentaje</label>
+                                <input type="text" onkeypress="return isNumberKey(event)" maxlength="2" class="form-control" id="porcentaje_accionista" placeholder="0%" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">DATOS DE LA ACTIVIDAD ECONÓMICA DE LA PERSONA MORAL</h2>
+                        <div class="row col-mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Actividad / Giro</label>
+                                <input type="text" class="form-control" id="actividad_giro" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Sector</label>
+                                <select id="sector" class="form-control select2">
+                                    <option value="0" selected> Seleccione...</option>
+                                    <option value="1">MC</option>
+                                    <option value="2">MS</option>
+                                    <option value="3">MP</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Años en el domicilio actual</label>
+                                <input type="text" class="form-control" id="ann_domicilio_actual" maxlength="2" onkeypress="return isNumberKey(event)" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Antigüedad en la actividad</label>
+                                <input type="text" class="form-control" id="antiguedad_actividad" maxlength="2" onkeypress="return isNumberKey(event)" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Días que trabaja</label>
+                                <select id="dias_trabaja" class="form-control select2" multiple="multiple" data-placeholder="Selecciona días"
+                                        style="width: 100%;">
+                                    <option value="1">Lunes</option>
+                                    <option value="2">Martes</option>
+                                    <option value="3">Miercoles</option>
+                                    <option value="4">Jueves</option>
+                                    <option value="5">Viernes</option>
+                                    <option value="6">Sabado</option>
+                                    <option value="7">Domingo</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Días que descansa</label>
+                                <select id="dias_descansa" class="form-control select2" multiple="multiple" data-placeholder="Selecciona días"
+                                        style="width: 100%;">
+                                    <option value="1">Lunes</option>
+                                    <option value="2">Martes</option>
+                                    <option value="3">Miercoles</option>
+                                    <option value="4">Jueves</option>
+                                    <option value="5">Viernes</option>
+                                    <option value="6">Sabado</option>
+                                    <option value="7">Domingo</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-md-3">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="bootstrap-timepicker">
+                                        <div class="form-group">
+                                            <label>Hora entrada:</label>
+                                            <div class="input-group">
+                                                <input type="text" id="hra_entrada" class="form-control timepicker">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                        <!-- /.form group -->
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="bootstrap-timepicker">
+                                        <div class="form-group">
+                                            <label>Hora Salida:</label>
+                                            <div class="input-group">
+                                                <input type="text" id="hra_salida" class="form-control timepicker">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-clock-o"></i>
+                                                </div>
+                                            </div>
+                                            <!-- /.input group -->
+                                        </div>
+                                        <!-- /.form group -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Tiene otro Ingreso</label><br />
+                                <input type="checkbox" class="i-checks" name="otro_ingreso" id="otro_ingreso" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Número de Trabajadores</label>
+                                <input type="text" class="form-control" id="no_trabajadores" maxlength="6" onkeypress="return isNumberKey(event)" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Cuenta con sucursal(es)</label>
+                                <select id="res_sucursales" class="form-control">
+                                    <option value="0" selected>No</option>
+                                    <option value="1">Si</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h2 class="box-title">REFERENCIA COMERCIAL</h2>
+                        <div class="row mt-5">
+                            <div class="col-xs-1 col-md-1">
+                                <button class="btn btn-sm btn-success" id="btnAgregarRef" data-target="#modal_saveRef" data-toggle="modal"><i class="fa fa-plus-circle"></i> Agregar</button>
+                            </div>
+                            <div class="col-xs-10 col-md-11 table-responsive">
+                                <table id="table-datos" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre</th>
+                                            <th>Relación</th>
+                                            <th>Dirección</th>
+                                            <th>Tipo Referencia</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyDetalles"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">DATOS DE REFERENCIA DOMICILIARIA</h2>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Avenida de acceso</label>
+                                <textarea class="form-control" id="av_acceso"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Líneas de Transporte público</label>
+                                <textarea class="form-control" id="lineas_transporte"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Calles principales (referencia para pronta ubicación)</label>
+                                <textarea class="form-control" id="calles_principales"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Tiempo Aproximado</label>
+                                <input type="text" class="form-control" id="tiempo_aprox" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-5">
+                            <div class="col-xs-12 col-md-6" align="center">
+                                <label>Croquis del Negocio</label>
+                                <div class="col-xs-12 col-md-12">
+                                    <button class="btn btn-sm btn-primary" id="btn_negocio" onclick="buscarNeg(1)"><i class="fa fa-map-marker"></i></button>
+                                    <input type="hidden" id="latNeg" /><input type="hidden" id="lonNeg" />
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6" align="center">
+                                <label>Croquis del Domicilio</label>
+                                <div class="col-xs-12 col-md-12">
+                                    <button class="btn btn-sm btn-primary" id="btn_domicilio" onclick="buscarNeg(2)"><i class="fa fa-map-marker"></i></button>
+                                    <input type="hidden" id="latDom" /><input type="hidden" id="lonDom" />
+                                </div>
+                                <div class="col-xs-12 col-md-12">
+                                    <div id="mapD"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">DATOS DEL BENEFICIARIO</h2>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Nombre(s)</label>
+                                <input type="text" class="form-control" id="nombre_bene" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Apellido Paterno</label>
+                                <input type="text" class="form-control" id="app_bene" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Apellido Materno</label>
+                                <input type="text" class="form-control" id="apm_bene" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Fecha de Nacimiento</label>
+                                <input type="text" class="form-control fca" id="fecha_nac_bene" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <div class="col-xs-12 col-md-12">
+                                    <label>Sexo</label>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="radio" name="res_sexo_bene" value="H" /><label>Hombre</label>
+                                </div>
+                                <div class="col-xs-6 col-md-6">
+                                    <input type="radio" name="res_sexo_bene" value="M" /><label>Mujer</label><br />
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Parentesco</label>
+                                <input type="text" class="form-control" id="parentesco_bene" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Participación</label>
+                                <input type="text" class="form-control" id="participacion_bene" onkeypress="return isNumberKey(event)" maxlength="2" placeholder="0%" />
+                            </div>
+                        </div>
+                        <h2 class="box-title">Datos de Beneficiario</h2>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Estado</label>
+                                <select class="form-control" id="estado_benef"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Municpio</label>
+                                <select id="municipio_benef" class="form-control"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Colonia</label>
+                                <select id="colonia_benef" class="form-control"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Código Postal</label>
+                                <input type="text" id="codigo_postal_benef" class="form-control" disabled>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Número</label>
+                                <input type="text" class="form-control" id="numero_beneficiario" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Calle</label>
+                                <input type="text" class="form-control" id="calle_beneficiario" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <br />
+                                <label>Accionista</label>
+                                <br />
+                                <input type="checkbox" id="accionista" name="accionista" value="1" class="minimal" checked>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <br />
+                                <label>Relación de parentesco</label>
+                                <br />
+                                <input type="checkbox" id="relacion_pare" name="relacion_pare" value="1" class="minimal" checked>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <br />
+                                <label>Manifiesta que actuó a nombre y cuenta propia sabedor de las consecuencias legales que tiene el engañar a la Entidad financiera respecto a esta información.</label>
+                                <br />
+                                <input type="checkbox" id="manifiesta_nombre_cuenta" value="1" class="minimal">
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <br />
+                                <label>Manifiesta que actuó a nombre de un tercero</label>
+                                <br />
+                                <input type="checkbox" id="manifiesta_nombre_tercero" value="1" class="minimal">
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <br />
+                                <label>Manifiesta que actuó a nombre de un tercero</label>
+                                <br />
+                                <input type="checkbox" id="manifiesta_nombre_tercero" value="1" class="minimal">
+                            </div>
+                        </div>
+                        <div class="row mt-5" id="div_datos_tercero" style="display:none">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Nombre(s)</label>
+                                <input id="nombre_tercero" type="text" class="form-control" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Apellido Paterno</label>
+                                <input id="app_tercero" type="text" class="form-control" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Apellido Materno</label>
+                                <input id="apm_tercero" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-6">
+                                <label>Correo Electrónico/Facebook/Twitter/</label>
+                                <textarea id="red_social" class="form-control"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <label>¿Como se entera o quien se lo recomendo?</label>
+                                <input type="text" class="form-control" id="modo_enterado" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addFichaClienteMoral()"><i class="fa fa-save"></i> Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal fade" id="modal_saveRef">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Agregar Referencia</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <label>Nombre del Cliente</label>
+                        <input type="text" class="form-control" id="nombre_ref" />
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <label>Apellido Paterno</label>
+                        <input type="text" class="form-control" id="app_ref" />
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <label>Apellido Materno</label>
+                        <input type="text" class="form-control" id="apm_ref" />
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-xs-6 col-md-6">
+                        <label>Estado</label>
+                        <select id="estado_mdl" class="form-control"></select>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>Municipio</label>
+                        <select id="municipio_mdl" class="form-control"></select>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>Colonia</label>
+                        <select id="colonia_ref" class="form-control"></select>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>C.P.</label>
+                        <input type="text" id="cp_mdl" class="form-control" disabled>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>Calle</label>
+                        <input type="text" class="form-control" id="calle_ref" />
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>Número</label>
+                        <input type="text" class="form-control" id="numero_calle_ref" maxlength="10" />
+                    </div>
+                </div>
+                <div class="row mt-5">
+                    <div class="col-xs-6 col-md-4">
+                        <label>Relación</label>
+                        <input type="text" class="form-control" id="relacion_ref" />
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <label>Teléfono</label>
+                        <input type="text" class="form-control" id="telefono_ref" onkeypress="return isNumberKey(event)" maxlength="12" />
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <label>Tipo de referencia</label>
+                        <select id="tipo_ref" class="form-control select2">
+                            <option value="0" selected>Seleccione...</option>
+                            <option value="1">Personal</option>
+                            <option value="2">Comercial</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_referencia">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script>
+    $(document).ready(function () {
+        $('.select2').select2();
+        $('#colonia_ref').select2({
+            width: '100%',
+            allowClear: true
+        });
+        $('#monto').maskMoney();
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        })
+        consultaContenidoCheck();
+        getEstados();
+        getCliente();
+        /*
+        var date = new Date();
+        var currentMonth = date.getMonth();
+        var currentDate = date.getDate();
+        var currentYear = date.getFullYear();
+        */
+
+        $('.fca').datepicker({
+            autoclose: true,
+            dateFormat: 'dd/mm/yyyy',
+        })
+
+        $("#modal_saveRef").on("shown.bs.modal", function () {
+            $("#nombre_ref").val("");
+            $("#app_ref").val("");
+            $("#apm_ref").val("");
+            $("#colonia_ref").val(0).change();
+            $("#calle_ref").val("");
+            $("#numero_calle_ref").val("");
+            $("#relacion_ref").val("");
+            $("#telefono_ref").val("");
+        });
+
+        $('#accionista_res').on('ifChecked', function (event) {
+            $("#div_esp_porc").css('display', 'block');
+        });
+        $('#accionista_res').on('ifChanged', function (event) {
+            $("#div_esp_porc").css('display', 'none');
+        });
+        $('#manifiesta_nombre_tercero').on('ifChecked', function (event) {
+            $("#div_datos_tercero").css('display', 'block');
+        });
+        $('#manifiesta_nombre_tercero').on('ifChanged', function (event) {
+            $("#div_datos_tercero").css('display', 'none');
+        });
+    /*SELECTS*/
+        $("#municipio_fiscal").change(function () {
+            var cp = $('#municipio_fiscal option:selected').val() == undefined ? '0' : $('#municipio_fiscal option:selected').val();
+            var edo = $('#estado option:selected').val() == undefined ? '0' : $('#estado option:selected').val();
+
+            var data = {
+                id_estado: edo,
+                id_muni: cp
+            }
+            if (cp == "0" && edo == "0") {
+                $("#municipio_fiscal").attr('disabled', true);
+            } else {
+                $("#municipio_fiscal").attr('disabled', false);
+            }
+            if (cp != "0") {
+                $("#colonia_fiscal").attr('disabled', false);
+            } else {
+                $("#colonia_fiscal").attr('disabled', true);
+            }
+            $("#colonia_fiscal").html('').select2();
+            $.ajax({
+                url: "/Cartas/GetColonia",
+                type: 'POST',
+                dataType: 'json',
+                data: data,
+                success: function (data) {
+                    var obj = JSON.parse(data);
+                    var itemobjeto = [];
+                    itemobjeto.push({
+                        id: 0,
+                        text: 'Todos'
+                    });
+                    for (var i = 0; i < obj.Table.length; i++) {
+                        var nombre = obj.Table[i].COLONIA;
+                        var cp = obj.Table[i].CP;
+                        itemobjeto.push({
+                            id: obj.Table[i].CLAVE_C,
+                            text: nombre + "-" + cp
+                        });
+                    }
+
+                    $('#colonia_fiscal').select2({
+                        width: '100%',
+                        allowClear: true,
+                        data: itemobjeto
+                    });
+
+                    $("#colonia_fiscal").val(0).change();
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var data = jqXHR.responseJSON;
+                    if (jqXHR.status == 401) {
+                        location.reload();
+                    }
+
+                }
+            });
+        });
+
+        $("#colonia_fiscal").change(function () {
+            var cp = $('#colonia_fiscal option:selected').text() == undefined ? '0' : $('#colonia_fiscal option:selected').text();
+            console.log(cp);
+            cp = cp.split("-");
+            if (cp[1] != undefined || cp[1] != "undefined") {
+                $("#cp_fiscal").val(cp[1]);
+            }
+        });
+    });
+
+    var map, map2, infoWindow, infoWindowD;
+    var referencias = [];
+    $('#btn_referencia').click(function () {
+        referencias.push({
+            "nombre": $('#nombre_ref').val(),
+            "app": $('#app_ref').val(),
+            "apm": $('#apm_ref').val(),
+            "colonia": $('#colonia_ref').val(),
+            "calle": $('#calle_ref').val(),
+            "numero": $('#numero_calle_ref').val(),
+            "relacion": $('#relacion_ref').val(),
+            "telefono": $('#telefono_ref').val(),
+        });
+        var s = '';
+        var n = 0;
+        for (var i = 0; i < referencias.length; i++) {
+            n = i + 1;
+            var col = referencias[i].colonia == 1 ? 'IRV' : 'LA PAZ';
+            s = "<tr><td>" + n + "</td><td>" + referencias[i].nombre + " " + referencias[i].app + " " + referencias[i].apm + "</td><td>" + referencias[i].relacion + "</td><td>" + referencias[i].telefono + "</td><td>" + col + "," + referencias[i].calle + " " + referencias[i].numero + "</td><td><button class='btn btn-xs btn-danger' onClick='eliminaRel(" + n + ")'><i class='fa fa-remove'></i></button></td></tr>";
+        }
+        $("#bodyDetalles").append(s);
+        $("#modal_saveRef").modal("hide");
+        $('#table-datos').DataTable();
+    });
+
+    
+
+    function eliminaRel(n) {
+        var p = n - 1;
+        referencias.splice(p, 1);
+        $("#bodyDetalles").empty();
+        var s = '';
+        var n = 0;
+        for (var i = 0; i < referencias.length; i++) {
+            n = i + 1;
+            var col = referencias[i].colonia == 1 ? 'IRV' : 'LA PAZ';
+            s += "<tr><td>" + n + "</td><td>" + referencias[i].nombre + " " + referencias[i].app + " " + referencias[i].apm + "</td><td>" + referencias[i].relacion + "</td><td>" + referencias[i].telefono + "</td><td>" + col + "," + referencias[i].calle+ " " + referencias[i].numero + "</td><td><button class='btn btn-xs btn-danger' onClick='eliminaRel(" + n + ")'><i class='fa fa-remove'></i></button></td></tr>";
+        }
+        $("#bodyDetalles").append(s);
+        $('#table-datos').DataTable();
+    }
+
+    var markersArray = [];
+    var markersArrayDom = [];
+
+    function buscarNeg(a) {
+        if (a == 1) {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 18.95652, lng: -98.18664 },
+                zoom: 12
+            });
+            marker = new google.maps.Marker({
+                position: { lat: 18.95652, lng: -98.18664 },
+                map: map
+            });
+            markersArray.push(marker);
+            map.addListener('click', function (e) {
+                limpiarMarker(a);
+                placeMarkerAndPanTo(e.latLng, map, 1);
+            });
+            infoWindow = new google.maps.InfoWindow;
+            infoWindow.open(map);
+        } else {
+            map2 = new google.maps.Map(document.getElementById('mapD'), {
+                center: { lat: 18.95652, lng: -98.18664 },
+                zoom: 12
+            });
+            markerD = new google.maps.Marker({
+                position: { lat: 18.95652, lng: -98.18664 },
+                map: map2
+            });
+            markersArrayDom.push(markerD);
+            map2.addListener('click', function (e) {
+                limpiarMarker(a);
+                placeMarkerAndPanTo(e.latLng, map2, 2);
+            });
+            infoWindowD = new google.maps.InfoWindow;
+            infoWindowD.open(map2);
+        }
+
+    }
+    function placeMarkerAndPanTo(latLng, map, t) {
+        if (t == 1) {
+            $("#latNeg").val(latLng.lat());
+            $("#lonNeg").val(latLng.lng());
+            var markers = new google.maps.Marker({
+                position: latLng,
+                map: map
+            });
+            map.panTo(latLng);
+            markersArray.push(markers);
+        } else {
+            $("#latDom").val(latLng.lat());
+            $("#lonDom").val(latLng.lng());
+            var markersD = new google.maps.Marker({
+                position: latLng,
+                map: map2
+            });
+            map2.panTo(latLng);
+            markersArrayDom.push(markersD);
+        }
+    }
+    function limpiarMarker(a) {
+        if (a == 1) {
+            for (var i = 0; i < markersArray.length; i++) {
+                markersArray[i].setMap(null);
+            }
+            markersArray = [];
+        } else {
+            for (var i = 0; i < markersArrayDom.length; i++) {
+                markersArrayDom[i].setMap(null);
+            }
+            markersArrayDom = [];
+        }
+
+    }
+</script>
+

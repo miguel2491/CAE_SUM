@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "Carta Separación Crediticia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Carta Separación Crediticia
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Carta</a></li>
+            <li class="active">Separación Crediticia</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-11 col-md-11">
+                                <label>Documento</label>
+                                <select class="form-control select2" id="tipo_check">
+                                    <option selectd value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Lugar:</label>
+                                <input type="text" class="form-control" id="lugar" placeholder="Lugar">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <div class="form-group">
+                                    <label>Fecha:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" class="form-control pull-right" id="fecha">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Institución</label>
+                                <input type="text" class="form-control" placeholder="Denominación de Institución" id="institucion">
+                            </div>
+                            <hr />
+                            <div class="col-xs-4 col-md-4">
+                                <label>Cliente</label>
+                                <select id="cliente" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Mario Goméz Fernandez</option>
+                                    <option value="2">Fernanda Fortis Altamirano</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-4 col-md-4">
+                                <br /><label>FPDC.AE-030</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC.AE-030" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addSeparacion()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        consultaContenidoCheck();
+        $('.select2').select2();
+        //Date picker
+        $('#fecha').datepicker({
+            autoclose: true,
+            dateFormat: 'dd/mm/yyyy',
+            Default: "es"
+
+        })
+        $("#fecha").keypress(function (event) { event.preventDefault(); });
+    });
+</script>
+
+
+

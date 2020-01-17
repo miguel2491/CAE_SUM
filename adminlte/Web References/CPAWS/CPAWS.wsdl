@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.financierasumate.com.mx" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.financierasumate.com.mx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.financierasumate.com.mx">
+      <s:element name="WsExecuteProductos">
+        <s:complexType />
+      </s:element>
+      <s:element name="WsExecuteProductosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsExecuteProductosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteSucursales">
+        <s:complexType />
+      </s:element>
+      <s:element name="WsExecuteSucursalesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsExecuteSucursalesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteCP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nCP" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteCPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsExecuteCPResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteEstados">
+        <s:complexType />
+      </s:element>
+      <s:element name="WsExecuteEstadosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsExecuteEstadosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteMunicipios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nEstado" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteMunicipiosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsExecuteMunicipiosResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteColonias">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nEstado" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="nMunicipio" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsExecuteColoniasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsExecuteColoniasResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsGruposClientes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nCGrupo" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WsGruposClientesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WsGruposClientesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="WsExecuteProductosSoapIn">
+    <wsdl:part name="parameters" element="tns:WsExecuteProductos" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteProductosSoapOut">
+    <wsdl:part name="parameters" element="tns:WsExecuteProductosResponse" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteSucursalesSoapIn">
+    <wsdl:part name="parameters" element="tns:WsExecuteSucursales" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteSucursalesSoapOut">
+    <wsdl:part name="parameters" element="tns:WsExecuteSucursalesResponse" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteCPSoapIn">
+    <wsdl:part name="parameters" element="tns:WsExecuteCP" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteCPSoapOut">
+    <wsdl:part name="parameters" element="tns:WsExecuteCPResponse" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteEstadosSoapIn">
+    <wsdl:part name="parameters" element="tns:WsExecuteEstados" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteEstadosSoapOut">
+    <wsdl:part name="parameters" element="tns:WsExecuteEstadosResponse" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteMunicipiosSoapIn">
+    <wsdl:part name="parameters" element="tns:WsExecuteMunicipios" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteMunicipiosSoapOut">
+    <wsdl:part name="parameters" element="tns:WsExecuteMunicipiosResponse" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteColoniasSoapIn">
+    <wsdl:part name="parameters" element="tns:WsExecuteColonias" />
+  </wsdl:message>
+  <wsdl:message name="WsExecuteColoniasSoapOut">
+    <wsdl:part name="parameters" element="tns:WsExecuteColoniasResponse" />
+  </wsdl:message>
+  <wsdl:message name="WsGruposClientesSoapIn">
+    <wsdl:part name="parameters" element="tns:WsGruposClientes" />
+  </wsdl:message>
+  <wsdl:message name="WsGruposClientesSoapOut">
+    <wsdl:part name="parameters" element="tns:WsGruposClientesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="CPAWSSoap">
+    <wsdl:operation name="WsExecuteProductos">
+      <wsdl:input message="tns:WsExecuteProductosSoapIn" />
+      <wsdl:output message="tns:WsExecuteProductosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteSucursales">
+      <wsdl:input message="tns:WsExecuteSucursalesSoapIn" />
+      <wsdl:output message="tns:WsExecuteSucursalesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteCP">
+      <wsdl:input message="tns:WsExecuteCPSoapIn" />
+      <wsdl:output message="tns:WsExecuteCPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteEstados">
+      <wsdl:input message="tns:WsExecuteEstadosSoapIn" />
+      <wsdl:output message="tns:WsExecuteEstadosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteMunicipios">
+      <wsdl:input message="tns:WsExecuteMunicipiosSoapIn" />
+      <wsdl:output message="tns:WsExecuteMunicipiosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteColonias">
+      <wsdl:input message="tns:WsExecuteColoniasSoapIn" />
+      <wsdl:output message="tns:WsExecuteColoniasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WsGruposClientes">
+      <wsdl:input message="tns:WsGruposClientesSoapIn" />
+      <wsdl:output message="tns:WsGruposClientesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CPAWSSoap" type="tns:CPAWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WsExecuteProductos">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsExecuteProductos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteSucursales">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsExecuteSucursales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteCP">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsExecuteCP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteEstados">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsExecuteEstados" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteMunicipios">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsExecuteMunicipios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteColonias">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsExecuteColonias" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsGruposClientes">
+      <soap:operation soapAction="http://www.financierasumate.com.mx/WsGruposClientes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CPAWSSoap12" type="tns:CPAWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WsExecuteProductos">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsExecuteProductos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteSucursales">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsExecuteSucursales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteCP">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsExecuteCP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteEstados">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsExecuteEstados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteMunicipios">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsExecuteMunicipios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsExecuteColonias">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsExecuteColonias" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WsGruposClientes">
+      <soap12:operation soapAction="http://www.financierasumate.com.mx/WsGruposClientes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CPAWS">
+    <wsdl:port name="CPAWSSoap" binding="tns:CPAWSSoap">
+      <soap:address location="http://192.168.100.84/wscpa/CPAWS.asmx" />
+    </wsdl:port>
+    <wsdl:port name="CPAWSSoap12" binding="tns:CPAWSSoap12">
+      <soap12:address location="http://192.168.100.84/wscpa/CPAWS.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

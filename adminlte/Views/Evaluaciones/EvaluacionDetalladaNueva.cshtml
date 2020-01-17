@@ -1,0 +1,1568 @@
+﻿
+@{
+    ViewBag.Title = "Evaluaciones Detallada Nueva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Evaluación Detallada Nueva
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Evaluaciones</a></li>
+            <li class="active">Detallada Nueva</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                        <li class="" id="infopatbtn"><a data-toggle="tab" href="#menu3">Informacion Operativa</a></li>
+                        <li class="" id="infopbtn"><a data-toggle="tab" href="#menu2">Insumos</a></li>
+                        <li class="" id="evalbtn"><a data-toggle="tab" href="#menu1">Inf. Patrimonial y BG </a></li>
+                        <li class="" id="histobtn"><a data-toggle="tab" href="#menu5">Historial</a></li>
+                        <li class="" id="socringbtn"><a data-toggle="tab" href="#menu4">Scoring</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade in active">
+                            <h3>Evaluacio Económica Simple</h3>
+                            <h5>Descripcion</h5>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="jumbotron" style="padding:10px">
+                                    <label>Informacion Operativa</label><div class="pull-right" id="evaTxt">pendiente</div><br />
+                                    <label>Insumos</label><div class="pull-right" id="insumTxt">pendiente</div><br />
+                                    <label>Inf. Patrimonial y BG</label><div class="pull-right" id="infoPatTxt">pendiente</div><br />
+                                    <label>Scoring</label><div class="pull-right" id="scorTxt">pendiente</div><br />
+                                    <label>Historial</label><div class="pull-right" id="histTxt">pendiente</div><br />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+
+                                <p>
+                                    <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#collapseInstrucciones" aria-expanded="false" aria-controls="collapseExample">
+                                        Instrucciones
+                                    </button>
+                                </p>
+                                <br /> <br />
+                                <div class="collapse" id="collapseInstrucciones">
+                                    <div class="card card-body">
+                                        <div align="justify">
+                                            <h3>Evaluacion economica detallada</h3>
+                                            <p>Esta evaluacion consta de <b>5</b> partes , los formularios se encunetran en las pestañas correspendoientes.</p>
+                                            <p>Al final de cada pestaña hay un boton para agregar subir la informacion en caso de que los campos estén incompletos usted vera una alarma como esta:</p>
+                                            <p align="center">
+                                                <span class="badge badge-danger">Error : descripción</span>
+                                            </p>
+
+                                            <p>En caso de que el registro sea exitoso , la pestaña de la sección cambiará de color y se reflajara su estado en esta misma vista , en el area de secciones</p>
+                                            <br />
+                                            <ul class="nav nav-tabs">
+                                                <li class=""><a>Ejemplos</a></li>
+                                                <li class="bg-success" id="evalbtn"><a>Evaluacion</a></li>
+                                                <li class="bg-success" id="histobtn"><a>Historial</a></li>
+                                                <li class="bg-success" id="socringbtn"><a>Scoring</a></li>
+                                                <li class="bg-success" id="calgrupbtn"><a>Calificacion a grupo</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div id="menu1" class="tab-pane fade">
+
+                            <h3>Inf. Patrimonial y BG</h3>
+
+                            <p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                    data-target="#collapseDetallecuentasporpagar" aria-expanded="false" aria-controls="collapseExample">
+                                                Detalle de cuentas por pagar
+
+                                            </button>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>
+                                                Cuota o monto mensual
+                                            </label>
+                                            <input type="text" name="name" value="" id="Cuotamontomensual" disabled />
+                                        </li>
+
+                                        <li class="breadcrumb-item">
+                                            <label>
+                                                Total deuda
+                                            </label>
+                                            <input type="text" name="name" value="" id="Totaldeudacuentasporpagar" disabled />
+                                        </li>
+                                    </ol>
+                                </nav>
+
+                            </p>
+
+
+                            <div class="collapse" id="collapseDetallecuentasporpagar">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="jumbotron">
+                                            <div id="errorCuentasPorPagar"></div>
+                                            <button class="btn btn-default pull-right" onclick="addDetalleDeCeuntasPorPagar()">Agregar </button>
+
+
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Concepto
+                                                        </th>
+
+                                                        <th>
+                                                            Cuota o monto mensual
+                                                        </th>
+                                                        <th>
+                                                            Tiempo que falta x pagar (meses)
+                                                        </th>
+                                                        <th>
+                                                            Total deuda
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><label>Otras instituciones de crédito y/o agiotistas</label></td>
+                                                        <td><input type="text" id="cuotaMonto_otrasCuotas" name="cuotaMonto" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_otrasCuotas" class="form-control" onblur="detallesCuentaPorPagar(this.id)" value="" /></td>
+                                                        <td><input type="text" name="td_patyBg" id="td_patyBg_otrasCuotas" class="form-control" value="" disabled /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label>Cuotas de créditos diversos</label></td>
+                                                        <td><input type="text" id="cuotaMonto_creditosDiversos" name="cuotaMonto" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_creditosDiversos" class="form-control" onblur="detallesCuentaPorPagar(this.id)" value="" /></td>
+                                                        <td><input type="text" name="td_patyBg" id="td_patyBg_creditosDiversos" class="form-control" value="" disabled /></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td><label>Pago mensual por tandas</label></td>
+                                                        <td><input type="text" id="cuotaMonto_pagoMensualTandas" name="cuotaMonto" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_pagoMensualTandas" class="form-control" onblur="detallesCuentaPorPagar(this.id)" value="" /></td>
+                                                        <td><input type="text" name="td_patyBg" id="td_patyBg_pagoMensualTandas" class="form-control" value="" disabled /></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><label> Cuentas por pagar a proveedores</label></td>
+                                                        <td><input type="text" id="cuotaMonto_porPagarProveedores" name="cuotaMonto" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_porPagarProveedores" class="form-control" value="" onblur="detallesCuentaPorPagar(this.id)" /></td>
+                                                        <td><input type="text" name="td_patyBg" id="td_patyBg_porPagarProveedores" class="form-control" value="" disabled /></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td><label>Pagos anticipados de clientes</label></td>
+                                                        <td><input type="text" id="cuotaMonto_anticipadoClientes" name="cuotaMonto" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_anticipadoClientes" class="form-control" onblur="detallesCuentaPorPagar(this.id)" value="" /></td>
+                                                        <td><input type="text" name="td_patyBg" id="td_patyBg_anticipadoClientes" class="form-control" value="" disabled /></td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="jumbotron">
+
+                                            <label>
+                                                Cuota o monto mensual
+                                            </label>
+                                            <input type="text" name="name" value="" id=" " disabled />
+
+                                            <br />
+                                            <label>
+                                                Total deuda
+                                            </label>
+                                            <input type="text" name="name" value="" id=" " disabled />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <hr />
+
+                            <p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                    data-target="#collapseDetallecuentaspocobrar" aria-expanded="false" aria-controls="collapseExample">
+                                                Detalle de cuentas por cobrar
+
+                                            </button>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>
+                                                Cuota o monto mensual
+                                            </label>
+                                            <input type="text" name="name" value="" id="Cuotamontomensual_porcobrar" disabled />
+                                        </li>
+
+                                        <li class="breadcrumb-item">
+                                            <label>
+                                                Total deuda
+                                            </label>
+                                            <input type="text" name="name" value="" id="Totaldeudacuentasporpagar_porcobrar" disabled />
+                                        </li>
+                                    </ol>
+                                </nav>
+
+                            </p>
+
+                            <div class="collapse" id="collapseDetallecuentaspocobrar">
+
+
+                                <div class="row">
+
+                                    <div class="col-lg-8 col-md-8">
+                                        <div class="jumbotron">
+
+                                            <button class="btn btn-default btn-sm pull-right" onclick="addDetalleDeCeuntasPorCobrar()">Agregar</button>
+
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Concepto
+                                                        </th>
+
+                                                        <th>
+                                                            Cuota o monto mensual
+                                                        </th>
+                                                        <th>
+                                                            Tiempo que falta x pagar (meses)
+                                                        </th>
+                                                        <th>
+                                                            Total deuda
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <!--
+
+                                                            <td><label>Otras instituciones de crédito y/o agiotistas</label></td>
+                                                            <td><input type="text" id="cuotaMonto_otrasCuotas" name="cuotaMonto" class="form-control" value="" /></td>
+                                                            <td><input type="text" id="meses_otrasCuotas" class="form-control"  onblur="detallesCuentaPorPagar(this.id)" value="" /></td>
+                                                            <td><input type="text" name="td_patyBg" id="td_patyBg_otrasCuotas" class="form-control" value="" disabled/></td>
+                                                    -->
+
+                                                    <tr>
+                                                        <td>
+                                                            <label>
+                                                                Deudores diversos (amigos, familiares,)
+                                                            </label>
+                                                        </td>
+                                                        <td><input type="text" id="cuotaMonto_deudoresDiversos" name="cuotaMonta_porcobrar" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_deudoresDiversos" class="form-control" value="" onblur="detallesCuentaPorCobrar(this.id)" /></td>
+                                                        <td><input type="text" name="td_porcobrar" id="td_porcobrar_deudoresDiversos" class="form-control" value="" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label>
+                                                                Tandas por recibir
+                                                            </label>
+                                                        </td>
+                                                        <td><input type="text" id="cuotaMonto_tandasPorRecibir" name="cuotaMonta_porcobrar" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_tandasPorRecibir" class="form-control" value="" onblur="detallesCuentaPorCobrar(this.id)" /></td>
+                                                        <td><input type="text" name="td_porcobrar" id="td_porcobrar_tandasPorRecibir" class="form-control" value="" /></td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <label>
+                                                                Pagos anticipados a proveeedores
+                                                            </label>
+                                                        </td>
+                                                        <td><input type="text" id="cuotaMonto_PagosAnticipProvedores" name="cuotaMonta_porcobrar" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_PagosAnticipProvedores" class="form-control" value="" onblur="detallesCuentaPorCobrar(this.id)" /></td>
+                                                        <td><input type="text" name="td_porcobrar" id="td_porcobrar_PagosAnticipProvedores" class="form-control" value="" /></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <label>
+                                                                Cuentas por cobrar a clientes
+                                                            </label>
+                                                        </td>
+                                                        <td><input type="text" id="cuotaMonto_ClientPorCobrar" name="cuotaMonta_porcobrar" class="form-control" value="" /></td>
+                                                        <td><input type="text" id="meses_ClientPorCobrar" class="form-control" value="" onblur="detallesCuentaPorCobrar(this.id)" /></td>
+                                                        <td><input type="text" name="td_porcobrar" id="td_porcobrar_ClientPorCobrar" class="form-control" value="" /></td>
+
+                                                    </tr>
+
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="jumbotron">
+
+                                            <label>
+                                                Cuota o monto mensual
+                                            </label>
+                                            <input type="text" name="name" value="" id="Cuotamontomensual" disabled />
+
+                                            <br />
+                                            <label>
+                                                Total deuda
+                                            </label>
+                                            <input type="text" name="name" value="" id="Totaldeudacuentasporpagar" disabled />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <hr />
+                            <p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                    data-target="#collapseInvenarios" aria-expanded="false" aria-controls="collapseExample">
+                                                Inventarios
+
+                                            </button>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>
+                                                Total de inventarios
+                                            </label>
+                                            <input type="text" name="name" value="" id="Totaldeinventarios" disabled />
+                                        </li>
+
+
+                                    </ol>
+                                </nav>
+
+                            </p>
+                            <div class="collapse" id="collapseInvenarios">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-8">
+                                        <button class="btn btn-default" onclick="addInvT()">Agregar fila</button>
+                                        <button class="btn btn-default pull-right" onclick="addTInventarios()">Agregar a evaluacion</button>
+                                        <table class="table table-hover table-responsive">
+                                            <thead>
+                                                <tr>
+                                                    <th>Mat.prim./En proceso/Term.</th>
+                                                    <th>Unidad de medida</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio de Compra</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="InvT">
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="producto_1" value="" />
+                                                    </td>
+
+                                                    <td>
+
+                                                        <select class="form-control" id="umedida_1">
+                                                            <option value="kg">kilo</option>
+                                                            <option value="m">metro</option>
+                                                            <option value="m2">kilo</option>
+                                                            <option value="m3">kilo</option>
+
+                                                            <option value="l">litro</option>
+                                                            <option value="gal">galon</option>
+                                                            <option value="ton">tonelada</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="cantidad_1" value="" />
+
+                                                    </td>
+
+                                                    <td>
+                                                        <input class="form-control" type="text" id="costoun_1" onblur="TotalInventario(this.id)" value="" />
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control" type="text" name="csotoT" id="csotoT_1" value="" />
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="jumbotron">
+                                            <label>
+                                                Total de inventarios
+                                            </label><input type="text" name="name" value="" disabled />
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">
+
+
+                                            <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                    data-target="#collapseRubros" aria-expanded="false" aria-controls="collapseExample">
+                                                Rubros
+
+                                            </button>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>Activos</label>
+                                            <input type="text" id="activosRubros" value="" disabled />
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>Pasivos</label>
+                                            <input type="text" id="pasivosRubros" value="" disabled />
+                                        </li>
+
+                                    </ol>
+                                </nav>
+
+                            </p>
+                            <div class="collapse" id="collapseRubros">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jumbotron">
+                                            <div id="semenalRubros"></div>
+                                            <button class="btn btn-default btn-sm pull-right" onclick="CalcRubros()">Agregar a evaluacion</button>
+                                            <br />
+
+                                            <label>
+                                                Inventarios (total $)
+                                            </label><br />
+                                            <input type="number" class="form-control" id="inventarios" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="inventarios" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="inventarios" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Ahorro - Bancos</label><br />
+                                            <input type="number" class="form-control" id="ahorrobancos" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="ahorrobancos" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="ahorrobancos" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Clientes y/o Proveedores (pagos anticipados-deudas por pagar)</label><br />
+                                            <input type="number" class="form-control" id="clientesprovedores" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="clientesprovedores" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="clientesprovedores" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Deudas total (otras MF, reporte buró, agiotistas)</label><br />
+                                            <input type="number" class="form-control" id="deudasT" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="deudasT" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="deudasT" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Tandas (cantidad por recibir y/o cantidad por pagar)</label><br />
+                                            <input type="number" class="form-control" id="tandas" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="tandas" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="tandas" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Caja o Efectivo</label><br />
+                                            <input type="number" class="form-control" id="cajaefectivo" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="cajaefectivo" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="cajaefectivo" value="PASIVO" /><br />
+                                            <hr />
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jumbotron">
+                                            <label>Activos</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+
+                                            <label>Pasivos</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <hr />
+
+
+                            <p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                    data-target="#collapsebienesnegocio" aria-expanded="false" aria-controls="collapseExample">
+                                                Bienes del negocio
+
+
+                                            </button>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>BIENES Activos</label>
+                                            <input type="text" name="name" id="bienesActivosNegocio" value="" disabled />
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>BIENES Pasivos</label>
+                                            <input type="text" name="name" id="bienesPasivosNegocio" value="" disabled />
+                                        </li>
+
+                                    </ol>
+                                </nav>
+
+                            </p>
+
+                            <div id="collapsebienesnegocio" class="collapse">
+
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jumbotron">
+
+                                            <div id="BNError"></div>
+                                            <button class="btn btn-default btn-sm pull-right" onclick="getBienesDeNegocio()">Agregar a evaluacion</button>
+
+
+
+                                            <label>
+                                                Estantería, mobiliario y/o herramienta
+                                            </label><br />
+                                            <input type="number" class="form-control" id="estanteria" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="estanteria" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="estanteria" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Maquinaria y equipo</label><br />
+                                            <input type="number" class="form-control" id="maquinaria" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="maquinaria" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="maquinaria" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Vehículos</label><br />
+                                            <input type="number" class="form-control" id="vehiculos" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="vehiculos" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="vehiculos" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Deudas total (otras MF, reporte buró, agiotistas)</label><br />
+                                            <input type="number" class="form-control" id="deudasT" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="deudasT" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="deudasT" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Local</label><br />
+                                            <input type="number" class="form-control" id="Local" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="Local" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="Local" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Otros</label><br />
+                                            <input type="number" class="form-control" id="OtrosNeg" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="OtrosNeg" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="OtrosNeg" value="PASIVO" /><br />
+                                            <hr />
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jumbotron">
+                                            <label>Activos</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+
+                                            <label>Pasivos</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <hr />
+
+                            <p>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item active" aria-current="page">
+                                            <button class="btn btn-default  " type="button" data-toggle="collapse"
+                                                    data-target="#collapsebienespropios" aria-expanded="false" aria-controls="collapseExample">
+                                                Bienes propios
+
+
+
+                                            </button>
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>BIENES propios Activos</label>
+                                            <input type="text" id="bienespropiosactivos" name="name" value="" disabled />
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            <label>BIENES propios Pasivos</label>
+                                            <input type="text" name="name" value="" id="bienespropiospasivos" disabled />
+                                        </li>
+
+                                    </ol>
+                                </nav>
+
+                            </p>
+
+                            <div id="collapsebienespropios" class="collapse">
+
+                                <div class="row">
+
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jumbotron">
+                                            <div id="errorBienesPropios"></div>
+                                            <button class="btn btn-default pull-right" onclick="calcBienesPropios()">Agregar a evalucion</button>
+                                            <br />
+
+                                            <label>
+                                                Casas
+                                            </label><br />
+                                            <input type="number" class="form-control" id="Casas" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="Casas" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="Casas" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Terrenos</label><br />
+                                            <input type="number" class="form-control" id="Terrenos" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="Terrenos" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="Terrenos" value="PASIVO" /><br />
+                                            <hr />
+                                            <label>Vehículos</label><br />
+                                            <input type="number" class="form-control" id="vehiculos" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="vehiculos" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="vehiculos" value="PASIVO" /><br />
+                                            <hr />
+                                            <label> Otros (bienes del hogar)</label><br />
+                                            <input type="number" class="form-control" id="otrosbieneshogar" value="" /><br />
+                                            <label>ACTIVO</label><input type="radio" name="otrosbieneshogar" value="ACTIVO" />
+                                            <label>PASIVO</label><input type="radio" name="otrosbieneshogar" value="PASIVO" /><br />
+                                            <hr />
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="jumbotron">
+                                            <label>SUB  TOTAL (C)</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+
+                                            <label>TOTAL (A + B + C )</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+
+
+                                            <label>Activos</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+
+                                            <label>Pasivos</label>
+                                            <input type="text" name="name" value="" disabled /><br />
+
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <hr />
+
+
+
+                            <label>Comentarios </label>
+                            <textarea class="form-control" placeholder="Opcional"></textarea>
+                            <button class="btn btn-default pull-right">Agregar</button>
+                            <hr />
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                            <h3>Insumos</h3>
+                            <button class="btn btn-default" id="addRowT_btn" onclick="addRowT()">Agregar fila</button>
+
+                            <div class="col-lg-12 col-md-12">
+                                <hr />
+                                <table class="table table-hover table-responsive">
+                                    <thead>
+                                        <tr>
+                                            <th> Producto / Insumo</th>
+                                            <th>Cantidad</th>
+                                            <th>U. de medida</th>
+                                            <th>Costo unitario          </th>
+                                            <th>Costo total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="InsumosT">
+                                        <tr>
+                                            <td><input type="text" class="form-control" id="ProductoInsumo_" value="" /></td>
+                                            <td><input type="text" class="form-control" id="Cantidad_" value="" /></td>
+                                            <td><input type="text" class="form-control" id="Udemedida_" value="" /></td>
+                                            <td><input type="text" class="form-control" id="CostoUnitario_" onblur="sumCT()" value="" /></td>
+                                            <td><input type="text" class="form-control" name="costoTotal" id="CostoTotal_" value="" /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <button class="btn btn-default pull-right" id="calcInsumos_btn" onclick="calcInsumos()">Agregar a evaluacion</button>
+                                <br />
+                                <br />
+                                <hr />
+
+                                <table class="table table-hover table-responsive">
+
+
+                                    <tbody id="InsumosT_"></tbody>
+                                </table>
+
+                            </div>
+                            <div class="col-lg-6 col-md-6"></div><div class="col-lg-6 col-md-6"></div>
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <h3>Informacion Operativa</h3>
+
+
+
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-lg-12">
+                                        <div id="errorAddAll" class="pull-right"></div>
+                                        <br><br>
+                                        <button id="addBtn" class="pull-right btn btn-default" onclick="InsertInfoOperativa()" disabled>Agregar a evaluacion</button>
+                                        <hr />
+
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6">
+
+
+
+
+                                        <div class="jumbotron">
+
+                                            <label>No. de evaluación:</label><br />
+                                            <input type="text" class="form-control" id="ndeevaluacion" value="" /><br />
+
+
+                                            <label> Especifique Actividad:</label><br />
+                                            <input type="text" class="form-control" id="actividad" value="" /><br />
+
+
+
+                                            <label> Sector económico:(MP/MS/MC)</label><br />
+                                            <input type="text" class="form-control" id="sectoreconomico" value="" /><br />
+
+
+                                            <label>Secuencia Base:</label><br />
+                                            <input type="text" class="form-control" id="secuenciabase" value="" /><br />
+
+
+                                            <label>Fecha </label><br />
+                                            <input type="date" class="form-control" id="ndeevaluacion" value="" /><br />
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+
+
+
+
+                                        <div class="jumbotron">
+
+                                            <label>Monto a solicitar:</label><br />
+                                            <input type="text" class="form-control" onblur="montoSolicitado()" id="montoasolicitar" value="" /><br />
+
+
+                                            <label> Último monto operado:</label><br />
+                                            <input type="text" class="form-control" id="ultimomontooperado" value="" /><br />
+
+
+                                            <label> Nombre del cliente:</label><br />
+
+
+                                            <select class="form-control" id="id_cliente">
+                                                <option value="1">id cliente</option>
+                                            </select>
+                                            <br />
+
+
+                                            <label> Nombre de Asesor / Ejecutivo:</label><br />
+                                            <select class="form-control" id="id_asesor_ejecutivo">
+                                                <option value="1">id cliente</option>
+                                            </select><br />
+
+
+                                            <label>Disponible mensual maximo reportado cliente</label><br />
+                                            <input class="form-control" type="text" id="disponible_mensual_maximo_reportado_cliente" /><br />
+
+
+
+                                            <label> Capacidad de pago:</label><br />
+                                            <input type="text" class="form-control" id="capacidadDePago" value="" disabled /><br />
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="col-lg-12">
+                                        <h3> </h3>
+
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page"><button data-toggle="collapse" href="#collapsevoltemporadas" class="btn btn-default">Volúmen estimado-temporadas</button></li>
+
+
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label>  Venta semanal alta  ($)</label>
+                                                    <input type="number" id="ventaDiariaAlta" name="name" value="" disabled />
+                                                </li>
+
+
+
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label>  Venta semanal baja  ($)</label>
+                                                    <input type="number" id="ventaDiariaBaja" name="name" value="" disabled />
+                                                </li>
+
+
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label>  Venta mensual alta $</label>
+                                                    <input type="number" id="mensualAlta" name="name" value="" disabled />
+                                                </li>
+
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label> Venta mensual baja ($)</label>
+                                                    <input type="number" id="mensualBaja" name="name" value="" disabled />
+                                                </li>
+                                            </ol>
+
+                                        </nav>
+
+                                    </div>
+
+
+                                    <div class="collapse" id="collapsevoltemporadas">
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="jumbotron">
+
+
+                                                <p>
+                                                    <a class="btn btn-default" data-toggle="collapse" href="#collapseSemanal" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Semanal
+                                                    </a>
+
+                                                </p>
+                                                <div class="collapse" id="collapseSemanal">
+                                                    <h4>
+                                                        Venta diaria promedio ($)
+                                                    </h4>
+
+                                                    <div class="hidden badge badge-danger  " id="temporadasError"></div><br>
+                                                    <button class="btn btn-default pull-right" onclick="semanalpromedio()">Agregar</button><br>
+
+                                                    <div id="semenalError"></div>
+
+                                                    <label>Lunes </label><br><input class="form-control" type="number" id="lun" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="caja_lun" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_lun" value="BAJA"><br>
+                                                    <label>Martes </label><br><input class="form-control" type="number" id="mart" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="caja_mart" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_mart" value="BAJA"><br>
+                                                    <label>Miercoles </label><br><input class="form-control" type="number" id="mier" value=""><br>
+
+                                                    <label> Ventas altas  </label><input type="radio" name="caja_mier" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_mier" value="BAJA"><br>
+                                                    <label>Jueves </label><br><input class="form-control" type="number" id="juev" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="caja_juev" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_juev" value="BAJA"><br>
+                                                    <label>Viernes </label><br><input class="form-control" type="number" id="vier" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="caja_vier" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_vier" value="BAJA"><br>
+                                                    <label>Sabado </label><br><input class="form-control" type="number" id="sab" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="caja_sab" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_sab" value="BAJA"><br>
+
+                                                    <label>Domingo </label><br><input type="number" class="form-control" id="domin" value="">
+
+                                                    <label> Ventas altas </label><input type="radio" name="caja_domin" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="caja_domin" value="BAJA"><br>
+                                                </div>
+
+
+                                                <p><hr /></p>
+
+                                                <p>
+                                                    <a class="btn btn-default" data-toggle="collapse" href="#collapseMensual" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                                        Mensual
+                                                    </a>
+
+                                                </p>
+                                                <div class="collapse" id="collapseMensual">
+                                                    <h4>
+                                                        Venta diaria promedio ($)
+                                                    </h4>
+
+                                                    <div class="hidden badge badge-danger  " id="temporadasError"></div><br>
+                                                    <button class="btn btn-default pull-right" onclick="mensualpromedio()">Agregar</button><br>
+
+
+
+                                                    <label>Enero </label><br><input class="form-control" type="number" id="enero" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="enero_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="enero_chk" value="BAJA"><br>
+
+                                                    <label>Febrero </label><br><input class="form-control" type="number" id="febrero" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="febrero_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="febrero_chk" value="BAJA"><br>
+
+
+                                                    <label>Marzo </label><br><input class="form-control" type="number" id="marzo" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="marzo_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="marzo_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Abril </label><br><input class="form-control" type="number" id="abril" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="abril_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="abril_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Mayo </label><br><input class="form-control" type="number" id="mayo" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="mayo_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="mayo_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Junio </label><br><input class="form-control" type="number" id="junio" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="junio_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="junio_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Julio </label><br><input class="form-control" type="number" id="julio" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="julio_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="julio_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Agosto </label><br><input class="form-control" type="number" id="agosto" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="agosto_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="agosto_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Septiembre </label><br><input class="form-control" type="number" id="septiembre" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="septiembre_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="septiembre_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Octubre </label><br><input class="form-control" type="number" id="octubre" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="octubre_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="octubre_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Noviembre </label><br><input class="form-control" type="number" id="noviembre" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="noviembre_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="noviembre_chk" value="BAJA"><br>
+
+
+
+                                                    <label>Diciembre </label><br><input class="form-control" type="number" id="diciembre" value="">
+
+                                                    <label> Ventas altas  </label><input type="radio" name="diciembre_chk" value="ALTA">
+                                                    <label>Ventas bajas </label><input type="radio" name="diciembre_chk" value="BAJA"><br>
+
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <hr />
+
+
+                                    <div class="col-lg-12">
+                                        <h3> </h3>
+
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <button data-toggle="collapse" href="#collapsedinamicaventas" class="btn btn-default">
+                                                        Dinámica de ventas y compras diarias del negocio
+                                                    </button>
+                                                </li>
+
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label>
+                                                        <small>  Venta mensual  (E) </small>
+
+                                                    </label><input id="TVMensual" type="text" name="name" value="" disabled />
+                                                </li>
+
+                                                <li class="breadcrumb-item  " aria-current="page">
+
+                                                    <label>
+                                                        <small> Compra mensual (F) </small>
+
+                                                    </label><input id="TCMensual" type="text" name="name" value="" disabled />
+                                                </li>
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label>
+                                                        <small>$ Util.bruta  (G) </small>
+                                                    </label><input id="TUtilidadB" type="text" name="name" value="" disabled />
+
+                                                </li>
+                                                <li class="breadcrumb-item  " aria-current="page">
+                                                    <label>
+                                                        <small>% Util.B.Prom.(H) </small>
+
+                                                    </label><input id="TPromUtilidad" type="text" name="name" value="" disabled />
+
+                                                </li>
+                                            </ol>
+                                        </nav>
+
+
+                                    </div>
+
+
+                                    <div class="collapse" id="collapsedinamicaventas">
+
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="jumbotron">
+                                                <div class="pull-right" id="ErrorDinamicaDeVenta">
+
+                                                </div>
+                                                <button class="pull-right btn btn-default" onclick="addRowTDinamicaventas()">Agregar fila</button>
+
+                                                <table class="table table-hover table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>
+                                                                PRODUCTO
+
+                                                            </th>
+                                                            <th>
+                                                                Unidad de medida***
+
+                                                            </th>
+                                                            <th>
+                                                                Frec. de venta*
+                                                            </th>
+                                                            <th>
+                                                                Cantidad (B) ¿cuánto vende?
+                                                            </th>
+                                                            <th>
+                                                                Precio unitario (C) precio de venta
+
+                                                            </th>
+                                                            <th>
+                                                                Costo unitario  (D) precio de compra
+
+                                                            </th>
+                                                            <th>
+                                                                Venta mensual  (E)            E= BxCxA
+
+                                                            </th>
+                                                            <th>
+                                                                Compra mensual (F)              F= BxDxA
+
+                                                            </th>
+                                                            <th>
+                                                                $ Util.bruta  (G)
+                                                            </th>
+                                                            <th>
+                                                                % Util.B.Prom.(H)
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tdinamicaventas">
+                                                        <tr>
+                                                            <td><input class="form-control" type="text" name="producto_dinam" value="" /></td>
+                                                            <td>
+                                                                <select class="form-control" id="unidaddemedida_1">
+                                                                    <option value="kg">kilo</option>
+                                                                    <option value="gr">gramo</option>
+                                                                    <option value="mg">miligramo</option>
+                                                                    <option value="ton">tonelada</option>
+                                                                    <option value="lt">litro</option>
+                                                                    <option value="mlt">mililitro</option>
+                                                                    <option value="gal">galon</option>
+                                                                    <option value="m">metro</option>
+                                                                    <option value="m2">metro cuadrado</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" id="unidadsemanal_1">
+                                                                    <option value="30">Diario</option>
+                                                                    <option value="4.2">Semanal</option>
+                                                                    <option value="2.1">Quincenal</option>
+                                                                    <option value="1">Mensual</option>
+                                                                </select>
+                                                            </td>
+
+                                                            <td><input class="form-control" type="number" id="can_1" value="" /></td>
+                                                            <td><input class="form-control" type="number" id="pdv_1" onblur="calcVM(this.id)" value="" /></td>
+                                                            <td><input class="form-control" type="number" id="pdc_1" onblur="calcCM(this.id)" value="" /></td>
+                                                            <td><input class="form-control" type="number" name="ventMen" id="ventMen_1" value="" /></td>
+                                                            <td><input class="form-control" type="number" name="compraMen" id="compraMen_1" value="" /></td>
+                                                            <td><input class="form-control" type="number" name="utilidadB" id="utilidadB_1" value="" /></td>
+                                                            <td><input class="form-control" type="number" name="porcentajedeUtB" id="porcentajedeUtB_1" value="" /></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                                <button class="pull-right btn btn-default" onclick="calDinamicaDeVenta()">Agregar a evaluacion</button>
+                                                <script>
+
+
+                                                </script>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <hr />
+
+
+
+
+                                    <div class="col-lg-12">
+                                        <h3> </h3>
+
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <button data-toggle="collapse" href="#collapsegastosopfam" class="btn btn-default">
+                                                        Gastos Operativos (de familia)
+                                                    </button>
+                                                </li>
+
+                                                <li class="breadcrumb-item">
+                                                    <label>Total de gastos de familia</label>
+                                                    <input type="text" id="TOTALDEGASTOSDEFAMILIA" name="name" value="" disabled />
+                                                </li>
+                                            </ol>
+                                        </nav>
+
+
+                                    </div>
+
+
+                                    <div class="collapse" id="collapsegastosopfam">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="jumbotron">
+
+
+                                                <label>Alimentacion (total)</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label> Educacion (transporte, colegiatura, lunch)</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Salud</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Transporte familiar</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Gas</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label> Gtos.Grales.De Fam.**</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Renta o pago de alquiler</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Serv. Pub. (luz, agua, basura y predial)</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Telefono fijo/celular</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Recreación/distracción en general</label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+                                                <label>Otros gastos </label>
+                                                <input class="form-control" type="text" name="gfam" value="" />
+
+                                                <hr />
+                                                <button onclick="calcGFAM()" class="btn btn-default pull-right">
+                                                    Agregar a evaluacion
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="jumbotron">
+                                                <label>Total de gastos familiares</label><br />
+                                                <input type="number" name="name" value="" id="TGFAM" disabled /><br />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <hr />
+
+
+                                    <div class="col-lg-12">
+
+
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <button data-toggle="collapse" href="#collapsegastosopneg" class="btn btn-default">
+                                                        Gastos Operativos (del negocio)
+
+                                                    </button>
+                                                </li>
+
+                                                <li class="breadcrumb-item">
+                                                    <label>Total de gastos de negocio</label>
+                                                    <input type="text" id="TOTALDEGASTOSDENEGOCIO" name="name" value="" disabled="">
+                                                </li>
+
+
+                                                <li class="breadcrumb-item">
+                                                    <label>
+                                                        Utilidad operativa  del negocio
+                                                    </label>
+                                                    <input type="text" id="TotalUtilidadOpNeg" name="name" value="" disabled="">
+                                                </li>
+
+
+                                                <li class="breadcrumb-item">
+                                                    <label>
+                                                        Utilidad operativa  del negocio  porcentual
+                                                    </label>
+                                                    <input type="text" id="TotalUtilidadOpNegPorcentual" name="name" value="" disabled="">
+                                                </li>
+                                            </ol>
+                                        </nav>
+
+
+                                    </div>
+
+
+                                    <div class="collapse" id="collapsegastosopneg">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="jumbotron">
+
+
+                                                <label>Salarios</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+
+                                                <label>Renta, derecho de piso o bodega</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+
+                                                <label> Impuestos y coop</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+                                                <label>Servicio públicos (luz, agua, basura o predial)</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+                                                <label> Telefono Fijo/celular</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+
+                                                <label> Mtto. de equipo, vehículo o local</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+
+                                                <label>Gas</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+                                                <label>Otros (Gastos generales o consumibles)</label>
+                                                <input class="form-control" type="text" name="opneg" value="" />
+
+                                                <hr />
+
+                                                <button class="btn btn-default pull-right" onclick="calcGOPNeg()">Agregar</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="jumbotron">
+
+                                                <label>Total de gastos de negocio</label><br />
+                                                <input type="number" id="TNegOp" name="name" value="" disabled /><br />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <hr />
+
+                                    <div class="col-lg-12">
+                                        <h3></h3>
+                                        <nav aria-label="breadcrumb">
+                                            <ol class="breadcrumb">
+                                                <li class="breadcrumb-item active" aria-current="page">
+                                                    <button data-toggle="collapse" href="#collapseFAMIEMPRESA" class="btn btn-default">
+                                                        ESTADO DE RESULTADO DE LA FAMIEMPRESA
+                                                    </button>
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    <label>Total de Ingresos</label>
+                                                    <input type="text" id="FAMIEMPRESA_IngresosT" name="name" value="" disabled="">
+                                                </li>
+                                                <li class="breadcrumb-item">
+                                                    <label>Total de Egresos</label>
+                                                    <input type="text" id="FAMIEMPRESA_EgresosT" name="name" value="" disabled="">
+                                                </li>
+                                            </ol>
+                                        </nav>
+                                    </div>
+                                    <div class="collapse" id="collapseFAMIEMPRESA">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="jumbotron">
+                                                <h4>
+                                                    Ingresos mensuales
+                                                </h4>
+                                                <hr />
+                                                <label> Ingresos del negocio</label>
+                                                <input class="form-control" type="text" id="ing_neg" name=" " value="" disabled />
+                                                <label>Otros ingresos (comprobables y verificables) del cliente</label>
+                                                <input class="form-control" type="text" id="otros_ing" name=" " value="0" />
+                                                <label> Aportaciones fam. comprobables(pensiones,remesas,salarios,alquileres,etc.)</label>
+                                                <input class="form-control" type="text" id="aportacions_comp" value="0" />
+                                                <hr />
+                                                <button class="btn btn-default pull-right" onclick="IngeMenFa()">Agregar</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="jumbotron">
+                                                <h4>
+                                                    Gastos mensuales y pago de deudas.
+                                                </h4>
+                                                <hr />
+                                                <label>Gastos de la familia</label><br />
+                                                <input type="text" id="GastosFamFamiEmpresa" value="" disabled class="form-control" /><br />
+                                                <label>Suma de cuotas por deudas en otras microfinancieras o agiotistas</label><br />
+                                                <input type="text" id="SumaCuotasFamiEmpresa" value="0" class="form-control" /><br />
+                                                <label>Cuotas/deudas con acreedores diversos</label><br />
+                                                <input type="text" id="cuotasDeudasFamiEmpresa" value="0" class="form-control" /><br />
+                                                <label> Pago mensual por tandas</label><br />
+                                                <input type="text" id="pagoMensualtandaFamiEmpresa" value="0" class="form-control" /><br />
+                                                <hr />
+                                                <button class="btn btn-default pull-right" onclick="AddGmensualDeudas()">Agregar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu4" class="tab-pane fade">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h3> Scoring</h3>
+                                        <hr />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div>
+                                            <b>claificacion </b><br />
+                                            <div id="calficiacion_Sco"></div>
+                                            <input type="hidden" id="nPreguntas" value="" />
+                                            <hr />
+                                        </div>
+                                        <div class="col-lg-12 ">
+                                            <div class="card card-body">
+                                                <div id="scoring_holder"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div id=" ">
+                                                <div id="erroresCal" class="hidden"></div>
+                                                <button onclick="calificacionCalcScor()" class="btn btn-success pull-right">
+                                                    Calificación
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu5" class="tab-pane fade">
+                            <div class="row">
+                                <div class="col-lg-12"><h3>Historial Crediticio</h3></div>
+                                <div class="col-lg-12">
+                                    <button onclick="AddRowTHCred()" class="btn btn-default">Agregar a historial</button>
+                                    <div id="THCREDText"></div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div id="errorHC"></div>
+                                    <input type="number" class="hidden" id="id_documento_hc" value="1" />
+                                    <input type="number" class="hidden" id="id_cliente_hc" value="1" />
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><small>SECUENCIA</small></th>
+                                                <th scope="col"><small>MONTO</small></th>
+                                                <th scope="col"><small>PLAZO</small></th>
+                                                <th scope="col"><small>CUOTA(mensual)</small></th>
+                                                <th scope="col"><small>%incremento monto</small></th>
+                                                <th scope="col"><small>% incremento cuota</small></th>
+                                                <th scope="col"><small>Disponible máximo reportado por el cliente</small></th>
+                                                <th scope="col"><small>Utilidad operativa</small></th>
+                                                <th scope="col"><small>Cap.de Pago mensual</small></th>
+                                                <th scope="col"><small>COBERTURA DE CUOTA</small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="overflow-y:auto;" id="THCred">
+                                            <tr>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="SECUENCIA" id="tHcred_SECUENCIA" value="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="Monto" id="tHcred_Monto" value="" />
+                                                </th>
+
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="PLAZO" id="tHcred_PLAZO" value="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="CUOTA(mensual)" id="tHcred_CUOTA" value=""
+                                                           onblur="asignarCCuota_()" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="%incremento monto" id="tHcred_incrementoMonto" value="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="%incremento cuota" id="tHcred_incrementoCuota" value="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="Disponible máximo reportado por el cliente"
+                                                           id="tHcred_disponible" value="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="Utilidad operativa" id="tHcred_utilidadOperativa" value="" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="Cap.de Pago mensual" id="tHcred_CDPago" value=""
+                                                           onblur="asignarCCuota_()" />
+                                                </th>
+                                                <th scope="col">
+                                                    <input type="text" class="form-control" placeholder="COBERTURA DE CUOTA" id="tHcred_CCuota" value="" />
+                                                </th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr />
+                            </div>
+                            <div class="col-lg-12">
+                                <h4>Historial Acutal</h4>
+                                <div id="hActualT">
+                                    <table class="table" id="">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><font size="1">SECUENCIA</font></th>
+                                                <th scope="col"><font size="1">MONTO</font></th>
+                                                <th scope="col"><font size="1">PLAZO</font></th>
+                                                <th scope="col"><font size="1">CUOTA(mensual)</font></th>
+                                                <th scope="col"><font size="1">%incremento monto</font></th>
+                                                <th scope="col"><font size="1">% incremento cuota</font></th>
+                                                <th scope="col"><font size="1">Disponible máximo reportado por el cliente</font></th>
+                                                <th scope="col"><font size="1">Utilidad operativa</font></th>
+                                                <th scope="col"><font size="1">Cap.de Pago mensual</font></th>
+                                                <th scope="col"><font size="1">COBERTURA DE CUOTA</font></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="overflow-y:auto;" id="HActT"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <!-- /.col -->
+<!-- /.row -->
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+        });
+    </script>
+
+}
+

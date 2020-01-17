@@ -1,0 +1,241 @@
+﻿@{
+    ViewBag.Title = "Producto Agrosumate Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+        input {
+            text-transform: uppercase;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Nuevo Producto
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Solicitudes</a></li>
+            <li class="active">Agregar Producto Agrosúmate</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Agregar Producto Agrosúmate </h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group col-xs-6 col-md-4">
+                                <label for="exampleInputEmail1">Código de Operación</label>
+                                <input type="text" class="form-control" id="codigo_operacion">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Sucursal</label>
+                                <select id="sucursal" class="form-control"></select>
+                            </div>
+                            <div class="form-group col-xs-6 col-md-4">
+                                <label>Fecha</label>
+                                <input type="text" class="form-control fca" id="fecha">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Secuencia</label>
+                                <input type="text" class="form-control" id="secuencia" placeholder="1">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Código de analista agropecuario</label>
+                                <input type="text" class="form-control" id="codigo_analista_agropecuario" placeholder="XXX-XXX">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Nombre de analista agropecuario</label>
+                                <input type="text" class="form-control" id="nombre_analista_agropecuario" placeholder="JUAN PERÉZ">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Tipo de Producto</label>
+                                <select id="tipo_producto" class="form-control"></select>
+                            </div>
+                            <div class="form-group col-xs-6 col-md-4">
+                                <label>Nivel de Riesgo</label>
+                                <select id="nivel_riesgo" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Alto</option>
+                                    <option value="2">Medio</option>
+                                    <option value="3">Bajo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Nombre del Solicitante</label>
+                                <input type="text" class="form-control" id="nombre_solicitante">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Nombre del Aval</label>
+                                <input type="text" class="form-control" id="nombre_aval">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Monto</label>
+                                <input type="text" onkeypress="return isNumberKey(event)" class="form-control" id="credito_solicitado">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Seguro Agropecuario</label>
+                                <input type="text" class="form-control" id="seguro_agropecuario">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Saldo insoluto</label>
+                                <input type="text" class="form-control" id="saldo_insoluto" maxlength="2" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Cuotas</label>
+                                <input type="text" class="form-control" id="numero_cuotas" onkeypress="return isNumberKey(event)">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Periodicidad</label>
+                                <input type="text" class="form-control" id="periodicidad">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Dìa a recibir</label>
+                                <input type="text" class="form-control" id="recibo_dia">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Primer Pago</label>
+                                <input type="text" class="form-control" id="primer_pago">
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">Perfil Transaccional</h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Tipo de Transacción</label>
+                                <select id="tipo_transaccional" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Otorgamiento de Crédito</option>
+                                    <option value="2">Pago de Crédito</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Modo de Pago</label>
+                                <select id="modo_pago" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Efectivo</option>
+                                    <option value="2">Cheque</option>
+                                    <option value="3">Transferencia</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Número estimado de operaciones realizadas al mes</label>
+                                <input type="text" class="form-control" id="operaciones_realizadas_mes" onkeypress="return isNumberKey(event)">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Monto estimado de operaciones al mes</label>
+                                <input type="text" class="form-control" id="monto_operaciones_mes">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Canal de Pago</label>
+                                <select id="canal_pago" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Sucursal</option>
+                                    <option value="2">Pago referenciado</option>
+                                    <option value="3">Banca Electrónica</option>
+                                    <option value="4">Practicajas</option>
+                                    <option value="5">Banco</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4" id="div_canal" style="display:none">
+                                <label>Especifique Banco</label>
+                                <input type="text" class="form-control" id="banco">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Tipo de Garantía</label>
+                                <select id="tipo_garantia" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Prenda con Factura</option>
+                                    <option value="2">Hipotecaria</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Especifique</label>
+                                <input type="text" class="form-control" id="especifica_garantia">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Valor estimado de la garantía</label>
+                                <input type="text" class="form-control" id="valor_estimado">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Cobertura de la Garantía</label>
+                                <input type="text" class="form-control" id="cobertura_garantia">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <br /><br />
+                                <label>Es Accionista</label>
+                                <input type="checkbox" id="accionista" name="accionista">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Cliente recomendado por</label>
+                                <input type="text" class="form-control" id="cliente_recomendado">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <br /><label>  FPDC.AE- 046.1</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC.AE- 046.1" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addProductoAgrosumate()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        $('.select2').select2();
+        $('#monto_solicitado').maskMoney();
+        $('#credito_solicitado').maskMoney();
+        $('#valor_estimado').maskMoney();
+        $('.fca').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy',
+        })
+        $(".fca").keypress(function (event) { event.preventDefault(); });
+        getSucursal();
+        getProducto();
+
+    });
+
+</script>

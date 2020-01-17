@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="085d6fc059bb4e208990f69fdf176110" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_CEAModel.ACTA_INTEGRACION_COMITE" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.ANEXO_EXPEDIENTE" Width="1.5" PointX="7.5" PointY="130.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.AUTORIZACION_REPORTES_CREDITO" Width="1.5" PointX="5.25" PointY="109.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CalificaciondeGrupoSolidario_Preguntas" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CalificaciondeGrupoSolidario_Respuestas" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CARTA_BIENES_MUEBLES" Width="1.5" PointX="7.5" PointY="117" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CARTAS" Width="1.5" PointX="5.25" PointY="113.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CHECK_LIST" Width="1.5" PointX="0.75" PointY="56" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CHECK_LIST_NOTARIA" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CONTENIDO_CHECK" Width="1.5" PointX="3" PointY="55.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.COSTO_INSUMOS" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CREDITO_PYME" Width="1.5" PointX="9.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CREDITO_PYME_EXTRA" Width="1.5" PointX="12" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CUADRO_INVERSION" Width="1.5" PointX="7.5" PointY="135" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.DECLARACION_INGRESOS" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.DINAMICA_VENTAS_COMPRAS" Width="1.5" PointX="7.5" PointY="59.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.DIRECCIONES" Width="1.5" PointX="7.5" PointY="97.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EVALUACION_ECONOMICA_CLIENTE_EMPRENDEDOR" Width="1.5" PointX="14.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EVALUACION_ECONOMICA_SIMPLE" Width="1.5" PointX="5.25" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EVALUACION_PRODUCTIVA" Width="1.5" PointX="7.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EVALUACION_TECNICA" Width="1.5" PointX="5.25" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalNuevo" Width="1.5" PointX="7.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalNuevo_Preguntas" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalNuevo_RESPUESTA_FORMULARIO" Width="1.5" PointX="11.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalNuevo_Respuestas" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalSecuencial" Width="1.5" PointX="11.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalSecuencial_Preguntas" Width="1.5" PointX="14.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalSecuencial_Respuestas" Width="1.5" PointX="16.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EXPEDIENTE" Width="1.5" PointX="5.25" PointY="125.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.FICHAS" Width="1.5" PointX="5.25" PointY="143.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.FIRMA_TESTIGOS" Width="1.5" PointX="7.5" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.FLUJOS" Width="1.5" PointX="5.25" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.FLUJOS_TIPOS" Width="1.5" PointX="7.5" PointY="42.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.GASTOS_FAMILIA" Width="1.5" PointX="7.5" PointY="63.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.GASTOS_OPERATIVOS_NEGOCIO" Width="1.5" PointX="7.5" PointY="66.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.HISTORIAL_CREDITICIO_CLIENTE" Width="1.5" PointX="5.25" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.INFORMACION_OPERATIVA_NEGOCIO" Width="1.5" PointX="5.25" PointY="57.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.INFORMACION_PATRIMONIAL" Width="1.5" PointX="5.25" PointY="50.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.INFORMACION_PATRIMONIAL_BG" Width="1.5" PointX="5.25" PointY="78.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.PATRIMONIO_ACTIVO_BIENES" Width="1.5" PointX="7.5" PointY="49.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.PATRIMONIO_INVENTARIO" Width="1.5" PointX="7.5" PointY="53.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.PLAN_CONSTRUCCION" Width="1.5" PointX="7.5" PointY="74.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.PLAN_CONSTRUCCION_SUMALE" Width="1.5" PointX="5.25" PointY="73.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.PROSPECTOS" Width="1.5" PointX="16.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.REFERENCIAS" Width="1.5" PointX="7.5" PointY="151.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SCORING" Width="1.5" PointX="16.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SCORING_PREGUNTAS" Width="1.5" PointX="16.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SCORING_RESPUESTA_FORMULARIO" Width="1.5" PointX="13.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SCORING_RESPUESTAS" Width="1.5" PointX="15.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SITUACION_AGRICOLA" Width="1.5" PointX="7.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SOLICITUD_GRUPOS_CREDITO" Width="1.5" PointX="7.5" PointY="102.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SOLICITUDES" Width="1.5" PointX="5.25" PointY="96.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.SUPERVISION_CLIENTE" Width="1.5" PointX="7.5" PointY="107.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.sysdiagrams" Width="1.5" PointX="17.75" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.TIPO_PRODUCTIVO" Width="1.5" PointX="10" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.TOTAL_VENTAS_COMPRAS" Width="1.5" PointX="7.5" PointY="69.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.CalificaciondeGrupoSolidario_RESPUESTA_FORMULARIO" Width="1.5" PointX="18.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_CEAModel.EvaluacionCualitativadeGrupoComunalSecuencial_RESPUESTA_FORMULARIO" Width="1.5" PointX="18.75" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="DB_CEAModel.FK_DIRECCIONES_ACTA_INTEGRACION_COMITE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_ACTA_INTEGRACION_COMITE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_ANEXO_EXPEDIENTE_EXPEDIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_AUTORIZACION_REPORTES_CREDITO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_CARTA_BIENES_MUEBLES_CARTAS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_CARTAS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_CONTENIDO_CHECK_CHECK_LIST" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_COSTO_INSUMOS_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_DECLARACION_INGRESOS_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_EVALUACION_ECONOMICA_SIMPLE_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_EVALUACION_TECNICA_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FLUJOS_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_HISTORIAL_CREDITICIO_CLIENTE_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_INFORMACION_OPERATIVA_NEGOCIO_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_INFORMACION_PATRIMONIAL_BG_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_INFORMACION_PATRIMONIAL_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_PLAN_CONSTRUCCION_SUMALE_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_SOLICITUDES_CONTENIDO_CHECK" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_CREDITO_PYME_EXTRA_CREDITO_PYME" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_CUADRO_INVERSION_EXPEDIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_DECLARACION_INGRESOS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_DINAMICA_VENTAS_COMPRAS_INFORMACION_OPERATIVA_NEGOCIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_DIRECCIONES_EXPEDIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_DIRECCIONES_FICHAS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_DIRECCIONES_SOLICITUDES" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_TIPO_PRODUCTIVO_EVALUACION_PRODUCTIVA" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_EVALUACION_TECNICA" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_EXPEDIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_REFERENCIAS_FICHAS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FIRMA_TESTIGOS_FLUJOS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_FLUJOS_TIPOS_FLUJOS" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_GASTOS_FAMILIA_INFORMACION_OPERATIVA_NEGOCIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_GASTOS_OPERATIVOS_NEGOCIO_INFORMACION_OPERATIVA_NEGOCIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_TOTAL_VENTAS_COMPRAS_INFORMACION_OPERATIVA_NEGOCIO" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_PATRIMONIO_ACTIVO_BIENES_INFORMACION_PATRIMONIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_PATRIMONIO_INVENTARIO_INFORMACION_PATRIMONIAL" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_PLAN_CONSTRUCCION_PLAN_CONSTRUCCION_SUMALE" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_SOLICITUD_GRUPOS_CREDITO_SOLICITUDES" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_CEAModel.FK_SUPERVISION_CLIENTE_SOLICITUDES" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

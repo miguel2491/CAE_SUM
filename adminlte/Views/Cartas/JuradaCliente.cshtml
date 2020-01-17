@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "Listado de Cartas Juradas Clientes";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Cartas</a></li>
+            <li class="active">Jurada Cliente</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Carta Jurada Cliente</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5></h5>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-primary" href="@Url.Action("JuradaClienteNuevo", "Cartas")">
+                                    Nuevo
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="table-datos" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Cliente</th>
+                                    <th>Negocio</th>
+                                    <th>Ubicación</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datosT"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal modal-danger fade" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <p>¿Deseas Eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_eliminar">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Cartas/ListaJuradaCliente",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var s = '';
+                    for (var i = 0; i < data.length; i++) {
+                        var bttnDelete = '<button class="btn btn-danger btn-xs" id="bttn_modal_delete" data-id="' + data[i].id + '" data-target="#modal_delete"  data-toggle="modal" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>';
+                        var bttnUpdate = '<button class="btn btn-warning btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '"  onclick=editJurada("' + data[i].id + '") title="Editar"><i class="glyphicon glyphicon-edit"></i></button> ';
+                        var bttnpdf = '<button class="btn btn-success btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '" onclick=pdfJurada("' + data[i].id + '") title="PDF"><i class="fa fa-file-pdf-o"></i></button> ';
+                        var si = data[i].sucursal == 1 ? 'Hidalgo' : 'Independencia';
+                        s += '<tr><td>' + data[i].id + '</td><td>' + data[i].cliente + '</td><td>' + data[i].negocio + '</td><td>' + data[i].ubicacion + '</td><td>' + bttnUpdate + ' ' + bttnDelete + ' ' + bttnpdf + '</td></tr>';
+                    }
+                    $("#datosT").append(s);
+                    $('#table-datos').DataTable({
+                        'paging': true,
+                        'lengthChange': false,
+                        'searching': false,
+                        'ordering': true,
+                        'info': true,
+                        'autoWidth': false,
+                        "language": {
+                            "sProcessing": "Procesando...",
+                            "sLengthMenu": "Mostrar _MENU_ registros",
+                            "sZeroRecords": "No se encontraron resultados",
+                            "sEmptyTable": "Ningún dato disponible en esta tabla",
+                            "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                            "sInfoEmpty": "Sin registros",
+                            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sSearch": "Buscar:",
+                            "sUrl": "",
+                            "sInfoThousands": ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sLast": "Último",
+                                "sNext": "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            }
+                        }
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        })
+        $("#modal_delete").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+
+        });
+        $('#btn_eliminar').click(function () {
+            var data = {
+                id: id,
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Cartas/DeleteJurada",
+                dataType: "json",
+                data: data,
+                success: function (data) {
+                    $.toast({
+                        text: "Se elimino Correctamente",
+                        showHideTransition: 'slide'  // It can be plain, fade or slide
+                    })
+                    window.location.href = data.redirectToUrl;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+    </script>
+
+}
+

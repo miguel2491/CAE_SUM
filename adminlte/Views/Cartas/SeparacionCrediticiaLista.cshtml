@@ -1,0 +1,317 @@
+﻿
+@{
+    ViewBag.Title = "Listado de Separaciones Crediticias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Separaciones Crediticias
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Cartas</a></li>
+            <li class="active">Separación Crediticia</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Separación Crediticia</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5><i class="glyphicon glyphicon-align-justify"></i>Separación Crediticia</h5>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-primary" href="@Url.Action("SeparacionCrediticia", "Cartas")">
+                                    Nuevo
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="table-datos" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Cliente</th>
+                                    <th>Lugar</th>
+                                    <th>Institución</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datosT"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal modal-danger fade" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <p>¿Deseas Eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_eliminar">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal modal fade" id="modal_editar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Separación Crediticia</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <label>Lugar:</label>
+                        <input type="text" class="form-control" id="lugar" placeholder="Lugar">
+                        <input type="hidden" id="idCarta">
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label>Fecha:</label>
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input type="text" class="form-control pull-right" id="fecha">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <label>Institución</label>
+                        <input type="text" class="form-control" placeholder="Denominación de Institución" id="institucion">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <label>Documento</label>
+                            <select class="form-control" id="tipo_check">
+                                <option selectd value="0">Selecciona</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>Cliente</label>
+                        <select id="cliente" class="form-control">
+                            <option value="0" selected>Seleccione...</option>
+                            <option value="1">Mario Goméz Fernandez</option>
+                            <option value="2">Fernanda Fortis Altamirano</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_separacion">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        var dataTable_datos;
+        var index = 0;
+        $(document).ready(function () {
+            $('.select2').select2();
+            //Date picker
+            $('#fecha').datepicker({
+                autoclose: true,
+                format: 'dd/mm/yyyy',
+                Default: "es"
+
+            })
+            $("#fecha").keypress(function (event) { event.preventDefault(); });
+            consultaContenidoCheck();
+
+            $.ajax({
+                type: "GET",
+                url: "/Cartas/ListaSeparacion",
+                dataType: "json",
+                success: function (data) {
+                    var s = '';
+                    for (var i = 0; i < data.length; i++) {
+                        index = index + 1;
+                        var bttnDelete = '<button class="btn btn-danger btn-xs" id="bttn_modal_delete" data-id="' + data[i].id + '" data-target="#modal_delete"  data-toggle="modal" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>';
+                        var bttnUpdate = '<button class="btn btn-warning btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '"  data-target="#modal_editar" data-toggle="modal" title="Editar"><i class="glyphicon glyphicon-edit"></i></button> ';
+                        var bttnpdf = '<button class="btn btn-success btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '"  data-target="#ModalSave" data-toggle="modal" title="PDF"><i class="fa fa-file-pdf-o"></i></button> ';
+                        var si = data[i].sucursal == 1 ? 'Hidalgo' : 'Independencia';
+                        s += '<tr><td>' + index + '</td><td>' + data[i].cliente + '</td><td>' + data[i].lugar + '</td><td>' + data[i].denominacion_institucion  + '</td><td>' + data[i].fecha + '</td><td>' + bttnUpdate + ' ' + bttnDelete + ' ' + bttnpdf+'</td></tr>';
+                    }
+                    $("#datosT").append(s);
+                    $('#table-datos').DataTable({
+                        'paging': true,
+                        'lengthChange': false,
+                        'searching': false,
+                        'ordering': true,
+                        'info': true,
+                        'autoWidth': false,
+                        "language": {
+                            "sProcessing": "Procesando...",
+                            "sLengthMenu": "Mostrar _MENU_ registros",
+                            "sZeroRecords": "No se encontraron resultados",
+                            "sEmptyTable": "Ningún dato disponible en esta tabla",
+                            "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                            "sInfoEmpty": "Sin registros",
+                            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sSearch": "Buscar:",
+                            "sUrl": "",
+                            "sInfoThousands": ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sLast": "Último",
+                                "sNext": "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            }
+                        }
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+
+        $("#modal_editar").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+            if (id != 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Cartas/ConsultaSeparacion/" + id,
+                    data: '',
+                    success: function (data) {
+                        console.log(data);
+                        var obj = data;
+                        $("#idCarta").val(obj[0].id);
+                        $("#lugar").val(obj[0].lugar);
+                        $("#fecha").datepicker("option", "dateFormat", $(obj[0].fecha).val());
+                        $("#institucion").val(obj[0].institucion);
+                        $("#tipo_check").val(obj[0].id_documento).change();
+                        $("#cliente").val(obj[0].cliente).change();
+                    }
+                });
+            }
+        });
+
+        $("#modal_delete").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+
+        });
+
+        $('#btn_separacion').click(function () {
+            var data = {
+                id_carta: $("#idCarta").val(),
+                id_documento: $('#tipo_check option:selected').val() == undefined ? '0' : $('#tipo_check option:selected').val(),
+                id_cliente: $("#cliente").val(),
+                institucion: $("#institucion").val(),
+                lugar: $("#lugar").val(),
+                fecha: $("#fecha").val(),
+            }
+            $.ajax({
+                type: "POST",
+                url: "/Cartas/UpdateSeparacion/"+id,
+                dataType: "json",
+                data: data,
+                success: function (response) {
+                    $.toast({
+                        text: "Se Actualizo Correctamente " + response,
+                        hideAfter: true
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(XMLHttpRequest.status);
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+
+        $('#btn_eliminar').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Cartas/DeleteVisita/"+id,
+                dataType: "json",
+                success: function (data) {
+                    $.toast({
+                        text: "Se Elimino correctamente " + response,
+                        hideAfter: true
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+    </script>
+
+}
+

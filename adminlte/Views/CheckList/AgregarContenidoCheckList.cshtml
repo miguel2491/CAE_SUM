@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "AgregarContenidoCheckList";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Contenido a Check List
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">CheckList</a></li>
+            <li class="active">Agregar Contenido a CheckList</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Agregar Contenido </h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label for="monto_solicitado">Tipo CheckList:</label>
+                                <select id="tipo_check_cont" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-8">
+                                <label>Descripción</label>
+                                <textarea class="form-control" id="descripcion"></textarea>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="checkbox col-xs-6 col-md-4">
+                                <label>
+                                    <input type="checkbox" id="si" name="status_si" /> SI    
+                                </label>
+                            </div>
+                            <div class="checkbox col-xs-6 col-md-4">
+                                <label>
+                                    <input type="checkbox" id="na" name="status_na" /> NA
+                                </label>
+                            </div>
+                            <div class="checkbox col-xs-6 col-md-4">
+                                <label>
+                                    <input type="checkbox" id="carpeta_electronica" name="status_carpeta" /> Carpeta Electrónica
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Sección:</label>
+                                <label>
+                                    <select id="seccion" class="form-control select2">
+                                        <option value="0" selected>General</option>
+                                        <option value="1">Datos del cliente y de su garantía (personas físicas) **</option>
+                                        <option value="2">En caso de garantía hipotecaria (Cada copia de los documentos deberá ser cotejada contra original, sellada y firmada por el asesor que cotejó)</option>
+                                        <option value="3">Documentos de identidad del cliente debidamente cotejados contra originales, sellados y firmados por el asesor que cotejó</option>
+                                        <option value="4">Datos del Aval y en su caso, del obligado solidario, y/o garante prendario o hipotecario</option>
+                                        <option value="5">Documentos de identidad del aval, obligado solidario, y/o garantes prendarios o hipotecarios  y Propietario Real (en caso de aplicar)</option>
+                                        <option value="6">Documentos de créditos liquidados</option>
+                                        <option value="7">Documentos operativos de cada integrante</option>
+                                        <option value="8">Documentos de identidad del cliente debidamente cotejadas contra originales, sellados y firmados por el asesor que cotejó.</option>
+                                        <option value="9">Documentos de créditos liquidados: (Se anexan posterior a los documentos del último integrante vigente del grupo)</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="guardarContenidoCheck()">Agregar contenido</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        $('.select2').select2();
+        
+    });
+
+
+</script>

@@ -1,0 +1,431 @@
+﻿
+@{
+    ViewBag.Title = "Autorización de Reportes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Autorización de Reportes
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Autorización</a></li>
+            <li class="active">Autorización de Reportes</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5><i class="glyphicon glyphicon-align-justify"></i>Autorización de Reportes</h5>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#ModalSave">
+                                    Nuevo
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="table-datos" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha Autorizada Consulta</th>
+                                    <th>Cliente/Aval</th>
+                                    <th>Fecha Recibe Autorización</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!--MODAL GUARDAR Y ELIMINAR-->
+<div class="modal fade" id="ModalSave" tabindex="-1" role="dialog" aria-labelledby="ModalEditar">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalEditar">Autorización de Reportes</h4>
+            </div>
+            <input type="hidden" id="id_reporte" name="id_reporte">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <label for="descripcion-field">Fecha Autoriza Consulta</label>
+                            <input type="text" class="form-control fca" id="fecha_autoriza_consulta"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <div class="form-group">
+                            <label for="descripcion-field">Fecha de Autorización</label>
+                            <input type="text" class="form-control fca" id="fecha_autoriza_recibe" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion-field">Nombre de Cliente o Aval</label>
+                            <input type="text" id="nombre_cliente_aval" name="resultado_valor" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion-field">Teléfono del Cliente o Aval</label>
+                            <input type="text" id="telefono_cliente_aval" onkeypress="return isNumberKey(event)" maxlength="12" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion-field">Registro Federal de Contribuyentes</label>
+                            <input type="text" id="rfc_cliente_aval" maxlength="20" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <label>Estado</label><br />
+                        <select id="estado" class="form-control select2">
+                            <option value="0" selected>Seleccione...</option>
+                            <option value="1">Puebla</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <label>Código Postal</label><br />
+                        <select id="codigo_postal" class="form-control select2">
+                            <option value="0" selected>Seleccione...</option>
+                            <option value="1">72123</option>
+                            <option value="2">72911</option>
+                            <option value="3">72120</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <label>Municipio</label><br />
+                        <select id="municipio" class="form-control select2">
+                            <option value="0" selected>Seleccione...</option>
+                            <option value="1">Puebla</option>
+                            <option value="2">San Andres Cholula</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <div class="form-group">
+                            <label for="descripcion-field">Calle</label>
+                            <input type="text" class="form-control" id="calle"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion-field">Fecha y folio de consulta en BC y CC</label>
+                            <input type="text" id="fechafolio1" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion-field">Fecha y folio de consulta en BC y CC</label>
+                            <input type="text" id="fechafolio2" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <div class="form-group">
+                            <label for="descripcion-field">Fecha y folio de consulta en BC y CC</label>
+                            <input type="text" id="fechafolio3" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">
+                    <i class="fa fa-times"></i> Cancelar
+                </button>
+                <button class="btn btn-success" id="saveform">
+                    <i class="fa fa-check"></i> Aceptar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.content-wrapper -->
+<div class="modal modal-danger fade" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <p>¿Deseas Eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_eliminar">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        var dataTable_datos;
+        $(document).ready(function () {
+            $('#example1').DataTable();
+            $('.select2').select2();
+            $('.fca').datepicker({
+                autoclose: true,
+                dateFormat: 'dd/mm/yyyy',
+            })
+            $(".fca").keypress(function (event) { event.preventDefault(); });
+        });
+        
+        dataTable_datos =
+            $("#table-datos").dataTable({
+                "bDeferRender": true,
+                "iDisplayLength": 10,
+                "bProcessing": true,
+                "sAjaxSource": $('#url_listado').val(),
+                "fnServerData": function (sSource, aoData, fnCallback, oSettings) {
+                    oSettings.jqXHR = $.ajax({
+                        "dataType": 'json',
+                        "type": "GET",
+                        "url": "/Solicitudes/ListaReportesAutoizados",
+                        "success": fnCallback,
+                        "error": function (jqXHR, textStatus, errorThrown) {
+                            var data = jqXHR.responseJSON;
+                        }
+                    });
+                },
+                "bAutoWidth": false,
+                //"bFilter": false,
+                "aoColumns": [{
+                    "mData": "id"
+                }, {
+                    "mData": "variable",
+                    "bSortable": true,
+                    "mRender": function (data, type, full) {
+                        var variable = full.fecha;
+                        return variable;
+                    }
+                }, {
+                    "mData": "nombre",
+                    "bSortable": true,
+                    "mRender": function (data, type, full) {
+                        var descripcion = full.nombre;
+                        return descripcion;
+                    }
+                }, {
+                    "mData": "fecha_autoriza",
+                    "bSortable": true,
+                    "mRender": function (data, type, full) {
+                        var valor_resultado = full.fecha;
+                        return valor_resultado;
+                    }
+                },{
+                    "mData": "Acciones",
+                    "bSortable": false,
+                    "mRender": function (data, type, full) {
+                        var bttnDelete = '<button class="btn btn-danger btn-xs" id="bttn_modal_delete" data-id="' + full.id + '" data-target="#modal_delete"  data-toggle="modal" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>';
+                        var bttnUpdate = '<button class="btn btn-warning btn-xs" id="bttn_modal_update"  data-id="' + full.id+ '"  data-target="#ModalSave" data-toggle="modal" title="Editar"><i class="glyphicon glyphicon-edit"></i></button> ';
+                        return bttnUpdate + bttnDelete;
+                    }
+                },],
+                "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+                    $("td:eq(0), td:eq(2)", nRow).attr('align', 'center');
+                },
+                "aLengthMenu": [
+                    [5, 10, -1],
+                    [5, 10, "Todo"]
+                ],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                    "sInfoEmpty": "Sin registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+
+        $('#ModalSave').on('shown.bs.modal', function () {
+            $(this).find('[autofocus]').focus();
+        });
+        $("#ModalSave").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+            if (id != 0) {
+                $.ajax({
+                    url: $('#url_datosget').val() + '/' + id,
+                    type: 'GET',
+                    data: '',
+                    success: function (data) {
+                        var obj = data;
+                        $('#variable_actividad').val(obj.id_variable).change();
+                        $('#id_actividad').val(obj.id_actividad);
+                        $('#descripcion_actividad').val(obj.descripcion);
+                        $('#resultado_valor').val(obj.valor_resultado);
+                        $('#valor_minimo').val(obj.valor_minimo);
+                        $('#duracion_actividad').val(obj.duracion);
+                        $("input[name=activo_actividad]").iCheck(obj.status == 1 ? 'check' : 'uncheck');
+                    }
+
+                });
+            }
+
+        });
+
+        $('#ModalSave').on('show.bs.modal', function (e) {
+            $('#variable_actividad').val("");
+            $("input[name=active]").iCheck('uncheck');
+        });
+        $('#saveform').click(function () {
+            var msg = '';
+            var get_url = id == 0 ? "/Solicitudes/SaveAutorizacion" : "/Solicitudes/UpdateAutorizacion/"+ id;
+            var type_method = id == 0 ? 'POST' : 'PUT';
+            data_request = {
+                id_solicitud: id,
+                fecha: $('#fecha_autoriza_consulta').val(),
+                fecha_recibe: $('#fecha_autoriza_recibe').val(),
+                rfc_contribuyente: $('#rfc_cliente_aval').val(),
+                nombre_aval: $('#nombre_cliente_aval').val(),
+                telefono_aval: $('#telefono_cliente_aval').val(),
+                estado: $('#estado option:selected').val() == undefined ? '0' : $('#estado option:selected').val(),
+                municipio: $('#municipio option:selected').val() == undefined ? '0' : $('#municipio option:selected').val(),
+                codigo_postal: $('#codigo_postal option:selected').val() == undefined ? '0' : $('#codigo_postal option:selected').val(),
+                calle: $('#calle').val(),
+                fecha_folio1: $('#fechafolio1').val(),
+                fecha_folio2: $('#fechafolio2').val(),
+                fecha_folio3: $('#fechafolio3').val(),
+            }
+
+            $.ajax({
+                url: get_url,
+                type: type_method,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name=csrf-token]').attr('content')
+                },
+                data: data_request,
+                success: function (data) {
+                    if (data.status == 'fail') {
+                        toastr.error(data.message);
+                    } else {
+                        toastr.success(data.message);
+                        dataTable_datos._fnAjaxUpdate();
+                        $("#ModalSave").modal('hide');
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    }
+                },
+
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var data = JSON.parse(jqXHR.responseText);
+
+                    if (jqXHR.status == 400) {
+                        toastr.error('', data.message);
+                    }
+
+                    if (jqXHR.status == 401) {
+                        location.reload();
+                    }
+
+                    if (jqXHR.status == 422) {
+                        $.each(data.errors, function (key, value) {
+                            if (msg == '') {
+                                msg = value[0] + '<br>';
+                            } else {
+                                msg += value[0] + '<br>';
+                            }
+
+                        });
+
+                        toastr.error(msg);
+                    }
+                }
+            });
+        });
+
+        $("#modal_delete").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+
+        });
+        $('#btn_eliminar').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Solicitudes/DeleteAnexo/"+id,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+    </script>
+
+}
+

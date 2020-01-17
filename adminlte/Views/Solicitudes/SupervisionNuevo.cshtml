@@ -1,0 +1,375 @@
+﻿@{
+    ViewBag.Title = "Supervisión a Cliente|Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Nuevo
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Solicitudes</a></li>
+            <li class="active">Supervisión Nuevo</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Supervisión Nuevo</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Documento:</label>
+                                <select class="form-control select2" id="tipo_check">
+                                    <option selectd value="0">Selecciona</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4 col-md-2">
+                                <label>
+                                    Cliente <input id="radio1" type="radio" name="r3" class="flat-red cg" value="1" checked>
+                                </label>
+                                <label>
+                                    Grupo <input id="radio2" type="radio" name="r3" value="2"  class="flat-red cg">
+                                </label>
+                            </div>
+                            <div class="col-xs-12 col-md-3" id="div_grupoS" style="visibility:hidden">
+                                <label>Grupo:</label>
+                                <select class="form-control select2" id="tipo_grupo">
+                                    <option selectd value="0">Selecciona</option>
+                                    <option value="1">Los Supersonicos</option>
+                                    <option value="2">Los Intocables</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-12 col-md-3" id="div_clienteS" style="visibility:visible">
+                                <label>Cliente:</label>
+                                <select class="form-control select2" id="tipo_cliente">
+                                    <option selectd value="0">Selecciona</option>
+                                    <option value="1">Yaneli Hernandez</option>
+                                    <option value="2">Margarita Reyes</option>
+                                    <option value="3">Gilberto Rodriguez</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Fecha de Visita:</label>
+                                <input type="text" class="form-control pull-right" id="fecha">
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Código del Grupo/Cliente</label>
+                                <input type="text" class="form-control" id="codigocg" style="text-transform:uppercase" maxlength="20"/>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Secuencia:</label>
+                                <input type="text" class="form-control" id="secuencia" maxlength="4" onkeypress="return isNumberKey(event)" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>No. de Integrantes:</label>
+                                <input type="text" class="form-control" id="num_inte" maxlength="4" onkeypress="return isNumberKey(event)" />
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Importe del Crédito:</label>
+                                <input type="text" class="form-control" id="importe_credito" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Sucursal</label>
+                                <select class="form-control select2" id="sucursal">
+                                    <option selectd value="0">Selecciona</option>
+                                    <option value="1">Hidalgo</option>
+                                    <option value="2">Independencia</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Asesor</label>
+                                <select class="form-control select2" id="asesor" disabled>
+                                    <option selectd value="0">Selecciona</option>
+                                    <option value="1">Arturo Lopez</option>
+                                    <option value="2">Matilde Rosas</option>
+                                    <option value="3">Emiliano Zamorano</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <input type="hidden" id="tipo_documento" value="FPDC.AE-021.1" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-5">
+                            <div class="col-xs-2 col-md-2">
+                                <button class="btn btn-sm btn-primary" id="btnAgregarSupervision" data-target="#modal_saveG" data-toggle="modal"><i class="fa fa-plus-circle"></i> Agregar</button>
+                            </div>
+                            <div class="col-xs-10 col-md-10 table-responsive">
+                                <table id="table-datos" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Nombre del Cliente</th>
+                                            <th>¿El negocio está funcionando?</th>
+                                            <th>¿La información y foto (tomada por el asesor) coincide con el negocio que observa en la supervisión?</th>
+                                            <th>¿La información y foto (tomada por el asesor) coincide con el domicilio del cliente? </th>
+                                            <th>¿La distancia entre los integrantes del grupo cumple con políticas? ¿Se ubicó al aval? </th>
+                                            <th>¿El cliente conoce el domicilio y negocio de sus compañeros de grupo? o ¿el aval conoce el domicilio y negocio del titular? </th>
+                                            <th>¿El Comité de grupo conoce sus responsabilidades? o ¿El aval conoce sus responsabilidades? </th>
+                                            <th>¿El cliente, conoce y avala a sus compañeros del grupo? o ¿El aval conoce y respalda al titular?</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyDetalles"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addSupervision()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal fade" id="modal_saveG">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Agregar Garantia</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="row">
+                    <div class="col-xs-12 col-md-12">
+                        <label>Nombre del Cliente</label><br />
+                        <select class="form-control select2" id="nombre_cliente">
+                            <option selected value="0">Selecciona</option>
+                            <option value="1">Miranda Carvajal</option>
+                            <option value="2">Angel Amigon</option>
+                            <option value="3">Yahir Pereira</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <p>¿El negocio está funcionando?</p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res1" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res1" value="0" class="minimal">
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <p>¿La información y foto (tomada por el asesor) coincide con el negocio que observa en la supervisión? </p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res2" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res2" value="0" class="minimal">
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+
+                        <p>¿La información y foto (tomada por el asesor) coincide con el domicilio del cliente? </p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res3" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res3" value="0" class="minimal">
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <p>¿La distancia entre los integrantes del grupo cumple con políticas? ¿Se ubicó al aval? </p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res4" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res4" value="0" class="minimal">
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <p>¿El cliente conoce el domicilio y negocio de sus compañeros de grupo? o ¿el aval conoce el domicilio y negocio del titular?</p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res5" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res5" value="0" class="minimal">
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <p>¿El Comité de grupo conoce sus responsabilidades? o ¿El aval conoce sus responsabilidades? </p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res6" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res6" value="0" class="minimal">
+                        </label>
+                    </div>
+                    <div class="col-xs-12 col-md-12">
+                        <p>¿El cliente, conoce y avala a sus compañeros del grupo? o ¿El aval conoce y respalda al titular?</p>
+                        <br />
+                        <label>
+                            Si <input type="radio" name="res7" class="minimal" value="1" checked>
+                        </label>
+                        <label>
+                            No <input type="radio" name="res7" value="0" class="minimal">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_supervision">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+            $('#importe_credito').maskMoney();
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            })
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            })
+            $('#fecha').datepicker({
+                autoclose: true,
+                dateFormat: 'dd/mm/yyyy',
+                Default: "es"
+
+            })
+            $("#fecha").keypress(function (event) { event.preventDefault(); });
+            $('.flat-red').on('ifChanged', function (event) {
+                if (event.target.checked == true) {
+                    if (event.target.value == 1) {
+                        $("#div_clienteS").css('visibility', 'visible');
+                        $("#div_grupoS").css('visibility', 'hidden');
+                    } else {
+                        $("#div_clienteS").css('visibility', 'hidden');
+                        $("#div_grupoS").css('visibility', 'visible');
+                    }
+                    
+                }
+            });
+            consultaContenidoCheck();
+            $('#table-datos').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false,
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                    "sInfoEmpty": "Sin registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            });
+        });
+
+        var supervisiones = [];
+        $('#btn_supervision').click(function () {
+            
+            supervisiones.push({
+                "nombre": $('#nombre_cliente option:selected').val() == undefined ? '0' : $('#nombre_cliente option:selected').val(),
+                "res1": $('input:radio[name=res1]:checked').val() == 1 ? true : false,
+                "res2": $('input:radio[name=res2]:checked').val() == 1 ? true : false,
+                "res3": $('input:radio[name=res3]:checked').val() == 1 ? true : false,
+                "res4": $('input:radio[name=res4]:checked').val() == 1 ? true : false,
+                "res5": $('input:radio[name=res5]:checked').val() == 1 ? true : false,
+                "res6": $('input:radio[name=res6]:checked').val() == 1 ? true : false,
+                "res7": $('input:radio[name=res7]:checked').val() == 1 ? true : false,
+            });
+            var s = '';
+            var n = 0;
+            for (var i = 0; i < supervisiones.length; i++) {
+                n = i + 1;
+                var r1 = supervisiones[i].res1 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r2 = supervisiones[i].res2 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r3 = supervisiones[i].res3 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r4 = supervisiones[i].res4 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r5 = supervisiones[i].res5 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r6 = supervisiones[i].res6 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r7 = supervisiones[i].res7 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                s = "<tr><td>" + n + "</td><td>" + supervisiones[i].nombre + "</td><td>" + r1 + "</td><td>" + r2 + "</td><td>" + r3 + "</td><td>" + r4 + "</td><td>" + r5 + "</td><td>" + r6 + "</td><td>" + r7 + "</td><td><button class='btn btn-xs btn-danger' onClick='eliminaRowS(" + n + ")'><i class='fa fa-remove'></i></button></td></tr>";
+            }
+            $("#bodyDetalles").append(s);
+            $("#modal_saveG").modal("hide");
+            $('#table-datos').DataTable();
+        });
+
+
+        function eliminaRowS(n) {
+            var p = n - 1;
+            supervisiones.splice(p, 1);
+            $("#bodyDetalles").empty();
+            var s = '';
+            var n = 0;
+            for (var i = 0; i < supervisiones.length; i++) {
+                n = i + 1;
+                var r1 = supervisiones[i].res1 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r2 = supervisiones[i].res2 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r3 = supervisiones[i].res3 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r4 = supervisiones[i].res4 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r5 = supervisiones[i].res5 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r6 = supervisiones[i].res6 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                var r7 = supervisiones[i].res7 == true ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                s += "<tr><td>" + n + "</td><td>" + supervisiones[i].nombre + "</td><td>" + r1 + "</td><td>" + r2 + "</td><td>" + r3 + "</td><td>" + r4 + "</td><td>" + r5 + "</td><td>" + r6 + "</td><td>" + r7 + "</td><td><button class='btn btn-xs btn-danger' onClick='eliminaRowS(" + n + ")'><i class='fa fa-remove'></i></button></td></tr>";
+            }
+            $("#bodyDetalles").append(s);
+            $('#table-datos').DataTable();
+        }
+    </script>
+}
+

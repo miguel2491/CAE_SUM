@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Listado de Visitas Domiciliaria";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Visita Domiciliaria
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Visitas</a></li>
+            <li class="active">Visitas Domiciliaria</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5><i class="glyphicon glyphicon-align-justify"></i>Visita Domiciliaria</h5>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-primary" href="@Url.Action("VisitaNuevo", "Cartas")">
+                                    Nuevo
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="table-responsive box-body">
+                        <table id="table-datos" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha Visita</th>
+                                    <th>Sucursal</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datosT"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal modal-danger fade" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <p>¿Deseas Eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_eliminar">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        var dataTable_datos;
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Cartas/ListaVisitas",
+                dataType: "json",
+                success: function (data) {
+                    var s = '';
+                    for (var i = 0; i < data.length; i++) {
+                        var bttnDelete = '<button class="btn btn-danger btn-xs" id="bttn_modal_delete" data-id="' + data[i].id + '" data-target="#modal_delete"  data-toggle="modal" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>';
+                        var bttnUpdate = '<button class="btn btn-warning btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '" onclick="updateVisitas(' + data[i].id +')" title="Editar"><i class="glyphicon glyphicon-edit"></i></button> ';
+                        var bttnpdf = '<button class="btn btn-success btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '" onclick=pdfArchi("'+data[i].id+'") title="PDF"><i class="fa fa-file-pdf-o"></i></button> ';
+                        var si = data[i].sucursal == 1 ? 'Hidalgo' : 'Independencia';
+                        s += '<tr><td>' + data[i].id + '</td><td>' + data[i].cliente + '</td><td>' + data[i].fecha + '</td><td>' + data[i].sucursal + '</td><td>' + bttnUpdate + ' ' + bttnDelete + ' ' + bttnpdf+'</td></tr>';
+                    }
+                    $("#datosT").append(s);
+                    $('#table-datos').DataTable({
+                        'paging': true,
+                        'lengthChange': false,
+                        'searching': false,
+                        'ordering': true,
+                        'info': true,
+                        'autoWidth': false,
+                        "language": {
+                            "sProcessing": "Procesando...",
+                            "sLengthMenu": "Mostrar _MENU_ registros",
+                            "sZeroRecords": "No se encontraron resultados",
+                            "sEmptyTable": "Ningún dato disponible en esta tabla",
+                            "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                            "sInfoEmpty": "Sin registros",
+                            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sSearch": "Buscar:",
+                            "sUrl": "",
+                            "sInfoThousands": ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sLast": "Último",
+                                "sNext": "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            }
+                        }
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+        
+
+        $("#modal_delete").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+
+        });
+        $('#btn_eliminar').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Cartas/DeleteVisita/"+id,
+                dataType: "json",
+                success: function (data) {
+                    window.location.href = data.redirectToUrl;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+    </script>
+
+}
+

@@ -1,0 +1,359 @@
+﻿@{
+    ViewBag.Title = "Crédito PYME Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<style>
+    .contenidoLi {
+        overflow-x: hidden;
+    }
+</style>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Nuevo Crédito PYME
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Solicitudes</a></li>
+            <li class="active">Agregar Nuevo Crédito PYME</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Agregar Nuevo Crédito PYME</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Cliente</label>
+                                <select id="grupo" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Pedro Hernandez</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Promotor</label>
+                                <select id="grupo" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Yaneli Hernandéz</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-8">
+                                <label>Nombre Completo o Razón Social</label>
+                                <input type="text" class="form-control" id="razon_social" />
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha</label>
+                                <input type="text" class="form-control fca" id="fecha" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Tipo De Crédito Solicitado</h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Tipo de Crédito Solicitado</label>
+                                <input type="text" class="form-control" value="PYME"/>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Monto Solicitado</label>
+                                <input type="text" class="form-control" id="monto_solicitado"/>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Moneda</label>
+                                <input type="text" class="form-control" maxlength="10" id="moneda" />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Destino</label>
+                                <input type="text" class="form-control" id="destino" placeholder="Destino">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Plazo</label>
+                                <input type="text" class="form-control" id="plazo" placeholder="Plazo">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Tasa (Fija o Variable)</label>
+                                <input type="text" class="form-control" id="tasa" onkeypress="return isNumberKey(event)" placeholder="16%" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fuente de Pago:</label>
+                                <input type="text" class="form-control" id="fuente_pago" placeholder="Fuente de Pago">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Nivel de Riesgo OLD</label>
+                                <select id="grupo" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">ALTO</option>
+                                    <option value="2">MEDIO</option>
+                                    <option value="3">BAJO</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Perfil transaccional:</label>
+                                <input type="text" class="form-control" id="perfil_transaccional" >
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Tipo de Transacción</label>
+                                <select id="tipo_transaccion" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Otorgamiento de Crédito</option>
+                                    <option value="2">Pago de Crédito</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Modo de Pago</label>
+                                <select id="tipo_transaccion" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Efectivo</option>
+                                    <option value="2">Cheque</option>
+                                    <option value="3">Transferencia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-6">
+                                <label>Monto estimado de Operaciones realizadas al mes</label>
+                                <input type="text" class="form-control" id="monto_mes_estimado" placeholder="0" onkeypress="" />
+                            </div>
+                            <div class="col-xs-6 col-md-6">
+                                <label>Número estimado de Operaciones Realizadas al mes</label>
+                                <input type="text" class="form-control" id="numero_mes_estimado" placeholder="0" onkeypress="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Canal de Pago:</label>
+                                <select id="canal_pago" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Sucursal</option>
+                                    <option value="2">Pago Referenciado</option>
+                                    <option value="3">Banca Electrónica</option>
+                                    <option value="4">Practicajas</option>
+                                    <option value="5">Banco</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4" id="div_canal" style="display:none">
+                                <label>Banco:</label>
+                                <input type="text" class="form-control" id="banco" placeholder="Banco">
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Datos Generales</h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Estado:</label>
+                                <select id="estado" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Puebla</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Código Postal:</label>
+                                <select id="codigo_postal" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">72122</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Ciudad:</label>
+                                <input type="text" placeholder="Ciudad" disabled class="form-control"  id="ciudad"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Municipio</label>
+                                <input type="text" class="form-control" id="municipio" placeholder="Municipio" disabled>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Colonia:</label>
+                                <input type="text" class="form-control" id="colonia" placeholder="Colonia" disabled>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Domicilio Fiscal( Calle y Número):</label>
+                                <input type="text" class="form-control" id="domicilio_fiscal">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fax:</label>
+                                <input type="text" class="form-control" id="fax" placeholder="(222)-555-888">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>R.F.C. y Homoclave:</label>
+                                <input type="text" class="form-control" id="rfc" placeholder="TRTRFSGF6767">
+                            </div>
+                        </div>
+                        <hr />
+                        <h2>Historia de la empresa y su administración</h2>
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <label>Breve Trayectoria de la empresa:</label>
+                                <textarea class="form-control" id="trayectoria" placeholder="Una narración de su fundación, éxitos, cambios, etc."></textarea>
+                            </div>
+                            <div class="col-xs-2">
+                                <label>Años en la Actividad Principal</label>
+                                <input type="text" class="form-control" id="numero_actividad" placeholder="5" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="col-xs-5">
+                                <label>Descripción de la Actividad Principal</label>
+                                <textarea id="descripcion_actividad" class="form-control" placeholder="Sector o giro"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label>Comentario sobre Producto o Servicio</label>
+                                <textarea id="comentario_producto" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Mercado</h2>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label>Ventas</label>
+                                <select class="form-control" id="tipo_venta">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Constantes</option>
+                                    <option value="2">Cíclicas</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-4" id="div_meses" style="display:none">
+                                <label>Meses de Temporada Alta</label>
+                                <input type="text" class="form-control" id="meses_alta"> 
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Mercado al que se dirigen sus productos o servicios</label>
+                                <select class="form-control" id="tipo_mercado">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Local</option>
+                                    <option value="2">Regional</option>
+                                    <option value="3">Nacional</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Principales Productos</h2>
+                        <div class="row">
+
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Porcentaje de las Ventas por formato de pago, distribución geográfica y por canales de distribución</h2>
+                        <div class="row">
+
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Principales Proveedores y Clientes</h2>
+                        <div class="row">
+
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Principales Competidores de la Empresa</h2>
+                        <div class="row">
+                            <div class="xol-xs-4">
+                                <label>Expectativas del negocio a mediano y largo plazo (planes de expansión)</label>
+                                <textarea class="form-control" id="expectativas"></textarea>
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Descripción del Proceso e instalación</label>
+                                <textarea class="form-control" id="proceso_instalacion"></textarea>
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Grado de versatilidad de sus equipos</label>
+                                <textarea class="form-control" id="grado_versa"></textarea>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Porcentaje de utilización de la capacidad instalada</h2>
+                        <div class="row">
+                            <div>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Historia Laboral</h2>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <label>Total Empleados:</label>
+                                <input type="text" class="form-control" id="total_empleados" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="col-xs-4">
+                                <label>De Confianza:</label>
+                                <input type="text" class="form-control" id="confianza" onkeypress="return isNumberKey(event)">
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Sindicalizados:</label>
+                                <input type="text" class="form-control" id="sindicalizados" onkeypress="return isNumberKey(event)">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <label>Nombre del sindicato</label>
+                                <input type="text" class="form-control" id="nombre_sindicato">
+                            </div>
+                            <div class="col-xs-4">
+                                <label>Afiliación</label>
+                                <input type="text" class="form-control" id="afiliacion">
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="fc-title">Referencias</h2>
+                        <div class="row">
+
+                        </div>
+                        <hr />
+                        <h2>Proveedores y Clientes</h2>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <br /><label>FPDC. AE-002-A1</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC. AE-002-A1" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addAnexo()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        consultaContenidoCheck();
+        $('.select2').select2();
+        $('.fca').datepicker({
+            autoclose: true,
+            dateFormat: 'dd/mm/yyyy',
+            Default: "es"
+
+        })
+        $(".fca").keypress(function (event) { event.preventDefault(); });
+    });
+</script>

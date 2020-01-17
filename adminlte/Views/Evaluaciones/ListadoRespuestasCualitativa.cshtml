@@ -1,0 +1,241 @@
+﻿
+@{
+    /**/
+
+    ViewBag.Title = "Respuestas Evaluaciones Ecualitativas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Evaluaciones
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Evaluaciones</a></li>
+            <li class="active">Respuestas</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Respuestas Ecualitativas</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5><i class="glyphicon glyphicon-align-justify"></i></h5>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-primary" data-toggle="modal" data-target="#ModalSave">
+                                    Nuevo
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Pregunta</th>
+                                    <th>Valor</th>
+                                    <th>Respuesta</th>
+                                    <th>Status</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_body"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal modal-danger fade" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <p>¿Deseas Eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_eliminar">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="ModalSave">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Editar Evaluación</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- /.modal-body -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_update">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        $(document).ready(function () {
+            $('#example1').DataTable();
+
+            setTimeout(function () { ListaRespuestasEcualitativa(); }, 1000);
+        })
+
+        $('#ModalSave').on('shown.bs.modal', function () {
+            $(this).find('[autofocus]').focus();
+        });
+        $("#ModalSave").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+            if (id != 0) {
+                $.ajax({
+                    type: "GET",
+                    url: "/CheckList/ConsultaCheckUnico/" + id,
+                    data: '',
+                    success: function (data) {
+                        console.log(data.fecha_validacion_checklist);
+                        var obj = data;
+
+                        $('#tipo_check').val(obj.tipo_check_list).change();
+                        $('#asesor').val(obj.id_asesor);
+                        $('#cliente').val(obj.id_cliente);
+                        $('#secuencia').val(obj.secuencia);
+                        $('#monto_solicitado').val(obj.monto_solicitado);
+                        $('#tipo_garantia').val(obj.tipo_garantia).change();
+                        $('#codigo_operacion').val(obj.codigo_operacion);
+                        $('#fecha').val(obj.fecha_validacion_checklist.toString());
+                        $("input[name=status_check]").iCheck(obj.status_carpeta == true ? 'check' : 'uncheck');
+
+                    }
+                });
+            }
+
+        });
+        $("#modal_delete").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+
+        });
+        /*UD*/
+        $('#btn_update').click(function () {
+            let tipo_check = $('#tipo_check option:selected').val() == undefined ? '0' : $('#tipo_check option:selected').val();
+            let cliente = 0;
+            let integrantes = "";
+            let codigo_opera = "";
+            let monto_solicitado = "0";
+            let garantia = "0";
+            if (tipo_check == 1) {
+                cliente = $("#grupo").val();
+                integrantes = $("#integrantes").val();
+            } else {
+                cliente = $("#cliente").val();
+                codigo_opera = $("#codigo_opera").val();
+                monto_solicitado = $("#monto_solicitado").val();
+                garantia = $('#tipo_garantia option:selected').val() == undefined ? '0' : $('#tipo_garantia option:selected').val();
+            }
+            let asesor = $("#asesor").val();
+            let secuencia = $("#secuencia").val();
+            let fecha = $('#fecha').val();
+            let status = $('input:checkbox[name=status_check]:checked').val() == undefined ? false : true;
+            var data = {
+                id_cliente: cliente,
+                id_asesor: asesor,
+                codigo_operacion: codigo_opera,
+                secuencia: secuencia,
+                monto_solicitado: monto_solicitado,
+                tipo_garantia: garantia,
+                fecha_validacion_checklist: fecha,
+                numero_integrantes: integrantes,
+                tipo_check_list: tipo_check,
+                status: status
+            };
+            $.ajax({
+                type: "POST",
+                url: "/CheckList/UpdateCheck/" + id,
+                dataType: "json",
+                data: data,
+                success: function (data) {
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+
+        $('#btn_eliminar').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "/CheckList/EliminaCheck/"+id,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+    </script>
+
+}
+

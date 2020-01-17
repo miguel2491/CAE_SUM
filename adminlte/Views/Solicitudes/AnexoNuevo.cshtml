@@ -1,0 +1,171 @@
+﻿@{
+    ViewBag.Title = "Anexo Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Nuevo Anexo
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Anexo</a></li>
+            <li class="active">Agregar Anexo AF</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Agregar Anexo AF</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>CheckList</label>
+                                <select id="tipo_check" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Sucursal</label>
+                                <select id="sucursal" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Hidalgo</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Nombre del Cliente</label>
+                                <select id="cliente" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Yaneli Hernandéz</option>
+                                    <option value="2">Roberto Escorza</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Grupo al que pertenece</label>
+                                <select id="grupo" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">FRESAS VIP</option>
+                                    <option value="2">LOS INTOCABLES</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-xs-6 col-md-3">
+                                <label>Fecha</label>
+                                <input type="text" class="form-control fca" id="fecha">
+                            </div>
+                        </div>
+                        <hr />
+                        <h2>Cuestionamientos</h2>
+                        <p>
+                            1.- ¿Usted desempeña o ha desempeñado algún cargo públicoo político en territorio nacional o en país extranjero?
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿En qué país lo desempeña o lo desempeñó?</label>
+                                <input type="text" class="form-control" id="res1" placeholder="Respuesta">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿Qué puesto desempeña o desempeñó?</label>
+                                <input type="text" class="form-control" id="res2" placeholder="Respuesta">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿Cuál es la Dependencia en la que trabaja o trabajó?</label>
+                                <input type="text" class="form-control" id="res3" placeholder="Respuesta">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha en que inició labores:</label>
+                                <input type="text" class="form-control fca" id="res4">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha final de labores o en su caso, señalar si sigue vigente</label>
+                                <input type="text" class="form-control fca" id="res5">
+                            </div>
+                        </div>
+                        <hr />
+                        <p>
+                            2.-¿Alguno de sus familiares desempeña o hadesempeñado algún cargo públicoo político en territorio nacional o en país extranjero?
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Nombres, Apellido Paterno y Materno del familiar:</label>
+                                <input type="text" class="form-control" id="res6" placeholder="Respuesta">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Qué relación de parentesco tiene con el acreditado:</label>
+                                <input type="text" class="form-control" id="res7" placeholder="Respuesta">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿En qué país desempeña o desempeñóel cargo?</label>
+                                <input type="text" class="form-control" id="res8" placeholder="Respuesta">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿Cuál es la Dependencia en la que trabaja o trabajó?</label>
+                                <input type="text" class="form-control" id="res9" placeholder="Respuesta">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿Cuál es la Dependencia en la que trabaja o trabajó?</label>
+                                <input type="text" class="form-control" id="res10" placeholder="Respuesta">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>¿Cuál es la Dependencia en la que trabaja o trabajó?</label>
+                                <input type="text" class="form-control" id="res11" placeholder="Respuesta">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha en que inició labores:</label>
+                                <input type="text" class="form-control fca" id="res12">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha final de labores o en su caso, señalar si sigue vigente:</label>
+                                <input type="text" class="form-control fca" id="res13">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <br /><label>FPDC. AE-002-A1</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC. AE-002-A1" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addAnexo()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        consultaContenidoCheck();
+        $('.select2').select2();
+        $('.fca').datepicker({
+            autoclose: true,
+            dateFormat: 'dd/mm/yyyy',
+        })
+        $(".fca").keypress(function (event) { event.preventDefault(); });
+    });
+</script>

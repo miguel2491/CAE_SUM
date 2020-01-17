@@ -1,0 +1,243 @@
+﻿@model string
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUSWbri5yyzK1kh1lEj9fxX21WyM3Gaow&sensor=false" async defer type="text/javascript"></script>
+@section Styles
+{
+    <style>
+        .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+            background-color: white !important;
+        }
+
+        .mt-5 {
+            margin-top: 5%;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        .wrapper {
+            overflow: hidden;
+        }
+
+        #map {
+            height: 250px;
+            width: 500px;
+        }
+
+        .gallery img {
+            width: 200px
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+}
+<div class="content">
+    <div class="row">
+        <div class="col-xs-3">
+            <img src="~/Content/adminlte/img/login.png" class="img-responsive" />
+        </div>
+        <div class="col-xs-7" align="center">
+            <label style="font-size:30px;margin-top:50px">@ViewBag.Title</label>
+            <input type="hidden" id="idV" value="@ViewBag.ID" />
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="row">
+            <div class="col-xs-2">
+                <label>Nombre del Cliente</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="nclie">@ViewBag.cliente</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Fecha de Visita:</label>
+            </div>
+            <div class="col-xs-2">
+                <b id="fecha_vis">@ViewBag.fecha</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Asesor o Ejecutivo:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="asesor">@ViewBag.asesor</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <label>Secuencia</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="secuencia">@ViewBag.secuencia</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Sucursal:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="sucursal">@ViewBag.sucursal</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Grupo al que pertenece:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="grupo"></b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <label>Calle:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="calle">@ViewBag.calle</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Número:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="numeroCalle">@ViewBag.numero</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Colonia/Localidad:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="coloniaLoc">@ViewBag.colonia</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <label>Longitud:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="longitud">@ViewBag.longitud</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Latitud:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="latitud">@ViewBag.latitud</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Municipio:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="municipio">@ViewBag.municipio</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-1">
+                <label>C.P.:</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="cp">@ViewBag.cp</b>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <table>
+            <tr>
+                <td width="30%">¿La  Dirección  coincide  con  la  reportada en  la  ficha  de datos del cliente?</td>
+                <td width="70%"><b id="res1">@ViewBag.respuesta1</b> <label>Observaciones: <b id="obs1"></b></label><br /><label>Nota: en caso de no coincidir validar la causa y analizar la viablidad del otorgamiento del crédito y en su caso actualizar ficha de datos</label></td>
+            </tr>
+            <tr>
+                <td width="30%">Indique  las  características  principales  de  la  casa reportada por el cliente:</td>
+                <td width="70%"><b id="res2">@ViewBag.respuesta2</b> </td>
+            </tr>
+            <tr>
+                <td width="30%">Señale  las  calles  entre  las  que  se  encuentra ubicado el domicilio del cliente:</td>
+                <td width="70%"><b id="res3">@ViewBag.respuesta3</b> </td>
+            </tr>
+            <tr>
+                <td width="30%">Líneas o rutas de transporte público utilizadas para el traslado de la Sucursal al domicilio del cliente y tiempo aproximado:</td>
+                <td width="70%"><b id="res4">@ViewBag.respuesta4</b> </td>
+            </tr>
+            <tr>
+                <td width="30%">Registre  las  dos  principales  referencias  de ubicación del domicilio de nuestro cliente:</td>
+                <td width="70%"><b id="res5">@ViewBag.respuesta5</b> </td>
+            </tr>
+            <tr>
+                <td width="30%">Tiempo que el cliente vive en el domicilio:</td>
+                <td width="70%"><b id="res6">@ViewBag.respuesta6</b> </td>
+            </tr>
+            <tr>
+                <td width="30%">¿Nombre del dueño o propietario de la casa?<br /><small>Nota: En caso de ser distinto al cliente indicar el parentesco</small></td>
+                <td width="70%"><b id="res7">@ViewBag.respuesta7</b> </td>
+            </tr>
+            <tr>
+                <td width="30%">¿El negocio se encuentra en la misma dirección?</td>
+                <td width="70%"><b id="res8">@ViewBag.respuesta8</b> <br /><b>Indique dirección:</b><small id="res_direccion"></small> </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row mt-5">
+        <div class="col-xs-6" style="border:2px solid black">
+            <br />
+            <label style="border-top:2px solid black;margin-top:60px">Nombre y firma del quien realizó la supervisión al domicilio</label>
+        </div>
+        <div class="col-xs-6">
+            <span>
+                Doy Fe que no tengo <b> ninguna relación e interés con el solicitante de crédito, no con personas relacionadas al mismo,</b><br />
+                por lo que <b>toda la ifnromación recabada y expresada en este documento, es</b><br />
+                <b>fidedigna y verídica.</b>
+            </span>
+        </div>
+        <div class="col-xs-6"></div>
+        <div class="col-xs-6">
+            <label><b>FPDC.AE-005</b></label>
+        </div>
+    </div>
+    <div class="row"></div>
+    <div class="row mt-5" style="margin-top:55% !important">
+        <div class="col-xs-6" style="border:2px solid black;height:60vh">
+            <div class="col-xs-12" style="border:2px solid black">Croquis del domicilio de la Vivienda</div>
+            <div class="col-xs-12">
+                <div id="map"></div>
+            </div>
+        </div>
+        <div class="col-xs-6" style="border:2px solid black;height:60% !important">
+            <div style="border:2px solid black;height:20px">Fotos del domicilio de la Vivienda</div>
+            <div class="col-xs-12">
+                <img src="~/Content/adminlte/img/negocios.jpg" class="img-responsive" />
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <p>
+            <b>Nota:</b> Este formato deberá ser requisitado por el Asesor de Crédito o Ejecutivo de Producto durante su visita de evaluación o seguimiento al cliente y se llenará en primer secuencia, cada que el cliente reporte un cambio de domicilio y en caso de no reportar ningún cambio se realizará una visita de seguimiento al domicilio cada año.
+        </p>
+    </div>
+    <div class="row mt-5">
+        <div class="col-xs-3">
+            <label>
+                FPDC.AE-005
+            </label>
+        </div>
+    </div>
+</div>
+<script>
+    var map, infoWindow;
+
+    $(document).ready(function () {
+        $(".main-header").remove();
+        $(".main-sidebar").remove();
+        $(".main-footer").remove();
+        mapa();
+    });
+
+    function mapa() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 18.95652, lng: -98.18664 },
+            zoom: 12
+        });
+        infoWindow = new google.maps.InfoWindow;
+        infoWindow.open(map);
+    }
+
+   
+</script>

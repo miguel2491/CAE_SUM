@@ -1,0 +1,247 @@
+﻿@model string
+
+@section Styles
+{
+    <style>
+        .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+            background-color: white !important;
+        }
+
+        .mt-5 {
+            margin-top: 1%;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        .wrapper {
+            overflow: hidden;
+        }
+
+        #map {
+            height: 250px;
+            width: 500px;
+        }
+
+        .gallery img {
+            width: 200px
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        b {
+            border-bottom:1px solid black;
+        }
+        label {
+            font-weight:100
+        }
+    </style>
+}
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-3">
+                <img src="~/Content/adminlte/img/login.png" class="img-responsive" />
+            </div>
+            <div class="col-xs-7" align="center">
+                <label style="font-size:20px;margin-top:50px">@ViewBag.Title</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-8"></div>
+            <div class="col-xs-4">
+                <label>Código de Operación <b style="border-bottom:2px solid black;width:100px">78FA</b></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <label>Sucursal <b>HIDALGO</b></label>
+            </div>
+            <div class="col-xs-4">
+                <label>Secuencia: <b>01</b></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <label>Nombre de analista agropecuario <b>N.....</b></label>
+            </div>
+            <div class="col-xs-4">
+                <label>Secuencia: <b>01</b></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8">
+                <label>Tipo de Producto<b>Crédito ---</b></label>
+            </div>
+            <div class="col-xs-4">
+                <label>Nivel de Riesgo de PLD: <b>MEDIO</b></label>
+            </div>
+        </div>
+        <div class="row mt-5" style="border:1px dashed black">
+            <div class="col-xs-12">
+                <p>
+                    YO, <b id="nombre_solicitante">JAVIER ALDAMA ROSIQUE</b>, PRESENTADO COMO AVAL AL SR.(A) 
+                    <b id="nombre_aval">YULENI HERNANDEZ PEREA</b> SOLICITO A FINANCIERA SÚMATE UN CRÉDITO
+                    POR $<b id="monto_credito"></b>(<strong id="cantidad_letra"></strong>)M.N. Y POLIZA DE SEGURO
+                    AGROPECUARIO POR $<b id="credito_agropecuario"></b>(<strong id="cantidad_letra_agropecuario"></strong>) M.N. A UNA
+                    TASA MENSUAL SOBRE SALDO INSOLUTO DE <b id="saldo_insoluto"></b>%, A PAGAR EN <b id="pagar_en"></b> CUOTAS, CON PERIODICIDAD <b id="periodicidad"></b> DE
+                    ACUERDO CON EL PLAN DE PAGOS ANEXO Y QUE RECIBIRÉ EL DÍA <b id="dia_recibir"></b>, SIENDO EL PRIMER PAGO
+                    EL DÍA <b id="primer_pago"></b>.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <h6 class="box-title">PERFIL TRANSACCIONAL:</h6>
+            <div class="col-xs-2">
+                Tipo de Transacción:
+            </div>
+            <div class="col-xs-3">
+                <b id="tipoTransaccion"></b>
+            </div>
+            <div class="col-xs-2">
+                Modo de Pago:
+            </div>
+            <div class="col-xs-5">
+                <b id="modo_pago"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-2">
+                Monto estimado de Operaciones realizadas al mes:
+            </div>
+            <div class="col-xs-2">
+                <b id="operaciones_mes"></b>
+            </div>
+            <div class="col-xs-4">
+                Número estimado de Operaciones realizadas al mes:
+            </div>
+            <div class="col-xs-4">
+                <b id="numero_operaciones_mes"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-2">
+                Canal de Pago
+            </div>
+            <div class="col-xs-6">
+                <b id="canal_pago"></b>
+            </div>
+
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-12">
+                <p>
+                    Al elegir la opción de pago en BANCO, declaro estar de acuerdo y acepto que deberé pagar a éste la comisión que establezca,
+                    por cada depósito que realice.
+                </p>
+            </div>
+            <div class="col-xs-4">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma del Solicitante</label>
+            </div>
+            <div class="col-xs-4">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma del Aval</label>
+            </div>
+            <div class="col-xs-4">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma del Aval(2) en caso de que aplique</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                TIPO DE GARANTÍA
+            </div>
+            <div class="col-xs-3">
+                <b id="tipo_garantia"></b>
+            </div>
+            <div class="col-xs-3">
+                Especifíque
+            </div>
+            <div class="col-xs-3">
+                <b id="especificacion"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                Valor estimado de la garantía:$
+            </div>
+            <div class="col-xs-3">
+                <b id="valor_garantia"></b>
+            </div>
+            <div class="col-xs-3">
+                Cobertura de la garantía:$
+            </div>
+            <div class="col-xs-3">
+                <b id="cobertura_garantia"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-12">
+                <p>
+                    El (Los)  solicitante(s) y El (Los) aval(es) autorizan a la empresa a utilizar los datos personales asentados en este formato, para verificar su autenticidad, 
+                    y en caso de ser necesario informen a las autoridades Financieras, Hacendarias y de cualquier otra índole, sobre los datos aquí manifestados.
+                    Guardando confidencialidad de los datos en término de lo dispuesto por los artículos 8,9,12,13,14 y 15 de la Ley Federal de Protección de Datos Personales
+                    en Poder de Particulares.<br />
+                </p>
+                <p>
+                    Bajo protesta de decir verdad y en cumplimiento al art. 31 de la DCG manifiesto que <b id="res_manifiesto"></b> soy accionista y tampoco tengo relación de 
+                    parentesco con alguno de los accionistas.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5" id="div_modificado">
+
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-4">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma del Solicitante</label>
+            </div>
+            <div class="col-xs-4">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma del Aval</label>
+            </div>
+            <div class="col-xs-4">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma del Aval(2) en caso de que aplique</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-6">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma de Coordinador Rural</label>
+            </div>
+            <div class="col-xs-6">
+                <div style="width:100%;border-bottom:1px solid black;margin-top:100px"></div>
+                <label>Nombre y firma de Analista Agropecuario</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                Cliente recomendado por:
+            </div>
+            <div class="col-xs-9">
+                <b id="cliente_recomendado"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                <b>FPDC.AE- 046.1</b>
+            </div>
+        </div>
+    </div>
+<script>
+    $(document).ready(function () {
+        $(".main-header").remove();
+        $(".main-sidebar").remove();
+        $(".main-footer").remove();
+    });
+</script>

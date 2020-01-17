@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewBag.Title = "Listado de Supervisiones a Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Supervisión a clientes
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Solicitudes</a></li>
+            <li class="active">Supervisión a clientes</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+
+                    <div class="box-header">
+                        <h3 class="box-title">Supervisión a clientes</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h5></h5>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-primary" href="@Url.Action("SupervisionNuevo", "Solicitudes")">
+                                    Nuevo
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive">
+                        <table id="table-datos" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Grupo/Cliente</th>
+                                    <th>Código de Grupo/Cliente</th>
+                                    <th>Sucursal</th>
+                                    <th>Fecha</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="datosT"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal modal-danger fade" id="modal_delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <p>¿Deseas Eliminar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_eliminar">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div id="ModalSupe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:95%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Detalles</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="table-responsive">
+                    <table id="table-detalle" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th class="text-sm">¿El negocio está funcionando?</th>
+                                <th class="text-sm">¿La información y foto (tomada por el asesor) coincide con el negocio que observa en la supervisión?</th>
+                                <th class="text-sm">¿La información y foto (tomada por el asesor) coincide con el domicilio del cliente?</th>
+                                <th class="text-sm">¿La distancia entre los integrantes del grupo cumple con políticas? ¿Se ubicó al aval?</th>
+                                <th class="text-sm">¿El cliente conoce el domicilio y negocio de sus compañeros de grupo? o ¿el aval conoce el domicilio y negocio del titular?</th>
+                                <th class="text-sm">¿El Comité de grupo conoce sus responsabilidades? o ¿El aval conoce sus responsabilidades? </th>
+                                <th class="text-sm">¿El cliente, conoce y avala a sus compañeros del grupo? o ¿El aval conoce y respalda al titular?</th>
+                            </tr>
+                        </thead>
+                        <tbody id="datosDetalle"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/Solicitudes/ListaSupervisionC",
+                dataType: "json",
+                success: function (data) {
+                    var s = '';
+                    var n = 0;
+                    for (var i = 0; i < data.length; i++) {
+                        n = n + 1;
+                        var bttnDelete = '<button class="btn btn-danger btn-xs" id="bttn_modal_delete" data-id="' + data[i].id + '" data-target="#modal_delete"  data-toggle="modal" title="Eliminar"><i class="glyphicon glyphicon-trash"></i></button>';
+                        var bttnUpdate = '<button class="btn btn-warning btn-xs" id="bttn_modal_update"  data-id="' + data[i].id + '"  data-target="#ModalSave" data-toggle="modal" title="Editar"><i class="glyphicon glyphicon-edit"></i></button> ';
+                        var bttnSupe = '<button class="btn btn-primary btn-xs" id="bttn_modal_supe"  data-id="' + data[i].id + '"  data-target="#ModalSupe" data-toggle="modal" title="Supervisión"><i class="glyphicon glyphicon-list"></i></button> ';
+                        var si = data[i].sucursal == 1 ? 'Hidalgo' : 'Independencia';
+                        s += '<tr><td>' + n + '</td><td>' + data[i].cliente + '</td><td>' + data[i].codigo + '</td><td>' + si + '</td><td>' + data[i].fecha + '</td><td>' + bttnUpdate + ' ' + bttnDelete + ' ' + bttnSupe + '</td></tr>';
+                    }
+                    $("#datosT").append(s);
+                    $('#table-datos').DataTable({
+                        'paging': true,
+                        'lengthChange': false,
+                        'searching': false,
+                        'ordering': true,
+                        'info': true,
+                        'autoWidth': false,
+                        "language": {
+                            "sProcessing": "Procesando...",
+                            "sLengthMenu": "Mostrar _MENU_ registros",
+                            "sZeroRecords": "No se encontraron resultados",
+                            "sEmptyTable": "Ningún dato disponible en esta tabla",
+                            "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                            "sInfoEmpty": "Sin registros",
+                            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                            "sInfoPostFix": "",
+                            "sSearch": "Buscar:",
+                            "sUrl": "",
+                            "sInfoThousands": ",",
+                            "sLoadingRecords": "Cargando...",
+                            "oPaginate": {
+                                "sFirst": "Primero",
+                                "sLast": "Último",
+                                "sNext": "Siguiente",
+                                "sPrevious": "Anterior"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                            }
+                        }
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        })
+
+        $("#ModalSupe").on('show.bs.modal', function (event) {
+            $("#table-detalle").DataTable();
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+            if (id != 0) {
+                console.log(id);
+                $.ajax({
+                    type: "POST",
+                    url: "/Solicitudes/ListaSupervisiones/" + id,
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                        var obj = data;
+                        console.log(obj.length);
+                        var s = '';
+                        var table = $('#table-detalle').DataTable();
+                        table.clear().draw();
+                        for (var x = 0; x < obj.length; x++) {
+                            var r1 = obj[x].r1 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            var r2 = obj[x].r2 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            var r3 = obj[x].r3 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            var r4 = obj[x].r4 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            var r5 = obj[x].r5 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            var r6 = obj[x].r6 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            var r7 = obj[x].r7 == 1 ? '<i class="fa fa-check text-navy"></i>' : '<i class="fa fa-times text-navy"></i>';
+                            s += "<tr><td>" + obj[x].id + "</td><td>" + r1 + "</td><td>" + r2 + "</td><td>" + r3 + "</td><td>" + r4 + "</td><td>" + r5 + "</td><td>" + r6 + "</td><td>" + r7 + "</td></tr>";
+                        }
+                        $("#datosDetalle").append(s);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Status: " + textStatus);
+                        alert("Error: " + errorThrown);
+                    }
+                });
+            }
+        });
+
+        $("#modal_delete").on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            id = typeof button.data('id') != "undefined" ? button.data('id') : 0;
+        });
+        $('#btn_eliminar').click(function () {
+            console.log(id);
+            $.ajax({
+                type: "POST",
+                url: "/Solicitudes/DeleteSupervision/"+id,
+                dataType: "json",
+                success: function (data) {
+                    $.toast({
+                        text: "Se elimino Correctamente",
+                        showHideTransition: 'slide'  // It can be plain, fade or slide
+                    })
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+            });
+        });
+    </script>
+
+}
+

@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Carta Protesta para Bienes Muebles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Carta Protesta para Bienes Muebles
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Carta</a></li>
+            <li class="active">Protesta Bienes Muebles</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Agregar Carta Protesta Bienes Muebles</h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>CheckList</label>
+                                <select id="tipo_check" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Folio:</label>
+                                <input type="text" class="form-control" id="folio" placeholder="89SHJAOIE767G54ASJ">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Vehículo</label>
+                                <input type="text" class="form-control" id="vehiculo" placeholder="(Automóvil, Motocicleta, Tractocamion)">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Grupo al que pertenece</label>
+                                <input type="text" class="form-control" placeholder="Marca" id="marca">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Año</label>
+                                <input type="text" class="form-control" placeholder="1999" id="ann">
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Número de Serie</label>
+                                <input type="text" class="form-control" placeholder="15987354628NA" id="serie">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Cliente:</label>
+                                <select id="cliente_id" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1" selected>Pedro Ramos Armenta</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Lugar</label>
+                                <input type="text" class="form-control" id="lugar_cliente"/>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha</label>
+                                <input type="text" class="form-control fca" id="fecha_cliente" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Responsable:</label>
+                                <select id="responsable_id" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Juan Pablo Ramírez</option>
+                                    <option value="2">Irais Lopéz Ramos</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Lugar</label>
+                                <input type="text" class="form-control" id="lugar_responsable" />
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha</label>
+                                <input type="text" class="form-control fca" id="fecha_responsable" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <br /><label>FPDC.AE-043</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC.AE-043" />
+                            </div>
+                        </div>
+                        </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addAnexo()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        consultaContenidoCheck();
+        $('.select2').select2();
+        $('.fca').datepicker({
+            autoclose: true,
+            dateFormat: 'dd/mm/yyyy',
+        })
+        $(".fca").keypress(function (event) { event.preventDefault(); });
+    });
+</script>
+
+
+

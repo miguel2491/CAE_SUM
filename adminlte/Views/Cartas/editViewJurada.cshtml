@@ -1,0 +1,300 @@
+﻿@{
+    ViewBag.Title = "Carta Jurada de Cliente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Carta Juarada del Cliente
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Carta</a></li>
+            <li class="active">Jurada Cliente</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Editar Carta Jurada de Cliente</h2>
+                    </div>
+                    <input type="hidden" id="idCarta" value="@ViewBag.idCarta" />
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-3 col-md-3">
+                                <input type="hidden" id="idDoc" value="@ViewBag.idDoc" class="form-control" />
+                                <label>Documento</label>
+                                <select class="form-control select2" id="tipo_check" disabled>
+                                    <option selectd value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <input type="hidden" id="idCli" value="@ViewBag.idCliente" class="form-control" />
+                                <label>Cliente:</label>
+                                <select id="cliente_id" class="form-control select2"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Grupo:</label>
+                                <select id="grupo_id" class="form-control select2"></select>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <input type="hidden" id="idSucursal" value="@ViewBag.idSucursal" class="form-control" />
+                                <label>Sucursal:</label>
+                                <select id="sucursal_id" class="form-control select2"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-xs-6">
+                                <label>Monto</label>
+                                <input type="text" class="form-control" id="monto" value="@ViewBag.monto" onkeypress="return isNumberKey(event)" />
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Negocio:</label>
+                                <input type="text" class="form-control" id="negocio" value="@ViewBag.negocio" />
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <label>Ubicación</label>
+                                <input type="text" class="form-control" id="ubicacion" value="@ViewBag.ubicacion" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Fecha</label>
+                                <input type="text" class="form-control fca" id="fecha" value="@ViewBag.fecha" />
+                            </div>
+                        </div>
+                        <hr />
+                        <h4 class="box-title">Detalle del destino de la Inversión:</h4>
+                        <div class="row">
+                            <div class="col-xs-3 col-md-3"></div>
+                            <div class="col-xs-9 col-md-9">
+                                <div class="table-responsive box-body">
+                                    <table id="table-datos" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Descripción del Bien o Mercancia</th>
+                                                <th>Valor de Compra ($)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="datosT"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-4">
+                                <br /><label>FPDC.AE-019</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC.AE-019" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="uppCartaJurada()">Actualizar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<div class="modal fade" id="modal_saveRef">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Agregar</h4>
+            </div>
+            <div class="modal-body" style="text-align:center">
+                <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                        <label>Descripción del bien o mercancia</label>
+                        <input type="text" class="form-control" id="descripcion" />
+                    </div>
+                    <div class="col-xs-6 col-md-6">
+                        <label>Valor de Compra ($)</label>
+                        <input type="text" class="form-control" id="valor_compra" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn_add_jurada">Aceptar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<script>
+    $(document).ready(function () {
+        consultaContenidoCheck();
+        $('.select2').select2();
+        $('#monto').maskMoney();
+        $('#valor_compra').maskMoney();
+        $('.fca').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy',
+        })
+        $(".fca").keypress(function (event) { event.preventDefault(); });
+        $('#table-datos').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false,
+            "language": {
+                "sProcessing": "Procesando...",
+                "sLengthMenu": "Mostrar _MENU_ registros",
+                "sZeroRecords": "No se encontraron resultados",
+                "sEmptyTable": "Ningún dato disponible en esta tabla",
+                "sInfo": "Registros del _START_ al _END_  total: _TOTAL_ ",
+                "sInfoEmpty": "Sin registros",
+                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sSearch": "Buscar:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast": "Último",
+                    "sNext": "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                }
+            }
+        });
+
+        $('#modal_saveRef').on('show.bs.modal', function (e) {
+            $('#descripcion').val("");
+            $("#valor_compra").val("0.00");
+        });
+        getCliente();
+        getSucursal();
+        setTimeout(function () { PosteriorJurada(); }, 1000);
+    });
+
+    function PosteriorJurada() {
+        var idCheck = $("#idDoc").val();
+        $("#tipo_check").val(idCheck).change();
+        var idCliente = $("#idCli").val();
+        $("#cliente_id").val(idCliente).change();
+        var idSucursal = $("#idSucursal").val();
+        $("#sucursal_id").val(idSucursal).change();
+        var idCarta = $("#idCarta").val();
+        consultaInsPro(idCarta);
+    }
+
+    function consultaInsPro(id) {
+        var data = {
+            id_documento: id
+        }
+        $.ajax({
+            url: "/Cartas/GetInsumosProductos",
+            type: 'POST',
+            dataType: 'json',
+            data: data,
+            success: function (data) {
+                $("#datosT").empty();
+                for (var i = 0; i < data.length; i++) {
+                    var nombre = data[i].descripcion;
+                    detalles.push({
+                        "id": data[i].id,
+                        "descripcion": nombre,
+                        "valor": data[i].valor
+                    });
+                }
+                var s = '';
+                var n = 0;
+                for (var j = 0; j < detalles.length; j++) {
+                    n = j + 1;
+                    s += "<tr><td>" + n + "</td><td>" + detalles[j].descripcion + "</td><td>" + detalles[j].valor + "</td></tr>";
+                }
+                $("#datosT").append(s);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var data = jqXHR.responseJSON;
+                if (jqXHR.status == 401) {
+                    location.reload();
+                }
+
+            }
+        });
+    }
+
+    var detalles = [];
+    $('#btn_add_jurada').click(function () {
+        detalles.push({
+            "descripcion": $("#descripcion").val(),
+            "valor": $("#valor_compra").val(),
+        });
+        var s = '';
+        var n = 0;
+        for (var i = 0; i < detalles.length; i++) {
+            n = i + 1;
+            s += "<tr><td>" + n + "</td><td>" + detalles[i].descripcion + "</td><td>" + detalles[i].valor+ "</td><td><button class='btn btn-xs btn-danger' onClick='eliminaRowJ(" + n + ")'><i class='fa fa-remove'></i></button></td></tr>";
+        }
+        $("#datosT").append(s);
+        $("#modal_saveRef").modal("hide");
+    });
+    var eliminaRows = [];
+    function eliminaRowJ(n) {
+        var p = n - 1;
+        detalles.splice(p, 1);
+        $("#datosT").empty();
+        var s = '';
+        var n = 0;
+        for (var i = 0; i < detalles.length; i++) {
+            n = i + 1;
+            s += "<tr><td>" + n + "</td><td>" + detalles[i].descripcion + "</td><td>" + detalles[i].valor+ "</td><td><button class='btn btn-xs btn-danger' onClick='eliminaRowJ(" + n + ")'><i class='fa fa-remove'></i></button></td></tr>";
+        }
+        $("#datosT").append(s);
+    }
+
+</script>
+
+
+

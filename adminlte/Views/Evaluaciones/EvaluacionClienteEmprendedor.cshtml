@@ -1,0 +1,953 @@
+﻿@{
+    ViewBag.Title = "Evaluaciones Cliente Emprendedor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Evaluación Cliente Emprendedor
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Evaluación</a></li>
+            <li class="active">Cliente Emprendedor</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li class="" id="infopbtn"><a data-toggle="tab" href="#menu2">Evaluacion</a></li>
+                <li class="" id="socringbtn"><a data-toggle="tab" href="#menu3">Scoring</a></li>
+
+
+
+            </ul>
+
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h3>Evaluacio Económica Cliente Emprendedor</h3>
+                    <h5>Descripcion</h5>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="jumbotron">
+                            <label>Evaluacion</label><div class="pull-right" id="evaTxt">pendiente</div><br />
+                            <label>Scoring</label><div class="pull-right" id="scorTxt">pendiente</div><br />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+
+                        <p>
+                            <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#collapseInstrucciones" aria-expanded="false" aria-controls="collapseExample">
+                                Instrucciones
+                            </button>
+                        </p>
+                        <br /> <br />
+                        <div class="collapse" id="collapseInstrucciones">
+                            <div class="card card-body">
+                                <div align="justify">
+                                    <h3>Evaluacion economica detallada</h3>
+                                    <p>Esta evaluacion consta de <b>5</b> partes , los formularios se encunetran en las pestañas correspendoientes.</p>
+                                    <p>Al final de cada pestaña hay un boton para agregar subir la informacion en caso de que los campos estén incompletos usted vera una alarma como esta:</p>
+                                    <p align="center">
+                                        <span class="badge badge-danger">Error : descripción</span>
+                                    </p>
+
+                                    <p>En caso de que el registro sea exitoso , la pestaña de la sección cambiará de color y se reflajara su estado en esta misma vista , en el area de secciones</p>
+                                    <br />
+                                    <ul class="nav nav-tabs">
+                                        <li class=""><a>Ejemplos</a></li>
+                                        <li class="bg-success" id="evalbtn"><a>Evaluacion</a></li>
+                                        <li class="bg-success" id="histobtn"><a>Historial</a></li>
+                                        <li class="bg-success" id="socringbtn"><a>Scoring</a></li>
+                                        <li class="bg-success" id="calgrupbtn"><a>Calificacion a grupo</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="menu2" class="tab-pane fade">
+
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <br />
+                        <h3>Evaluación Económica</h3>
+                        <br />
+                        <div class="jumbotron">
+                            <label>
+                                Ingreso semanal $
+                            </label><br />
+                            <input type="text" id="ingreso_semanal" name="name" value="" /><br />
+
+                            <label>
+                                Ingreso mensual $
+                            </label><br />
+                            <input type="text" id="ingreso_menusal" name="name" value="" /><br />
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <br />
+                        <h3>   ... </h3>
+                        <br />
+                        <div class="jumbotron">
+                            <label>
+                                Capacidad de pago
+                            </label><br />
+                            <input type="text" id="CapacidadDePago" name=" " value="" disabled /><br />
+
+                            <label>
+                                Capacidad de pago considerando pago en otras microfinancieras:
+
+                            </label><br />
+                            <input class="form-control" type="text" id="CapacidadPagoMicrofinansas" name="name" value="" disabled />
+                            <br />
+
+                        </div>
+                        <br />
+                    </div>
+                    <div class="col-lg-12">
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+
+
+                                    <button data-toggle="collapse" href="#collapseestadoresultados" class="btn btn-default">
+                                        EDO. DE RESULTADOS DE LA UNIDAD FAMILIAR
+                                    </button>
+
+                                </li>
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    Total ingresos
+                                    <input type="text" disabled="" id="total_ingresos">
+                                </li>
+
+                            </ol>
+
+                        </nav>
+                        <div class="collapse" id="collapseestadoresultados">
+                            <div class="jumbotron">
+                                <button class="btn btn-default pull-right" onclick="estadoResultados()">Agregar a evalución</button>
+                                <label>
+                                    Ingresos propios (sueldo, pensión, etc.)
+                                </label><br />
+                                <input type="text" id="IngresosPropios_est" name="name" value="0" /><br />
+                                <label>
+                                    aportaciones familiares (hijos,conyuge, etc.)
+                                </label><br />
+                                <input type="text" id="AportacionesFam_est" name="name" value="0" /><br />
+                                <label>
+                                    Otros ingresos y/o apoyos gubernamentales
+                                </label><br />
+                                <input type="text" id="OtrosIngresos_est" name="name" value="0" /><br />
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-lg-12">
+                        <h3> </h3>
+
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <button data-toggle="collapse" href="#collapsegastosopfam" class="btn btn-default">
+                                        Gastos Operativos (de familia)
+                                    </button>
+                                </li>
+
+                                <li class="breadcrumb-item">
+                                    <label>Total de gastos de familia</label>
+                                    <input type="text" id="TOTALDEGASTOSDEFAMILIA" name="name" value="" disabled />
+                                </li>
+                            </ol>
+                        </nav>
+
+
+                    </div>
+
+
+                    <div class="collapse" id="collapsegastosopfam">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="jumbotron">
+
+
+                                <label>Alimentacion (total)</label>
+                                <input class="form-control" type="text" id="alimentacion" name="gfam" value="" />
+                                <label> Educacion (transporte, colegiatura, lunch)</label>
+                                <input class="form-control" id="educacion" type="text" name="gfam" value="" />
+                                <label>Salud</label>
+                                <input class="form-control" id="salud" type="text" name="gfam" value="" />
+                                <label>Transporte familiar</label>
+                                <input class="form-control" type="text" id="trasportefamiliar" name="gfam" value="" />
+                                <label>Gas</label>
+                                <input class="form-control" type="text" id="gas" name="gfam" value="" />
+                                <label> Gtos.Grales.De Fam.**</label>
+                                <input class="form-control" type="text" id="gastosgeneralesfam" name="gfam" value="" />
+                                <label>Renta o pago de alquiler</label>
+                                <input class="form-control" type="text" id="renta" name="gfam" value="" />
+                                <label>Serv. Pub. (luz, agua, basura y predial)</label>
+                                <input class="form-control" type="text" id="serviciospublicos" name="gfam" value="" />
+                                <label>Telefono fijo/celular</label>
+                                <input class="form-control" type="text" id="telefonofijo" name="gfam" value="" />
+
+
+                                <hr />
+                                <button onclick="calcGFAM()" class="btn btn-default pull-right">
+                                    Agregar a evaluacion
+                                </button>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="jumbotron">
+                                <label>Total de gastos familiares</label><br />
+                                <input type="number" name="name" value="" id="TGFAM" disabled /><br />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <hr />
+
+                    <div class="col-lg-12">
+
+                        <p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                data-target="#collapseDetallecuentasporpagar" aria-expanded="false" aria-controls="collapseExample">
+                                            BG DE LA FAMIEMPRESA
+
+
+                                        </button>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <label>
+                                            Total Activos
+                                        </label>
+                                        <input type="text" name="name" value="" id="TotalActivos" disabled />
+                                    </li>
+
+                                    <li class="breadcrumb-item">
+                                        <label>
+                                            Total Pasivos
+                                        </label>
+                                        <input type="text" name="name" value="" id="TotalPasivos" disabled />
+                                    </li>
+                                </ol>
+                            </nav>
+
+                        </p>
+
+                    </div>
+
+                    <div class="collapse" id="collapseDetallecuentasporpagar">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="ActivosPasivos()">Agregar </button>
+
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Concepto
+                                                </th>
+
+                                                <th>
+                                                    Actvios
+                                                </th>
+                                                <th>
+                                                    Pasivos
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><label>Efectivo para inicio de negocio</label></td>
+                                                <td><input type="text" id=" " name="activos" class="form-control" value="" /></td>
+                                                <td><input type="text" id=" " name="pasivos" class="form-control" disabled value="0" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label> Ahorro   </label></td>
+                                                <td><input type="text" id=" " name="activos" class="form-control" value="" /></td>
+                                                <td><input type="text" id=" " name="pasivos" class="form-control" disabled value="0" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><label>Cuentas por pagar o por cobrar</label></td>
+                                                <td><input type="text" id=" " name="activos" class="form-control" value="" /></td>
+                                                <td><input type="text" id=" " name="pasivos" class="form-control" value="" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><label>   Deuda(s) total(es) en otras Instituciones de crédito                </label></td>
+                                                <td><input type="text" id=" " disabled name="activos" class="form-control" value="0" /></td>
+                                                <td><input type="text" id=" " name="pasivos" class="form-control" value="" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><label> Tandas </label></td>
+                                                <td><input type="text" id=" " name="activos" class="form-control" value="" /></td>
+                                                <td><input type="text" id=" " name="pasivos" class="form-control" value="" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><label>Otros</label></td>
+                                                <td><input type="text" id=" " name="activos" class="form-control" value="" /></td>
+                                                <td><input type="text" id=" " name="pasivos" class="form-control" value="" /></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="col-lg-12">
+
+                        <p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item active" aria-current="page">
+                                        <button class="btn btn-default" type="button" data-toggle="collapse"
+                                                data-target="#collapseInversion" aria-expanded="false" aria-controls="collapseExample">
+                                            Destino de la inversión
+                                        </button>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <label>
+                                            Total
+                                        </label>
+                                        <input type="text" name="name" value="" id="TotalInversion" disabled />
+                                    </li>
+                                </ol>
+                            </nav>
+                        </p>
+                    </div>
+                    <div class="collapse" id="collapseInversion">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="DestinoInversion()">Agregar </button>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Concepto
+                                                </th>
+                                                <th>
+                                                    Actvios
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><label>Efectivo para inicio de negocio</label></td>
+                                                <td><input type="text" id=" " name="inversionDestino" class="form-control" value="" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label> Insumos   </label></td>
+                                                <td><input type="text" id=" " name="inversionDestino" class="form-control" value="" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><label> Permisos </label></td>
+                                                <td><input type="text" id=" " name="inversionDestino" class="form-control" value="" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><label>  Equipo          </label></td>
+                                                <td><input type="text" id=" " name="inversionDestino" class="form-control" value="" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td><label>  Otros                             </label></td>
+                                                <td><input type="text" id=" " name="inversionDestino" class="form-control" value="" /></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-lg-12">
+                        <p>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        General
+                                    </li>
+                                </ol>
+                            </nav>
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="jumbotron">
+                            <label>  Bienes propios</label>
+                            <input class="form-control" type="text" id="BienesPropios" name="name" value="" />
+                            <label>  Número de hijos que trabajan</label>
+                            <input class="form-control" type="text" id="nHijosTrabajan" name="name" value="" />
+                            <label>  Número de hijos en edad escolar y/o dependientes</label>
+                            <input class="form-control" type="text" id="nHijosEscolar" name="name" value="" />
+
+                            <hr />
+
+
+                            <label>  Pago mensual a otras microfinancieras</label>
+                            <input class="form-control" type="text" id="MensualOtrasMicro" name="micro" onblur="CapacidadPagoMicrofinansas()" value="" />
+                            <label>   Cuota que cliente puede pagar (MENSUAL)</label>
+                            <input class="form-control" type="text" id="CuotaClientePuedePagar" name="micro" value="" />
+
+
+
+                            <script>
+
+
+
+                            </script>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="jumbotron">
+
+
+                            <label>Monto propuesto</label> <input class="form-control" type="text" id="MontroPropuesto" name="name" value="" />
+
+                            <label>Cuota propuesta(mensual)</label> <input onblur="CoberturaCuota()" class="form-control" type="text" id="CuotaMensualPropuesta" name="name" value="" />
+
+
+                            <label> Cobertura de cuota</label> <input class="form-control" type="text" id="CuotaCobertura" name="name" value="" />
+
+
+                            <label>Monto solicitado por el cliente:</label> <input class="form-control" type="text" id="SolicitadoPorCliente" name="name" value="" />
+
+
+                            <label> Monto máximo trabajado:</label> <input class="form-control" type="text" id="MontoMaximoTrabajado" name="name" value="" />
+
+
+                            <label>Plazo propuesto por el cliente:</label> <input class="form-control" type="text" id="PlazoPropuesto" name="name" value="" />
+
+
+                            <br />
+                            <textarea class="form-control " rows="4" placeholder="Comentarios" id="comentarios"></textarea>
+                            <br />
+                            <div id="errorAdd"></div>
+                            <br />
+                            <button class="btn btn-default pull-right" onclick="AddEvaluacionClienteEmprendedor()">Aregar</button><br />
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div id="menu3" class="tab-pane fade">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3> Scoring</h3>
+                                <hr />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <b>claificacion </b><br />
+                                    <div id="calficiacion_Sco"></div>
+                                    <input type="hidden" id="nPreguntas" value="" />
+                                    <hr />
+                                </div>
+                                <div class="col-lg-12 ">
+                                    <div class="card card-body">
+                                        <div id="scoring_holder"></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div id=" ">
+                                        <div id="erroresCal" class="hidden"></div>
+                                        <button onclick="calificacionCalcScor()" class="btn btn-success pull-right">
+                                            Calificación
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+</div>
+<!-- /.content-wrapper -->
+@section Scripts
+{
+    <script type="text/javascript">
+        $.ajax({
+            url: `/SCORING/SCORING_PREGUNTAS_ListJson/1`,
+            type: "GET",
+            dataType: "json",
+            //contentType: "application/json; charset=utf-8",
+
+            success: function (response) {
+                //.log(response);
+
+                var rl = response.length;
+                $("#nPreguntas").val(rl);
+                let cont1 = 1;
+                for (var i = 0; i < rl; i++) {
+
+                    document.getElementById('scoring_holder').innerHTML +=
+                        `
+                           <div> <b>${response[i].pregunta}</b>
+                                <br>
+                                    <h5>Respuestas:</h5>
+                                <hr>
+                            <div id="scoring_holder_ans${response[i].id}"> </div>
+
+                            <hr>
+                        </div>
+                        `;
+                    let id_sh = `scoring_holder_ans${response[i].id}`;
+                    let id_scoring = response[i].id
+
+
+                    callScoringAns(id_sh, id_scoring, cont1);
+                    cont1 = cont1 + 1;
+                }
+            },
+
+            error: function (jqXHR, textStatus, err) {
+                //$('#myModalLabel').append(`error: - ${err}`);
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(err);
+
+                alert(err);
+
+            }
+
+        });
+        function callScoringAns(id_sh, id_scoring, cont) {
+
+            $.ajax({
+                url: `/scoring/SCORING_RESPUESTAS_IDP/` + id_scoring,
+                type: "GET",
+                dataType: "json",
+                //contentType: "application/json; charset=utf-8",
+
+                success: function (response) {
+                    //.log(response);
+                    let idsh = "scoring_holder_ans" + id_scoring;
+                    var rl = response.length;
+
+                    for (var i = 0; i < rl; i++) {
+                        document.getElementById(idsh).innerHTML +=
+                            `
+                                                <div>
+                                                    <label class="checkbox-inline">
+                                                    <input type="radio"
+                                                            name="checkbox_${cont}"
+                                                            value="${response[i].valor}"> ${response[i].respuesta}</label>
+
+                                                </div>
+                    `;
+                    }
+
+
+                },
+
+                error: function (jqXHR, textStatus, err) {
+                    //$('#myModalLabel').append(`error: - ${err}`);
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(err);
+
+                    alert(err);
+                }
+            });
+
+        }
+
+
+
+        function CoberturaCuota() {
+            //CuotaMensualPropuesta
+
+            let CapacidadPagoMicrofinansas = $('#CapacidadPagoMicrofinansas').val();
+            let CuotaClientePuedePagar = $('#CuotaClientePuedePagar').val();
+            let CuotaCobertura = parseInt(CapacidadPagoMicrofinansas) / parseInt(CuotaClientePuedePagar);
+            CuotaCobertura = parseFloat(CuotaCobertura).toFixed(2);
+
+            $('#CuotaCobertura').val(CuotaCobertura);
+        }
+
+        function estadoResultados() {
+            let total_ingresos;
+            let IngresosPropios_est = $('#IngresosPropios_est').val();
+            let AportacionesFam_est = $('#AportacionesFam_est').val();
+            let OtrosIngresos_est = $('#OtrosIngresos_est').val();
+
+            total_ingresos = parseInt(IngresosPropios_est) + parseInt(AportacionesFam_est) + (parseInt(OtrosIngresos_est) * 0.9);
+            total_ingresos = parseFloat(total_ingresos).toFixed(2);
+            debugger
+            $('#total_ingresos').val(total_ingresos);
+
+        }
+
+        function calcGFAM() {
+            let tgfam = $('[name = gfam]');
+            console.log(tgfam);
+            let sum = 0;
+            for (var i = 0; i < tgfam.length; i++) {
+
+                sum = parseInt(sum) + parseInt(tgfam[i].value);
+
+
+            }
+            sum = parseFloat(sum).toFixed(2);
+            $('#TOTALDEGASTOSDEFAMILIA').val(sum);
+
+
+
+            let total_ingresos = 0;
+            let TOTALDEGASTOSDEFAMILIA = 0;
+            total_ingresos = $('#total_ingresos').val();
+            TOTALDEGASTOSDEFAMILIA = $('#TOTALDEGASTOSDEFAMILIA').val();
+
+            let CapacidadDePago = parseInt(total_ingresos) - parseInt(TOTALDEGASTOSDEFAMILIA);
+            $('#CapacidadDePago').val(CapacidadDePago);
+        }
+
+        function ActivosPasivos() {
+            let tactivos = $('[name = activos]');
+            let tpasivos = $('[name = pasivos]');
+
+            debugger
+            let sumaAct = 0; let sumaPas = 0;
+
+            for (var i = 0; i < tactivos.length; i++) {
+
+                sumaAct = parseInt(sumaAct) + parseInt(tactivos[i].value);
+
+
+            }
+
+            for (var i = 0; i < tpasivos.length; i++) {
+
+                sumaPas = parseInt(sumaPas) + parseInt(tpasivos[i].value);
+
+            }
+
+            $('#TotalActivos').val(sumaAct);
+            $('#TotalPasivos').val(sumaPas);
+            //TotalActivos
+            //TotalPasivos
+        }
+
+        function DestinoInversion() {
+            //inversionDestino
+            //TotalInversion
+            let inversiont = $('[name = inversionDestino]');
+            let sumaInv = 0;
+
+            for (var i = 0; i < inversiont.length; i++) {
+                sumaInv = parseInt(sumaInv) + parseInt(inversiont[i].value);
+            }
+
+            $('#TotalInversion').val(sumaInv);
+        }
+
+        function CapacidadPagoMicrofinansas() {
+            let CapacidadPagoMicrofinansas = 0;//CapacidadPagoMicrofinansas
+            let CapacidadDePago = $('#CapacidadDePago').val();
+            let MensualOtrasMicro = $('#MensualOtrasMicro').val();
+
+
+            CapacidadPagoMicrofinansas = parseInt(CapacidadDePago) - parseInt(MensualOtrasMicro);
+            CapacidadPagoMicrofinansas = parseFloat(CapacidadPagoMicrofinansas).toFixed(2);
+            $('#CapacidadPagoMicrofinansas').val(CapacidadPagoMicrofinansas);
+
+        }
+
+        function calificacionCalcScor() {
+
+            const np = $('#nPreguntas').val();
+            let nt = 0;
+            for (var i = 0; i < np; i++) {
+                let ni = i + 1;
+                let getclass = "checkbox_" + ni;
+                let val_ = 0;
+                let st = `input[name='${getclass}']:checked`;
+                try {
+                    val_ = $(st).val();
+
+                } catch (e) {
+                    console.log(e);
+                }
+
+                val_ = parseFloat(val_);
+                nt = nt + val_;
+                nt = parseFloat(nt);
+            }
+
+
+
+
+
+            if (isNaN(nt)) {
+
+                $("#erroresCal").removeClass("hidden");
+
+                $("#erroresCal").html('faltan algunas preguntas por contestar');
+
+            }
+            else {
+
+
+                nt = nt / np;
+                //alert(nt);
+                nt = parseFloat(nt).toFixed(2);
+                $("#calficiacion_Sco").html('<input type="text" id="calficiacion_Sco_input" value="' + nt + '" disabled />');
+
+                let inputcalificacion = $("#calficiacion_Sco_input").val();
+                let data = {
+                    id_check_list: 1,
+                    id_sucursal: 1,
+                    id_cliente: 1,
+                    id_catalogo: 3,
+                    calificacion: inputcalificacion,
+                    secuencia: 1,
+                    numero_evaluacion: 1
+                }
+
+
+                $.ajax({
+                    url: `/scoring/INSERT_SCORING_RespuestasDocumento/`,
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    success: function (response) {
+
+
+                        $("#socringbtn").addClass("bg-success");
+                    },
+
+                    error: function (jqXHR, textStatus, err) {
+                        //$('#myModalLabel').append(`error: - ${err}`);
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(err);
+
+                        alert(err + '  ' + textStatus);
+                    }
+                });
+
+                window.scrollTo(0, 0);
+                $('#scorTxt').html('<span class="badge badge-success">Listo</span>');
+
+            }
+
+
+
+        }
+
+        function AddEvaluacionClienteEmprendedor() {
+            let ingreso_semanal, ingreso_menusal, total_ingresos, IngresosPropios_est, serviciospublicos
+            AportacionesFam_est, OtrosIngresos_est, TOTALDEGASTOSDEFAMILIA, alimentacion, renta, TotalActivos, TotalPasivos
+            educacion, TotalInversion, CapacidadDePago, CapacidadPagoMicrofinansas, BienesPropios, gas,
+                gastosgeneralesfam,
+                nHijosTrabajan, nHijosEscolar, MensualOtrasMicro, CuotaClientePuedePagar, MontroPropuesto, trasportefamiliar,
+                CuotaMensualPropuesta, SolicitadoPorCliente, MontoMaximoTrabajado, PlazoPropuesto, comentarios;
+
+            ingreso_semanal = $('#ingreso_semanal').val(),
+                ingreso_menusal = $('#ingreso_menusal').val(),
+                total_ingresos = $('#total_ingresos').val(),
+                IngresosPropios_est = $('#IngresosPropios_est').val(),
+                AportacionesFam_est = $('#AportacionesFam_est').val(),
+                OtrosIngresos_est = $('#OtrosIngresos_est').val(),
+                TOTALDEGASTOSDEFAMILIA = $('#TOTALDEGASTOSDEFAMILIA').val(),
+                telefonofijo = $('#telefonofijo').val(),
+                alimentacion = $('#alimentacion').val(),
+                educacion = $('#educacion').val(),
+                renta = $('#renta').val(),
+                gastosgeneralesfam = $('#gastosgeneralesfam').val(),
+                serviciospublicos = $('#serviciospublicos').val(),
+                TotalInversion = $('#TotalInversion').val(),
+                CapacidadDePago = $('#CapacidadDePago').val(),
+                CapacidadPagoMicrofinansas = $('#CapacidadPagoMicrofinansas').val(),
+                BienesPropios = $('#BienesPropios').val(),
+                nHijosTrabajan = $('#nHijosTrabajan').val(),
+                nHijosEscolar = $('#nHijosEscolar').val(), gas = $('#gas').val(),
+                MensualOtrasMicro = $('#MensualOtrasMicro').val(),
+                CuotaClientePuedePagar = $('#CuotaClientePuedePagar').val(),
+                MontroPropuesto = $('#MontroPropuesto').val(),
+                CuotaMensualPropuesta = $('#CuotaMensualPropuesta').val(),
+                SolicitadoPorCliente = $('#SolicitadoPorCliente').val(),
+                MontoMaximoTrabajado = $('#MontoMaximoTrabajado').val(),
+                PlazoPropuesto = $('#PlazoPropuesto').val(),
+                trasportefamiliar = $('#trasportefamiliar').val(),
+                TotalActivos = $('#TotalActivos').val(), TotalPasivos = $('#TotalPasivos').val(),
+                comentarios = $('#comentarios').val();
+
+            if (ingreso_semanal.length == 0 || ingreso_semanal == ' ' ||
+                gas.length == 0 || gas == ' ' ||
+                telefonofijo.length == 0 || telefonofijo == ' ' ||
+                trasportefamiliar.length == 0 || trasportefamiliar == ' ' ||
+                renta.length == 0 || renta == ' ' ||
+                ingreso_menusal.length == 0 || ingreso_menusal == ' ' ||
+                total_ingresos.length == 0 || total_ingresos == ' ' ||
+                IngresosPropios_est.length == 0 || IngresosPropios_est == ' ' ||
+                AportacionesFam_est.length == 0 || AportacionesFam_est == ' ' ||
+                OtrosIngresos_est.length == 0 || OtrosIngresos_est == ' ' ||
+                TOTALDEGASTOSDEFAMILIA.length == 0 || TOTALDEGASTOSDEFAMILIA == ' ' ||
+                alimentacion.length == 0 || alimentacion == ' ' ||
+                gastosgeneralesfam.length == 0 || gastosgeneralesfam == ' ' ||
+                educacion.length == 0 || educacion == ' ' ||
+                TotalInversion.length == 0 || TotalInversion == ' ' ||
+                CapacidadDePago.length == 0 || CapacidadDePago == ' ' ||
+                CapacidadPagoMicrofinansas.length == 0 || CapacidadPagoMicrofinansas == ' ' ||
+                BienesPropios.length == 0 || BienesPropios == ' ' ||
+                nHijosTrabajan.length == 0 || nHijosTrabajan == ' ' ||
+                nHijosEscolar.length == 0 || nHijosEscolar == ' ' ||
+                serviciospublicos.length == 0 || serviciospublicos == ' ' ||
+                MensualOtrasMicro.length == 0 || MensualOtrasMicro == ' ' ||
+                CuotaClientePuedePagar.length == 0 || CuotaClientePuedePagar == ' ' ||
+                MontroPropuesto.length == 0 || MontroPropuesto == ' ' ||
+                CuotaMensualPropuesta.length == 0 || CuotaMensualPropuesta == ' ' ||
+                SolicitadoPorCliente.length == 0 || SolicitadoPorCliente == ' ' ||
+                MontoMaximoTrabajado.length == 0 || MontoMaximoTrabajado == ' ' ||
+                PlazoPropuesto.length == 0 || PlazoPropuesto == ' ' ||
+                TotalPasivos.length == 0 || TotalPasivos == ' ' ||
+                TotalActivos.length == 0 || TotalActivos == ' ' ||
+                comentarios.length == 0 || comentarios == ' ') {
+                $('#errorAdd').html('<span class="badge badge-danger">falta alguno de los datos</span> ');
+            } else {
+                let data = {
+                    id_documento: 11111,
+                    id_sucursal: 1111,
+                    id_asesor: 1111,
+                    id_cliente: 1111,
+                    id_grupo: 1111,
+                    secuencia: 1111,
+                    evaluacion: 1111,
+                    ingreso_semanal: ingreso_semanal,
+                    ingreso_mensual: ingreso_menusal,
+                    ingresos_propios: IngresosPropios_est,
+                    aportaciones_familiares: AportacionesFam_est,
+                    otros_ingresos: OtrosIngresos_est,
+                    total_ingresos: total_ingresos,
+                    alimentacion_gastos_familiares: alimentacion,
+                    educacion_salud: educacion,
+                    transporte_familiar: trasportefamiliar,
+                    gastos_generales_familia: gastosgeneralesfam,
+                    gas: gas,
+                    renta: renta,
+                    luz_agua_predial: serviciospublicos,
+                    telefono_fijo_celular: telefonofijo,
+                    total_gastos_familiar: TOTALDEGASTOSDEFAMILIA,
+                    tandas: null,
+                    total_activo: TotalActivos,
+                    total_pasivo: TotalPasivos,
+                    otro: null,
+                    capacidad_pago: CapacidadDePago,
+                    cuota_mensual_pagar: CuotaClientePuedePagar,
+                    pago_mensual_microfinanciera: MensualOtrasMicro,
+                    capacidad_pago_considerada: CapacidadPagoMicrofinansas,
+                    numero_hijos_trabajan: nHijosTrabajan,
+                    bienes_propios: BienesPropios,
+                    numero_hijos_edad_escolar: nHijosEscolar,
+                    insumos: 0,
+                    permisos: 0,
+                    equipo: 0,
+                    total_destino_inversion: TotalInversion,
+                    monto_solicitado: SolicitadoPorCliente,
+                    monto_maximo_trabajado: MontoMaximoTrabajado,
+                    descripcion_negocio: comentarios,
+                    plazo_propuesto_cliente: PlazoPropuesto,
+                    efectivo_inicio_activo: null,
+                    efectivo_inicio_pasivo: null,
+                    ahorro_pasivo: TotalPasivos,
+                    ahorro_activo: TotalActivos,
+                    cuentas_paga_activo: null,
+                    cuentas_pagar_pasivo: null
+                };
+
+                $.ajax({
+                    url: `/EvaluacionEco/InsertEvaluacionClienteEmprendedor/`,
+                    type: "POST",
+                    dataType: "json",
+                    data: data,
+                    //contentType: "application/json; charset=utf-8",
+
+                    success: function (response) {
+                        //.log(response);
+
+                        $('#menu2').addClass('bg-success');
+
+                    },
+
+                    error: function (jqXHR, textStatus, err) {
+                        //$('#myModalLabel').append(`error: - ${err}`);
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(err);
+
+                        alert(err);
+                    }
+                });
+
+            }
+        }
+
+    </script>
+}

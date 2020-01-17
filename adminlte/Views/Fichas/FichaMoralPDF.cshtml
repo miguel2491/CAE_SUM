@@ -1,0 +1,470 @@
+﻿@model string
+@section Styles
+{
+    <style>
+        .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+            background-color: white !important;
+        }
+
+        .mt-5 {
+            margin-top: 1%;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        .wrapper {
+            overflow: hidden;
+        }
+
+        #map {
+            height: 250px;
+            width: 500px;
+        }
+
+        .gallery img {
+            width: 200px
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+}
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-3">
+                <img src="~/Content/adminlte/img/login.png" class="img-responsive" />
+            </div>
+            <div class="col-xs-7" align="center">
+                <label style="font-size:20px;margin-top:50px">FICHA DE IDENTIFICACIÓN DE CLIENTE</label><br />
+                <label style="font-size:14px;margin-top:25px">@ViewBag.Title</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-4"></div>
+            <div class="col-xs-2">
+                <label>Código del Cliente:</label>
+            </div>
+            <div class="col-xs-2">
+                <b id="codcli">@ViewBag.cocli</b>
+            </div>
+            <div class="col-xs-2">
+                <label>Fecha de Levantamiento:</label>
+            </div>
+            <div class="col-xs-2">
+                <b id="fecha_leva">@ViewBag.fechaL</b>
+            </div>
+        </div>
+        <h4>DATOS GENERALES</h4>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                <label>Nombre o razón solcial del cliente</label>
+            </div>
+            <div class="col-xs-9">
+                <b id="nombre_cliente">@ViewBag.nombreC</b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                <label>Nombre comercial</label>
+            </div>
+            <div class="col-xs-9">
+                <b id="nombre_comercial">@ViewBag.nombreComercial</b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-1">
+                <label>RFC</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="rfc">@ViewBag.rfc</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Fecha de Constitución</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="fca_con">@ViewBag.fechaConst</b>
+            </div>
+            <div class="col-xs-1">
+                <label>Nacionalidad</label>
+            </div>
+            <div class="col-xs-3">
+                <b id="nacionalidad">@ViewBag.nacionalidad</b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                <label>Núm. Serie FIEL(Firma Elec. Avanzada)</label>
+            </div>
+            <div class="col-xs-9">
+                <b id="numero_serie">@ViewBag.numSerie</b>
+            </div>
+        </div>
+        <h4>DATOS DEL DOMICILIO FISCAL</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Dirección</label>
+                </div>
+                <div class="col-xs-9">
+                    <b id="direccion">@ViewBag.direccion</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Referencia de localización:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="referencia_loc">@ViewBag.referencia</b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Municipio, Entidad:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="entidad"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Oficina, local y/o Instalaciones:</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="oficinas"></b>
+                </div>
+                <div class="col-xs-3">
+                    <label>Teléfono fijo/Celular:</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="telefono"></b>
+                </div>
+            </div>
+        </div>
+        <h4>DATOS DEL REPRESENTANTE LEGAL</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-12">
+                    <b id="nombre"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Rol(es) que desempeña en la empresa:</label>
+                </div>
+                <div class="col-xs-9">
+                    <b id="roles_empresa"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Es Accionista</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="accionista"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Si es Accionista especificar porcentaje:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="accionista_porcentaje"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Oficina, local y/o Instalaciones:</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="oficinas"></b>
+                </div>
+                <div class="col-xs-3">
+                    <label>Teléfono fijo/Celular:</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="telefono"></b>
+                </div>
+            </div>
+        </div>
+        <label><b>Nota:</b> Los datos adicionales del representante legal se encuentran en la ficha de identificación FPDC.AE-002</label>
+        <h4>DATOS DE LA ACTIVIDAD ECONÓMICA DE LA PERSONA MORAL</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Actividad o giro</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="actividad"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Sector</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="sector"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Antigüedad en la actividad:</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="antiguedad_act"></b>
+                </div>
+                <div class="col-xs-3">
+                    <label>Años en el domicilio actual:</label>
+                </div>
+                <div class="col-xs-3">
+                    <b id="ann_actual"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Días que trabaja:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="dias_trabaja"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Días descansa:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="dias_descansa"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Horario:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="horario"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>No. de trabajadores:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="no_trabajadores"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Cuenta con Sucursal(es):</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="cuenta_sucursales"></b>
+                </div>
+            </div>
+        </div>
+        <h4>REFERENCIA COMERCIAL</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Nombre y Apellido</label>
+                </div>
+                <div class="col-xs-10">
+                    <b id="referencia_comercial"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Dirección</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="direccion_comercial_ref"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Tel:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="tel_comercial_ref"></b>
+                </div>
+            </div>
+        </div>
+        <h4>REFERENCIA PERSONAL</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Nombre y Apellido:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="cuenta_sucursales"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Relación:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="relacion_ref_personal"></b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <label>Dirección:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="direccion_ref_personal"></b>
+                </div>
+                <div class="col-xs-2">
+                    <label>Tel:</label>
+                </div>
+                <div class="col-xs-4">
+                    <b id="relacion_ref_personal"></b>
+                </div>
+            </div>
+        </div>
+        <h4>REVERSO DE LA FICHA DE IDENTIFICACIÓN</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Avenidas de Acceso:</label>
+                    <textarea id="av_acceso"></textarea>
+                </div>
+                <div class="col-xs-3">
+                    <label>Líneas de transporte público:</label>
+                    <textarea id="lineas_transporte"></textarea>
+                </div>
+                <div class="col-xs-3">
+                    <label>Tiempo Aproximado:</label>
+                    <textarea id="tiempo_aproximado"></textarea>
+                </div>
+                <div class="col-xs-3">
+                    <label>Calles principales (referencia para pronta ubicación):</label>
+                    <textarea id="calles_principales"></textarea>
+                </div>
+            </div>
+        </div>
+        <p>
+            <b>Nota:</b>En caso de ser distinto de negocio del domicilio fiscal deberá añadirse croquis de ambos
+            En caso de contar con el formato de visita domiciliaria no será obligatorio llenar nuevamente el croquis.
+        </p>
+        <div class="row mt-5">
+            <div class="col-xs-6">
+                <label>CROQUIS DE NEGOCIO</label>
+            </div>
+            <div class="col-xs-6">
+                <label>CROQUIS DE DOMICILIO</label>
+            </div>
+        </div>
+        <h4>DATOS DE BENEFICIARIO</h4>
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-xs-6">
+                    <p></p>
+                    <label>Apellidos</label>
+                </div>
+                <div class="col-xs-6">
+                    <p></p>
+                    <label>Nombre(s)</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3">
+                    <p></p>
+                    <label>Fecha de Nacimiento</label>
+                </div>
+                <div class="col-xs-3">
+                    <p></p>
+                    <label>Sexo</label>
+                </div>
+                <div class="col-xs-3">
+                    <p></p>
+                    <label>Parentesco</label>
+                </div>
+                <div class="col-xs-3">
+                    <p></p>
+                    <label>Participación</label>
+                </div>
+            </div>
+        </div>
+        <h4>DATOS DEL DOMICILIO</h4>
+        <div class="row mt-5">
+            <div class="col-xs-2">
+                <label>Dirección </label>
+            </div>
+            <div class="col-xs-10">
+                <b id="direccion_beneficiario"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <br />
+            <p>
+                Bajo protesta de decir verdad y en cumplimiento al art. 31 de las DCG manifiesto que <b id="res_manif"></b> soy accionista y <b id="resp_manif2"></b>
+                tengo relación de parentesco con alguno de los accionistas.
+            </p>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                <input type="checkbox" class="i-checks" name="resp_mani1" id="resp_mani1" />
+            </div>
+            <div class="col-xs-9">
+                <p>
+                    En este acto manifiesto que actúoa nombre y cuenta propia sabedor de las consecuencias legales que tiene el engañar a la Entidad
+                    financiera respecto a esta información
+                </p>
+            </div>
+            <div class="col-xs-3">
+                <input type="checkbox" class="i-checks" name="resp_mani2" id="resp_mani2" />
+            </div>
+            <div class="col-xs-9">
+                <p>
+                    En este acto manifiesto que actúo a nombre de un tercero, cuyo nombre completo es
+                </p>
+            </div>
+            <div class="col-xs-12">
+                <b id="nombre_manifiesto"></b>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-12">
+                <p>
+                    y de quien acompaño la documentación necesaria en los términos de la ley aplicable
+                    y sus disposiciones de carácter general para lograr su debida identificación. 
+                    (Llenar ficha de Identificación Persona Real). Declaro bajo protesta de decir verdad que la información 
+                    aquí proporcionada es verídica y que el negocio o actividad que reporto son 
+                    de origen "licito"   y que los ingresos con los cuales cubriré el pago del crédito solicitado, 
+                    proceden de la(s) misma(s).
+                    Otorgo mi autorización para el uso necesario del tratamiento de mis datos personales,
+                    así como para la transferencia de mis datos personales en el caso que sea requerido 
+                    por Financiera Súmate S.A de C.V. SFP.
+                    Para consultar nuestro Aviso de Privacidad Integral puede solicitarlo al correo 
+                    privacidad@financierasumate.com.mx o directamente en nuestras sucursales.
+                    Afirmo que los datos aquí señalados son verdaderos,
+                    así también me comprometo a informar a Financiera Súmate de cualquier cambio a los mismos.
+                </p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-4">
+                <b id="firma_cliente"></b>
+                <label>Firma del Cliente</label>
+            </div>
+            <div class="col-xs-4">
+                <b id="correo_electronico"></b>
+                <label>Correo electrónico/Facebook/Twitter</label>
+            </div>
+            <div class="col-xs-4">
+                <b id="modo_enterado"></b>
+                <label>¿Como se enteró o quien lo recomendó?</label>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-xs-3">
+                <label>
+                    FPDC.AE-029
+                </label>
+            </div>
+        </div>
+        </div>
+        <script>
+
+            $(document).ready(function () {
+                $(".main-header").remove();
+                $(".main-sidebar").remove();
+                $(".main-footer").remove();
+            });
+
+        </script>
+

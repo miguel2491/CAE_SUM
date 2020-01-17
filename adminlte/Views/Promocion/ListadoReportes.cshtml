@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Reporte de Actividad Promocional";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Reporte
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Prospecto</a></li>
+            <li class="active">Reportes</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="box-body">
+                <div class="col-xs-3">
+                    <label>Mes Promocional:</label>
+                    <input type="text" placeholder="Enero" class="form-control" id="mes_promocional" />
+                </div>
+                <div class="col-xs-3">
+                    <label>Sucursal</label>
+                    <select id="sucursal" class="form-control">
+                        <option value="0" selected>Seleccione...</option>
+                        <option value="1">Hidalgo</option>
+                        <option value="2">Independencia</option>
+                    </select>
+                </div>
+                <div class="col-xs-3">
+                    <label>Responsable de la Promoción</label>
+                    <input type="text" class="form-control" id="responsable" placeholder="Responsable" />
+                </div>
+                <div class="col-xs-3">
+                    <label>Estado</label>
+                    <input type="text" class="form-control" id="estado" placeholder="Estado" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Programado</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="programado" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Zona</th>
+                                    <th>Municipio</th>
+                                    <th>Localidad</th>
+                                    <th>Colonia</th>
+                                    <th>Meta de Prospectos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_body_programado"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-xs-6">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Real</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="real" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Zona</th>
+                                    <th>Municipio</th>
+                                    <th>Localidad</th>
+                                    <th>Colonia</th>
+                                    <th>Meta de Prospectos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table_body_real"></tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="box-body">
+                <div class="col-xs-6">
+                    <label>Observaciones del Responsable</label>
+                    <textarea class="form-control" id="obs_res" placeholder="Observaciones Responsables"></textarea>
+                </div>
+                <div class="col-xs-6">
+                    <label>CheckList</label>
+                    <textarea class="form-control" id="obs_gerente" placeholder="Observaciones Gerente de Sucursal"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <div class="box">
+                        <div class="box-body">
+                            <canvas id="pieChart" style="height:250px"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- /.row -->
+        <div class="row">
+            <div class="col-xs-3">
+                <button class="btn btn-pinterest">Agregar</button>
+            </div>
+        </div>
+</section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            
+            setTimeout(function () { ListaActividadPromocional(); }, 1000);
+
+            
+        });
+    </script>
+}

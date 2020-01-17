@@ -1,0 +1,227 @@
+﻿    <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/Content/adminlte/img/avatar04.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>Súmate</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Buscar...">
+                <span class="input-group-btn">
+                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">PROMOCIÓN</li>
+            <li class="treeview @Html.IsSelected(controller: "Promocion")">
+                <a href="#">
+                    <i class="fa fa-users"></i> <span>Prospectos</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="@Url.Action("ListadoRegistro", "Promocion")">
+                            <i class="fa fa-barcode"></i>Registro
+                        </a>
+                    </li>
+                    <!--
+                    <li>
+                        <a href="@Url.Action("ListadoReportes", "Promocion")">
+                            <i class="fa fa-file-pdf-o"></i>Reportes
+
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </li>
+            <li class="header">ANÁLISIS</li>
+            <li class="treeview @Html.IsSelected(controller: "CheckList")">
+                <a href="#">
+                    <i class="fa fa-folder"></i> <span>Catalogos</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-navicon"></i>CheckList
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("ListadoCheckList", "CheckList")"><i class="fa fa-file-text"></i> Lista de CheckList</a></li>
+                            <li><a href="@Url.Action("ListadoContenidoCheckList", "CheckList")"><i class="fa fa-file-text"></i> Lista de Contenido CheckList</a></li>
+                            <li><a href="@Url.Action("AgregarCheckList", "CheckList")"><i class="fa fa-file-text"></i> Agregar CheckList</a></li>
+                            <li><a href="@Url.Action("AgregarContenidoCheckList", "CheckList")"><i class="fa fa-file-o"></i> Contenido de CheckList</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-calendar-minus-o "></i>Scoring
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("PreguntasRespuestas", "Scoring")"><i class="fa fa-tags"></i> Preguntas/Respuestas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-file-pdf-o"></i>
+                    <span>Formatos</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <!--
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-pencil"></i>Solicitudes
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class=" @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("FichaClienteID", "Cartas")"><i class="fa fa-circle-o"></i> FPDC. AE-002-A1</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("ProductosAgrosumate", "Solicitudes")"><i class="fa fa-circle-o text-blue"></i> FPDC.AE-046.1 Solicitud de productos de crédito Agrosumate</a>
+            </li>
+            <li class=" @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("creditoPyme", "Solicitudes")"><i class="fa fa-circle-o text-bold"></i> Crédito PYME</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("creditoPyme", "Solicitudes")"><i class="fa fa-circle-o text-bold"></i>FPDC.AE-032.2 Solicitud de crédito mejoramiento a la vivienda</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("creditoComunal", "Solicitudes")"><i class="fa fa-circle-o text-bold"></i>FPDC.AE-014.4 Solicitud de Crédito Comunal</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("creditoIndividual", "Solicitudes")"><i class="fa fa-circle-o text-bold"></i>FPDC.AE-013.4 Solicitud de productos de crédito individual</a>
+            <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                <a href="@Url.Action("creditoSolidario", "Solicitudes")"><i class="fa fa-circle-o text-bold">FPDC.AE-012.4 Solicitud de crédito solidario</i></a>
+            </li>
+        </ul>
+    </li>
+    -->
+                    <!--
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-envelope"></i>Cartas
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="contenidoLi @Html.IsSelected(controller: "Cartas")">
+                <a href="@Url.Action("ProtestaBienes", "Cartas")"><i class="fa fa-circle-o text-black"></i> FPDC.AE-043 Carta protesta para bienes muebles</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Cartas")">
+                <a href="@Url.Action("SeparacionCrediticiaLista", "Cartas")"><i class="fa fa-circle-o text-blue"></i> FPDC.AE-030 Carta de separación crediticia</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Cartas")">
+                <a href="@Url.Action("JuradaCliente", "Cartas")"><i class="fa fa-circle-o text-bold"></i>FPDC.AE-019 Carta Jurada del Cliente emprendedor (CC)</a>
+            </li>
+        </ul>
+    </li>
+    -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-file-text-o"></i>Fichas
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li class="contenidoLi @Html.IsSelected(controller: "Fichas")">
+                                <a href="@Url.Action("IdentificacionCliente", "Fichas")"><i class="fa fa-circle-o text-bold"></i> FPDC.AE-002.1 Ficha de identificación del cliente</a>
+                            </li>
+                            <li class="contenidoLi @Html.IsSelected(controller: "Fichas")">
+                                <a href="@Url.Action("IdentificacionAval", "Fichas")"><i class="fa fa-circle-o text-black"></i> FPDC.AE-004.1 Ficha de identificación del aval</a>
+                            </li>
+                            <!--
+            <li class="contenidoLi @Html.IsSelected(controller: "Fichas")">
+                <a href="@Url.Action("IdentificacionMoral", "Fichas")"><i class="fa fa-circle-o text-blue"></i>FPDC.AE-029 Ficha de identificación de cliente (PERSONA MORAL)</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Fichas")">
+                <a href="@Url.Action("IdentificacionReal", "Fichas")"><i class="fa fa-circle-o text-aqua"></i> FPDC.AE-044 Ficha de identificación del cliente Real</a>
+            </li>
+            -->
+                        </ul>
+                    </li>
+                    <!--
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-comment-o"></i>Evaluaciones
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="contenidoLi @Html.IsSelected(controller: "Evaluaciones")">
+                <a href="@Url.Action("EvaluacionEconomica", "Evaluaciones")"><i class="fa fa-circle-o text-light-blue"></i> Evaluación Económica</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Evaluaciones")">
+                <a href="@Url.Action("EvaluacionSimple", "Evaluaciones")"><i class="fa fa-circle-o text-light-blue"></i> Evaluación Simple</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Evaluaciones")">
+                <a href="@Url.Action("EvaluacionDetallada", "Evaluaciones")"><i class="fa fa-circle-o text-light-blue"></i> Evaluación Detallada</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Evaluaciones")">
+                <a href="@Url.Action("EvaluacionClienteEmprendedor", "Evaluaciones")"><i class="fa fa-circle-o text-light-blue"></i> Cliente Emprendedor</a>
+            </li>
+            <li class="contenidoLi @Html.IsSelected(controller: "Evaluaciones")">
+                <a href="@Url.Action("CreditoRural", "Evaluaciones")"><i class="fa fa-circle-o text-light-blue"></i> Credito Rural</a>
+            </li>
+        </ul>
+    </li>
+    -->
+                    <!--
+                    <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                        <a href="@Url.Action("AnexoAF", "Solicitudes")"><i class="fa fa-circle-o text-red"></i> Anexo AF1</a>
+                    </li>
+                    <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                        <a href="@Url.Action("Supervision", "Solicitudes")"><i class="fa fa-circle-o text-blue"></i> Supervisión a Clientes</a>
+                    </li>
+                    <li class="contenidoLi @Html.IsSelected(controller: "Cartas")">
+                        <a href="@Url.Action("DeclaracionFormal", "Cartas")"><i class="fa fa-circle-o text-bold"></i> FPDC.AE-020 Declaración formal de propiedad de bienes</a>
+                    </li>
+                    <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                        <a href="@Url.Action("ActaIntegracion", "Solicitudes")"><i class="fa fa-circle-o text-aqua"></i> FPDC.AE-016.1 Acta de Integración del comité de admón. y Reglamento Interno</a>
+                    </li>
+                    <li class="contenidoLi @Html.IsSelected(controller: "Solicitudes")">
+                        <a href="@Url.Action("AutorizacionReportes", "Solicitudes")"><i class="fa fa-circle-o text-red"></i> FPDC.AE-001 Autorización para solicitar reportes de crédito (personas físicas)</a>
+                    </li>
+                    -->
+                    <li class="contenidoLi @Html.IsSelected(controller: "Cartas")">
+                        <a href="@Url.Action("VisitaDomiciliaria", "Cartas")"><i class="fa fa-circle-o text-black"></i> FPDC.AE-005 Visita domiciliaria</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

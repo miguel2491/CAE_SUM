@@ -1,0 +1,865 @@
+﻿
+@{
+    ViewBag.Title = "Evaluaciones Detalladas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Evaluación Simple
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Evaluaciones</a></li>
+            <li class="active">Simples</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li class="" id="evalbtn"><a data-toggle="tab" href="#menu1">Evaluacion</a></li>
+            <li class="" id="histobtn"><a data-toggle="tab" href="#menu2">Historial</a></li>
+            <li class="" id="socringbtn"><a data-toggle="tab" href="#menu3">Scoring</a></li>
+            <li class="" id="calgrupbtn"><a data-toggle="tab" href="#menu4">Calificacion a grupo</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <h3>Evaluacio Económica Simple</h3>
+                <h5>Descripcion</h5>
+                <div class="col-lg-6 col-md-6">
+                    <div class="jumbotron">
+                        <label>Evalucion</label><div class="pull-right" id="evaTxt">pendiente</div><br />
+                        <label>Historial</label><div class="pull-right" id="histTxt">pendiente</div><br />
+                        <label>Scoring</label><div class="pull-right" id="scorTxt">pendiente</div><br />
+                        <label>Calificaicon grupal</label><div class="pull-right" id="caligruTxt">pendiente</div><br />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+
+                    <p>
+                        <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#collapseInstrucciones" aria-expanded="false" aria-controls="collapseExample">
+                            Instrucciones
+                        </button>
+                    </p>
+                    <br /> <br />
+                    <div class="collapse" id="collapseInstrucciones">
+                        <div class="card card-body">
+                            <div align="justify">
+                                <h3>Evaluacion economica simple</h3>
+                                <p>Esta evaluacion consta de <b>4</b> partes , los formularios se encunetran en las pestañas correspendoientes.</p>
+                                <p>Al final de cada pestaña hay un boton para agregar subir la informacion en caso de que los campos estén incompletos usted vera una alarma como esta:</p>
+                                <p align="center">
+                                    <span class="badge badge-danger">Error : descripción</span>
+                                </p>
+
+                                <p>En caso de que el registro sea exitoso , la pestaña de la sección cambiará de color y se reflajara su estado en esta misma vista , en el area de secciones</p>
+                                <br />
+                                <ul class="nav nav-tabs">
+                                    <li class=""><a>Ejemplos</a></li>
+                                    <li class="bg-success" id="evalbtn"><a>Evaluacion</a></li>
+                                    <li class="bg-success" id="histobtn"><a>Historial</a></li>
+                                    <li class="bg-success" id="socringbtn"><a>Scoring</a></li>
+                                    <li class="bg-success" id="calgrupbtn"><a>Calificacion a grupo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="jumbotron">
+                    <h5>Datos de documento</h5>
+                    <input type="text" class="form-control" disabled name="Sucursal" value="id_sucursal" />
+                    <input type="date" class="form-control" name="Fecha" value="" />
+                    <input type="text" class="form-control" disabled name="Secuencia" value="numerodesecuencia" />
+                    <input type="text" class="form-control" disabled name="Grupo" value="id_grupo" />
+                    <input type="text" class="form-control" disabled name="Nombre del cliente" value="id_cliente" />
+                    <input type="text" class="form-control" disabled name="Actividaddeclarada" value="Actividaddeclarada" />
+
+                </div>
+                -->
+
+
+            </div>
+            <div id="menu1" class="tab-pane fade">
+                <div class="row">
+
+                    <div class="col-lg-12">
+                        <h3>Evaluación Simple</h3>
+
+                    </div>
+
+                    <div class="col-lg-12">
+
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    <a class="btn btn-default" data-toggle="collapse" href="#collapse_1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        Ventas
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item  " aria-current="page"> Semanal <input type="text" disabled id="promSemanal_" /></li>
+
+                                <li class="breadcrumb-item  " aria-current="page"> Mensual <input type="text" disabled id="promMensual_" /></li>
+
+                                <li class="breadcrumb-item  pull-right" aria-current="page" id="ventaStatusBg_">
+                                    <span class="badge badge-danger">Pendiente</span>
+                                </li>
+                            </ol>
+                        </nav>
+
+                    </div>
+                    <div id="collapse_1" class="collapse">
+                        <div class="card card-body">
+
+                            <div class="col-lg-12">
+
+                                <hr />
+                                <h4>Ventas</h4>
+
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+
+                                <div class="jumbotron">
+
+
+
+
+
+                                    <div class="hidden badge badge-danger  " id="ventasError"></div><br />
+                                    <button class="btn btn-default pull-right" onclick="calcularVentas()">Agregar</button><br />
+
+
+                                    <h4>
+                                        Venta diaria promedio ($)
+                                    </h4>
+
+                                    <label>Lunes </label><br /><input class="form-control" type="number" id="lun" value="" /><br />
+                                    <label>Martes </label><br /><input class="form-control" type="number" id="mart" value="" /><br />
+                                    <label>Miercoles </label><br /><input class="form-control" type="number" id="mier" value="" /><br />
+                                    <label>Jueves </label><br /><input class="form-control" type="number" id="juev" value="" /><br />
+                                    <label>Viernes </label><br /><input class="form-control" type="number" id="vier" value="" /><br />
+                                    <label>Sabado </label><br /><input class="form-control" type="number" id="sab" value="" /><br />
+
+                                    <label>Domingo </label><br /><input type="number" class="form-control" id="domin" value="" /><br />
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+
+                                <div class="jumbotron">
+                                    <h4>
+                                        Venta diaria promedio ($)
+                                    </h4>
+                                    <label>
+                                        Venta semanal promedio $
+                                    </label><br /><input type="text" class="form-control" name="promSemanal" id="promSemanal" value="" disabled /><br />
+                                    <label>
+                                        Venta mensual $
+                                    </label><br /><input type="text" class="form-control" name="promMensual" id="promMensual" value="" disabled /><br />
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+
+                <div class="row">
+                    <hr />
+                    <div class="col-lg-12">
+
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    <a class="btn btn-default" data-toggle="collapse" href="#collapse_2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        BG DE LA FAMIEMPRESA
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item  " aria-current="page"> Activos <input type="text" disabled id="TActivos_" /></li>
+
+                                <li class="breadcrumb-item  " aria-current="page"> Pasivos <input type="text" disabled id="TPasivos_" /></li>
+
+                                <li class="breadcrumb-item  pull-right" aria-current="page" id="BGStatusBg_">
+                                    <span class="badge badge-danger">Pendiente</span>
+                                </li>
+                            </ol>
+                        </nav>
+                        <br />
+                    </div>
+                    <div id="collapse_2" class="collapse">
+                        <div class="card card-body">
+                            <div class="col-lg-12">
+                                <h4>
+                                    BG DE LA FAMIEMPRESA
+                                </h4>
+
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+                                    <div class="hidden badge badge-danger " id="ventasBG"></div><br />
+                                    <button class="btn btn-default pull-right" onclick="calcularBG()">Agregar</button><br />
+
+
+                                    <label>
+                                        Caja ( Efectivo )
+                                    </label><br />
+                                    <input type="number" class="form-control" id="caja" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="caja" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="caja" value="PASIVO" /><br />
+                                    <hr />
+                                    <label>Ahorro - Bancos</label><br />
+                                    <input type="number" class="form-control" id="ahorrobancos" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="ahorrobancos" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="ahorrobancos" value="PASIVO" /><br />
+                                    <hr />
+                                    <label>Cuentas por pagar o por cobrar (negocio)</label><br />
+                                    <input type="number" class="form-control" id="cuentas" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="cuentas" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="cuentas" value="PASIVO" /><br />
+                                    <hr />
+                                    <label>Inventarios</label><br />
+                                    <input type="number" class="form-control" id="inventarios" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="inventarios" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="inventarios" value="PASIVO" /><br />
+                                    <hr />
+                                    <label>Cuentas por pagar o cobrar (fam., amigos)</label><br />
+                                    <input type="number" class="form-control" id="cobrarypagar" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="cobrarypagar" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="cobrarypagar" value="PASIVO" /><br />
+                                    <hr />
+                                    <label>Deuda(s) total(es) en otras Instituciones de crédito</label><br />
+                                    <input type="number" class="form-control" id="otrasInst" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="otrasInst" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="otrasInst" value="PASIVO" /><br />
+                                    <hr />
+
+                                    <label>Tandas</label><br />
+                                    <input type="number" class="form-control" id="tandas" value="" /><br />
+                                    <label>ACTIVO</label><input type="radio" name="tandas" value="ACTIVO" />
+                                    <label>PASIVO</label><input type="radio" name="tandas" value="PASIVO" /><br />
+                                    <hr />
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+                                    <label>Total Activos</label><br />
+                                    <input type="number" class="form-control" id="TActivos" name="" disabled value="" /><br />
+
+                                    <label>Total Pasivos</label><br />
+                                    <input type="number" class="form-control" id="TPasivos" name="" disabled value="" /><br />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr />
+                </div>
+                <div class="row">
+
+
+                    <hr />
+                    <div class="col-lg-12">
+
+
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    <a class="btn btn-default" data-toggle="collapse" href="#collapse_3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        ESTADO DE RESULTADOS
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item  " aria-current="page"> Bruta <input type="text" disabled id="UtBruta_" /></li>
+
+                                <li class="breadcrumb-item  " aria-current="page"> Operativa <input type="text" disabled id="UtOp_" /></li>
+                                <li class="breadcrumb-item  " aria-current="page"> Familiar <input type="text" disabled id="TGFam_" /></li>
+                                <li class="breadcrumb-item  pull-right" aria-current="page" id="estadoResStatusBg_">
+                                    <span class="badge badge-danger">Pendiente</span>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                    <div id="collapse_3" class="collapse">
+                        <div class="col-lg-12">
+                            <h4>
+                                ESTADO DE RESULTADOS DE LA FAMIEMPRESA
+                            </h4>
+                        </div>
+                        <div class="card card-body">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+
+
+                                    <div class="hidden badge badge-danger " id="FAMError"></div><br />
+                                    <button class="btn btn-default pull-right" onclick="calcularFAM()">Agregar</button><br />
+
+
+                                    <label>Venta  mensual </label><br /><input type="text" id="ventaMen" name="name" value="" class="form-control" /><br />
+                                    <label>
+                                        <small>% de utilidad bruta sobre las ventas totales  (especificar número y el signo de% )</small>
+                                    </label><br /><input type="text" id="porcentajeVT" name="name" value="" class="form-control" /><br />
+                                    <hr />
+                                    <label> Renta, derecho de piso, cooperación,etc. </label><br /><input id="rentaPiso" type="text" name="name" value="" class="form-control" /><br />
+                                    <label>Transporte   </label><br /><input id="transporte" type="text" name="name" value="" class="form-control" /><br />
+
+                                    <label>Teléfono   </label><br /><input id="telefono" type="text" name="name" value="" class="form-control" /><br />
+                                    <label> Gastos generales </label><br /><input id="gastosG" type="text" name="name" value="" class="form-control" /><br />
+                                    <hr />
+
+                                    <label>Alimentacion (total gtos grales de la fam) </label><br /><input id="alimentacion" type="text" class="form-control" name="name" value="" /><br />
+                                    <label>Educacion y salud </label><br /><input id="eduysalud" type="text" name="name" value="" class="form-control" /><br />
+
+                                    <label>Transporte familiar </label><br /><input id="tfamiliar" type="text" name="name" class="form-control" value="" /><br />
+                                    <label> Gtos.Grales.De Fam.** </label><br /><input id="gastoGFAM" type="text" name="name" class="form-control" value="" /><br />
+                                    <label>Gas </label><br /><input id="gas" type="text" name="name" value="" class="form-control" /><br />
+                                    <label>Renta </label><br /><input id="rentaFam" type="text" name="name" value="" class="form-control" /><br />
+                                    <label>Luz, Agua y Predial</label><br /><input id="luzaguapredial" type="text" name="name" value="" class="form-control" /><br />
+                                    <label>Telefono fijo/celular </label><br /><input id="telefonofijo" type="text" name="name" value="" class="form-control" /><br />
+
+
+                                    <hr />
+
+
+
+
+
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+                                    <label> Utilidad Bruta ($)</label><br /><input disabled type="text" name="name" value="" id="UtBruta" class="form-control" /><br />
+
+                                    <hr />
+                                    <label>Utilidad Operativa ($) </label><br /><input disabled type="text" name="name" value="" id="UtOp" class="form-control" /><br />
+                                    <hr />
+                                    <label>TOTAL DE GASTOS FAMILIARES </label><br />
+                                    <input type="text" name="name" id="TGFam" value="" disabled class="form-control" /><br />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr />
+                </div>
+                <div class="row">
+                    <hr />
+                    <div class="col-lg-12">
+
+
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    <a class="btn btn-default" data-toggle="collapse" href="#collapse_4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        BIENES
+                                    </a>
+
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page"> Negocio <input type="text" disabled id="BienesNegocio_" /></li>
+
+                                <li class="breadcrumb-item" aria-current="page"> Propios <input type="text" disabled id="BienesPropios_" /></li>
+                                <li class="breadcrumb-item pull-right" aria-current="page" id="BIENESStatusBg_">
+                                    <span class="badge badge-danger">Pendiente</span>
+                                </li>
+
+                            </ol>
+                        </nav>
+
+
+                    </div>
+                    <div class="collapse" id="collapse_4">
+                        <div class="col-lg-12">
+                            <h4>Bienes Inmuebles</h4>
+                        </div>
+                        <div class="card card-body">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+
+                                    <label>  Bienes del negocio</label><br />
+                                    <button class="btn btn-default pull-right btn-sm" onclick=" CalcBienesPropios()">Agregar</button><br /><br />
+
+                                    <button class="btn btn-default pull-right btn-sm" onclick="AddRowBienesT()">Agregar fila</button>
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><small>Descripción</small></th>
+                                                <th scope="col"><small>Valor</small></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody style="overflow-y:auto;" id="TBienes">
+                                            <tr>
+
+                                                <td><input type="text" class="form-control" placeholder="Descripcion" name="tBienes_desc" value="" /></td>
+                                                <td><input type="text" class="form-control" name="tBienes_val" value="0" /></td>
+                                            </tr>
+
+
+
+                                        </tbody>
+                                    </table>
+                                    <hr />
+                                    <label>Bienes propios</label><br />
+                                    <button class="btn btn-default pull-right btn-sm" onclick="AddRowBienesPT()">Agregar fila</button>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><small>Descripción</small></th>
+                                                <th scope="col"><small>Valor</small></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody style="overflow-y:auto;" id="TPBienes">
+                                            <tr>
+
+                                                <td><input type="text" class="form-control" placeholder="Descripcion" name="tBienesP_desc" value="" /></td>
+                                                <td><input type="text" class="form-control" name="tBienesP_val" value="0" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+                                    <label>  Bienes del negocio</label><br />
+                                    <input type="text" class="form-control" id="BienesNegocio" disabled name="name" value="" /><br />
+                                    <label>Bienes propios</label><br />
+                                    <input type="text" class="form-control" id="BienesPropios" disabled name="name" value="" /><br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <div class="row">
+                    <hr />
+                    <div class="col-lg-12">
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    <a class="btn btn-default" data-toggle="collapse" href="#collapse_6" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        OTROS INGRESOS
+                                    </a>
+
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page"> Otros Ingresos <input type="text" disabled id="OTIng_" /></li>
+                                <li class="breadcrumb-item" aria-current="page"> Hijos trabajando <input type="text" disabled id="hT_" /></li>
+                                <li class="breadcrumb-item" aria-current="page"> Hijos edad escolar <input type="text" disabled id="hNT_" /></li>
+                                <li class="breadcrumb-item pull-right" aria-current="page" id="OtrosBienesStatusBg_">
+                                    <span class="badge badge-danger">Pendiente</span>
+                                </li>
+
+                            </ol>
+                        </nav>
+                        <br />
+                    </div>
+
+                    <div class="collapse" id="collapse_6">
+                        <div class="col-lg-12">
+                            <h4>OTROS INGRESOS</h4>
+                        </div>
+                        <div class="card card-body">
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+                                    <label>  Otros: describa la fuente de ingresos y cantidad</label><br />
+                                    <button class="btn btn-default pull-right btn-sm" onclick=" CalcOBienes()">Agregar</button><br /><br />
+                                    <button class="btn btn-default pull-right btn-sm" onclick="AddRowOBT()">Agregar fila</button>
+
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><small>Descripción</small></th>
+                                                <th scope="col"><small>Valor</small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="overflow-y:auto;" id="TOIng">
+                                            <tr>
+                                                <td><input class="form-control" type="text" placeholder="Descripcion" name="tBienes_desc" value="" /></td>
+                                                <td><input class="form-control" type="text" name="TOIng_val" value="0" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <label>  Número de hijos que trabajan</label><br />
+                                    <input type="text" class="form-control" name="name" id="hT" value="" /><br />
+                                    <label>  Número de hijos en edad escolar y/o dependientes</label><br />
+                                    <input type="text" class="form-control" name="name" id="hNT" value="" /><br />
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="jumbotron">
+                                    <label>Otros Ingresos</label><br />
+                                    <input type="text" class="form-control" id="OTING" disabled name="name" value="" /><br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                <div class="row">
+                    <hr />
+                    <div class="col-lg-12">
+                        <nav aria-label="breadcrumb">
+
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item  " aria-current="page">
+                                    <a class="btn btn-default" data-toggle="collapse" href="#collapse_7" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                        OTRAS MICROFINANCIERAS
+                                    </a>
+
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page">
+                                    Otras financieras
+                                    <input type="text" disabled id="OMFT_" />
+                                </li>
+
+                                <li class="breadcrumb-item" aria-current="page">
+                                    Cuota accesible de cliente
+                                    <input type="text" id="cuotaMensual_" class=" " disabled value="" />
+                                </li>
+                                <li class="breadcrumb-item pull-right" aria-current="page" id="OtrosMicrostatus_">
+                                    <span class="badge badge-danger">Pendiente</span>
+                                </li>
+
+                            </ol>
+                        </nav>
+                    </div>
+
+
+                    <div class="collapse" id="collapse_7">
+                        <div class="col-lg-12">
+                            <h4>OTRAS MICROFINANCIERAS</h4>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="card card-body">
+
+                                <div class="jumbotron">
+                                    <label>Cuota que cliente puede pagar (MENSUAL)</label><br />
+                                    <button class="btn btn-default pull-right btn-sm" onclick=" CalcOMFT()">Agregar</button><br /><br />
+                                    <button class="btn btn-default pull-right btn-sm" onclick="AddRowOMFT()">Agregar fila</button>
+
+                                    <input type="text" class="form-control" id="cuotaMensual" value="" />
+                                    <br />
+
+                                    <label>Otras Financieras</label><br />
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"><small>Descripción</small></th>
+                                                <th scope="col"><small>Valor</small></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="overflow-y:auto;" id="OMicroT">
+                                            <tr>
+                                                <td><input type="text" class="form-control" placeholder="Descripcion" name="OMicro_desc" value="" /></td>
+                                                <td><input type="text" class="form-control" name="OMicro_val" value="0" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="jumbotron">
+                                <label>  Cobertura de cuota</label><br />
+                                <input type="text" id="OMFT" class="form-control" name="name" value="" disabled /><br />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr />
+                </div>
+                <div class="row">
+                    <hr />
+
+                    <div class="col-lg-12">
+                        <h3>
+                            de pago
+                        </h3>
+                        <div id="cpPagodiv"></div>
+                        <input type="text" id="Pago" name="name" value="" onchange="inputInsert()" disabled />
+                        <button class="btn btn-default" onclick="actualizarRespuesta()">Calcular</button>
+
+                        <br />
+                        <hr />
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="jumbotron">
+
+                            <label>  Monto solicitado por el cliente</label><br />
+                            <input id="monto_solicitado_cliente" type="text" class="form-control" name="name" value="" /><br />
+                            <label>   Monto máximo trabajado</label><br />
+                            <input id="monto_maximo_trabajado" type="text" class="form-control" name="name" value="" /><br />
+                            <label>  Plazo propuesto por el cliente</label><br />
+                            <input id="plazo_propuesto_cliente" type="text" class="form-control" name="name" value="" /><br />
+                            <label>
+                                Comentarios y observaciones adicionales del asesor
+                            </label><br />
+                            <textarea id="comentariosop" class="form-control" placeholder="Opcional"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="jumbotron">
+                            <label>  Monto propuesto</label><br />
+                            <input type="text" id="monto_propuesto" class="form-control" name="name" value="" /><br />
+                            <label>   Cuota propuesta(mensual)</label><br />
+                            <input type="text" class="form-control" id="cuota_cubierta" value="" /><br />
+                            <label>  Cobertura de cuota</label><br />
+                            <input type="text" class="form-control" name="name" value="" /><br />
+
+                        </div>
+
+                        <button class="btn btn-default pull-right" id="btnsendInsert" onclick="SendEvEcSimple()" disabled>Agregar</button>
+                    </div>
+
+                    <hr />
+                </div>
+            </div>
+
+            <div id="menu2" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-lg-12"><h3>Historial Crediticio</h3></div>
+
+                    <div class="col-lg-12">
+
+                        <button onclick="AddRowTHCred()" class="btn btn-default">Agregar a historial</button>
+                        <div id="THCREDText"></div>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div id="errorHC"></div>
+                        <input type="number" class="hidden" id="id_documento_hc" value="1" />
+                        <input type="number" class="hidden" id="id_cliente_hc" value="1" />
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><small>SECUENCIA</small></th>
+                                    <th scope="col"><small>MONTO</small></th>
+                                    <th scope="col"><small>PLAZO</small></th>
+                                    <th scope="col"><small>CUOTA(mensual)</small></th>
+                                    <th scope="col"><small>%incremento monto</small></th>
+                                    <th scope="col"><small>% incremento cuota</small></th>
+                                    <th scope="col"><small>Disponible máximo reportado por el cliente</small></th>
+                                    <th scope="col"><small>Utilidad operativa</small></th>
+                                    <th scope="col"><small>Cap.de Pago mensual</small></th>
+                                    <th scope="col"><small>COBERTURA DE CUOTA</small></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y:auto;" id="THCred">
+                                <tr>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="SECUENCIA" id="tHcred_SECUENCIA" value="" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="Monto" id="tHcred_Monto" value="" />
+                                    </th>
+
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="PLAZO" id="tHcred_PLAZO" value="" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="CUOTA(mensual)" id="tHcred_CUOTA" value=""
+                                               onblur="asignarCCuota_()" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="%incremento monto" id="tHcred_incrementoMonto" value="" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="%incremento cuota" id="tHcred_incrementoCuota" value="" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="Disponible máximo reportado por el cliente"
+                                               id="tHcred_disponible" value="" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="Utilidad operativa" id="tHcred_utilidadOperativa" value="" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="Cap.de Pago mensual" id="tHcred_CDPago" value=""
+                                               onblur="asignarCCuota_()" />
+                                    </th>
+                                    <th scope="col">
+                                        <input type="text" class="form-control" placeholder="COBERTURA DE CUOTA" id="tHcred_CCuota" value="" />
+                                    </th>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <hr />
+                </div>
+
+                <div class="col-lg-12">
+                    <h4>Historial Acutal</h4>
+                    <div id="hActualT">
+                        <table class="table" id="">
+                            <thead>
+                                <tr>
+                                    <th scope="col"><font size="1">SECUENCIA</font></th>
+                                    <th scope="col"><font size="1">MONTO</font></th>
+                                    <th scope="col"><font size="1">PLAZO</font></th>
+                                    <th scope="col"><font size="1">CUOTA(mensual)</font></th>
+                                    <th scope="col"><font size="1">%incremento monto</font></th>
+                                    <th scope="col"><font size="1">% incremento cuota</font></th>
+                                    <th scope="col"><font size="1">Disponible máximo reportado por el cliente</font></th>
+                                    <th scope="col"><font size="1">Utilidad operativa</font></th>
+                                    <th scope="col"><font size="1">Cap.de Pago mensual</font></th>
+                                    <th scope="col"><font size="1">COBERTURA DE CUOTA</font></th>
+                                </tr>
+                            </thead>
+                            <tbody style="overflow-y:auto;" id="HActT"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="menu3" class="tab-pane fade">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3> Scoring</h3>
+                            <hr />
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div>
+                                <b>claificacion </b><br />
+                                <div id="calficiacion_Sco"></div>
+                                <input type="hidden" id="nPreguntas" value="" />
+                                <hr />
+                            </div>
+                            <div class="col-lg-12 ">
+                                <div class="card card-body">
+                                    <div id="scoring_holder"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div id=" ">
+                                    <div id="erroresCal" class="hidden"></div>
+                                    <button onclick="calificacionCalcScor()" class="btn btn-success pull-right">
+                                        Calificación
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="menu4" class="tab-pane fade">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h3>Calificacion de grupo</h3>
+                            <hr />
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div>
+                                <b>claificacion </b><br />
+                                <div id="calficiacion_preg"></div>
+                                <input type="hidden" id="nPreguntasPreg" value="" />
+                                <hr />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 ">
+                            <div class="card card-body">
+                                <div id="scoring_holder_preguntas"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 ">
+                        </div>
+                        <div class="col-lg-12">
+                            <div id=" ">
+
+                                <div id="erroresCal_preg" class="hidden"></div>
+                                <button onclick="calificacionCalc()" class="btn btn-success pull-right">
+                                    Calificación
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Scripts
+{
+    <script type="text/javascript">
+        var id = 0;
+        $(document).ready(function () {
+
+        })
+
+    </script>
+}
+
+

@@ -1,0 +1,365 @@
+﻿@{
+    ViewBag.Title = "Visita Nueva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Content Wrapper. Contains page content -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUSWbri5yyzK1kh1lEj9fxX21WyM3Gaow&sensor=false" async defer type="text/javascript"></script>
+<style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 250px;
+        width:500px;
+    }
+    .gallery img {
+        width:200px
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+</style>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Agregar Nuevo
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Visitas</a></li>
+            <li class="active">Agregar Visita</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+                <!-- general form elements -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title"></h2>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="row" style="margin-bottom:2%">
+                            <div class="col-xs-6 col-md-4">
+                                <label>Documento</label>
+                                <select class="form-control select2" id="tipo_check">
+                                    <option selectd value="0">Selecciona</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Fecha de Visita</label>
+                                <input type="text" class="form-control fca" id="fecha_visita" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Nombre del Cliente</label>
+                                <select id="cliente" class="form-control select2">
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Secuencia</label>
+                                <input type="text" class="form-control" id="secuencia" placeholder="1" />
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Sucursal</label>
+                                <select id="sucursal" class="form-control select2">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Grupo</label>
+                                <select id="grupo" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">FRESAS VIP</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Asesor o Ejecutivo</label>
+                                <select id="asesor" class="form-control select2">
+                                    <option value="0" selected>Seleccione...</option>
+                                    <option value="1">Yaneli Hernandéz</option>
+                                    <option value="2">Roberto Escorza</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <h2 class="box-title">Dirección</h2>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Estado</label>
+                                <select id="estado" class="form-control select2"></select>
+                            </div>
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Municipio</label>
+                                <select id="municipio" class="form-control select2" disabled></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Colonia</label>
+                                <select id="colonia" class="form-control select2" disabled></select>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Código Postal</label>
+                                <input type="text" id="cp" class="form-control" disabled>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Calle</label>
+                                <input type="text" class="form-control" id="calle" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <label>Número</label>
+                                <input type="text" class="form-control" id="numero" />
+                            </div>
+                            <div class="col-xs-3" style="margin-top:1%;text-align:center;text-transform:uppercase">
+                                <label><br /></label>
+                                <button class="btn btn-primary" onclick="calcula_pos()">Coordenadas</button>
+                            </div>
+                            <div class="col-xs-3 cords" style="display:none">
+                                <label>Latitud</label>
+                                <input type="text" disabled class="form-control" id="lat" />
+                            </div>
+                            <div class="col-xs-3 cords" style="display:none">
+                                <label>Longitud</label>
+                                <input type="text" class="form-control" id="lng" disabled />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row mt-5" style="margin-top:5%">
+                            <div class="col-xs-6 col-md-3">
+                                <label>¿La  Dirección  coincide  con  la  reportada en  la  ficha  de datos del cliente?</label>
+                                <div class="col-xs-6">
+                                    <input type="radio" name="res1" value="1" /><label>Si</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="radio" name="res1" value="0" /><label>No</label><br />
+                                </div>
+                                <div class="col-xs-12">
+                                    <textarea id="observaciones_res1" class="form-control" placeholder="Observaciones..."></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Indique  las  características  principales  de  la  casa reportada por el cliente</label>
+                                <textarea class="form-control" id="res2" placeholder="Caracteristicas Principales"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Señale  las  calles  entre  las  que  se  encuentra ubicado el domicilio del cliente</label>
+                                <textarea class="form-control" id="res3" placeholder="Calles..."></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Líneas o rutas de transporte público utilizadas para el traslado de la Sucursal al domicilio del cliente y tiempo aproximado</label>
+                                <textarea class="form-control" id="res4" placeholder="Líneas o Rutas ..."></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <label>Registre  las  dos  principales  referencias  de ubicación del domicilio de nuestro cliente</label>
+                                <textarea class="form-control" id="res5" placeholder="Referencias ..."></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>Tiempo que el cliente vive en el domicilio</label>
+                                <textarea class="form-control" id="res6" placeholder="Tiempo..."></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>¿Nombre del dueño o propietario de la casa? </label>
+                                <textarea class="form-control" id="res7" placeholder="Nota: En caso de ser distinto al cliente indicar el parentesco"></textarea>
+                            </div>
+                            <div class="col-xs-6 col-md-3">
+                                <label>¿El negocio se encuentra en la misma dirección?</label>
+                                <div class="col-xs-6">
+                                    <input type="radio" name="res9" value="1" /><label>Si</label>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="radio" name="res9" value="0" /><label>No</label><br />
+                                </div>
+                                <div class="col-xs-12">
+                                    <textarea id="res10" class="form-control" placeholder="Indique dirección..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <label>Domicilio de la Vivienda</label>
+                                <div class="col-xs-12">
+                                    <div class="col-xs-4"><input type="text" class="form-control" style="visibility:hidden" id="latD" placeholder="Latitud" value="18.95652"/></div>
+                                    <div class="col-xs-4"><input type="text" class="form-control" style="visibility:hidden" id="lngD" placeholder="Longitud" value="-98.18664" /></div>
+                                    <div class="col-xs-4"><button class="btn btn-success" onclick="buscarDom()">Buscar</button></div>
+                                </div>
+                                <div class="col-xs-12">
+                                    <div id="map"></div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <p><b>Nota:</b> En la foto de la fachada deberá observarse el número de la casa (en caso de tener)</p>
+                                <form method="post" enctype="multipart/form-data" action="/DashboardAdmin/InsertItemCarrousel">
+                                    <label>Fotografias del domicilio</label>
+                                    <input type="file" multiple id="gallery-photo-add">
+                                    <div class="gallery"></div>
+                                    <input type="submit" class="form-control btn btn-success" name="" id=""
+                                           value="Agregar" />
+                                </form>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-4">
+                                <br /><label>FPDC.AE-005</label>
+                                <input type="hidden" id="tipo_solicitud" value="FPDC.AE-005" />
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <button class="btn btn-primary" onclick="addVisita()">Agregar</button>
+                    </div>
+
+                </div>
+                <!-- /.box -->
+            </div>
+            <!--/.col (left) -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+    $(document).ready(function () {
+        consultaContenidoCheck();
+        $('.select2').select2();
+        $('.fca').datepicker({
+            autoclose: true,
+            dateFormat: 'dd/mm/yyyy',
+        })
+        $(".fca").keypress(function (event) { event.preventDefault(); });
+        getSucursal();
+        getCliente();
+        getEstados();
+    });
+    var map, infoWindow;
+
+    function calcula_pos() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(show_location, show_error, { timeout: 1000, enableHighAccuracy: true }); //position request
+        } else {
+            console.log("Browser doesn't support geolocation!");
+        }
+    }
+    //Success Callback
+    function show_location(position) {
+        //infoWindow = new google.maps.InfoWindow({ map: map });
+        var pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+        $(".cords").css('display', 'block');
+        $("#lat").val(position.coords.latitude);
+        $("#lng").val(position.coords.longitude);
+        //infoWindow.setPosition(pos);
+        //infoWindow.setContent('User Location found.');
+        //map.setCenter(pos);
+
+    }
+
+    //Error Callback
+    function show_error(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                alert("Permission denied by user.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location position unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("Request timeout.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("Unknown error.");
+                break;
+        }
+    }
+
+    var markersArray = [];
+    function buscarDom() {
+        
+        var ld = parseFloat($("#latD").val());
+        var lngd = parseFloat($("#lonD").val());
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 18.95652, lng: -98.18664 },
+            zoom: 12
+        });
+        marker = new google.maps.Marker({
+            position: { lat: 18.95652, lng: -98.18664 },
+            map: map
+        });
+        markersArray.push(marker);
+        map.addListener('click', function (e) {
+            limpiarMarker();
+            placeMarkerAndPanTo(e.latLng, map);
+        });
+        infoWindow = new google.maps.InfoWindow;
+        infoWindow.open(map);
+    }
+
+    function placeMarkerAndPanTo(latLng, map) {
+        $("#latD").val(latLng.lat());
+        $("#lngD").val(latLng.lng());
+        var markers = new google.maps.Marker({
+            position: latLng,
+            map: map
+        });
+        map.panTo(latLng);
+        markersArray.push(markers);
+    }
+    function limpiarMarker() {
+        for (var i = 0; i < markersArray.length; i++) {
+            console.log(markersArray[i]);
+            markersArray[i].setMap(null);
+        }
+        markersArray = [];
+    }
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+
+    }
+
+    var imagesPreview = function (input, placeToInsertImagePreview) {
+
+        if (input.files) {
+            var filesAmount = input.files.length;
+
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+
+                reader.onload = function (event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+
+                }
+
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+
+    };
+
+    $('#gallery-photo-add').on('change', function () {
+        imagesPreview(this, 'div.gallery');
+    });
+
+</script>
+

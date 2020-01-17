@@ -1,0 +1,3087 @@
+﻿@{
+    ViewBag.Title = "Evaluaciones Credito Rural";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <style>
+
+        .example-modal .modal {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            right: auto;
+            left: auto;
+            display: block;
+            z-index: 1;
+        }
+
+        .example-modal .modal {
+            background: transparent !important;
+        }
+    </style>
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Credito Rural
+        </h1>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+            <li class="" id="infopatbtn"><a data-toggle="tab" href="#menu3">Ev. Tecnica</a></li>
+
+            <li class="" id="infopbtn"><a data-toggle="tab" href="#menu2">Ev. Productiva</a></li>
+            <li class="" id="evalbtn"><a data-toggle="tab" href="#menu1">Inf. Patrimonial y BG </a></li>
+
+            <li class="" id="histobtn"><a data-toggle="tab" href="#menu5">Flujo de ingresos</a></li>
+            <li class="" id="socringbtn"><a data-toggle="tab" href="#menu4">Scoring</a></li>
+
+        </ul>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+
+   
+
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h3>Evaluacio Económica Simple</h3>
+                    <h5>Descripcion</h5>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="jumbotron">
+                            <label>Informacion Operativa</label><div class="pull-right" id="evaTxt">pendiente</div><br />
+                            <label>Insumos</label><div class="pull-right" id="insumTxt">pendiente</div><br />
+                            <label>Inf. Patrimonial y BG</label><div class="pull-right" id="infoPatTxt">pendiente</div><br />
+                            <label>Scoring</label><div class="pull-right" id="scorTxt">pendiente</div><br />
+                            <label>Historial</label><div class="pull-right" id="histTxt">pendiente</div><br />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+
+                        <p>
+                            <button class="btn btn-default pull-right" type="button" data-toggle="collapse" data-target="#collapseInstrucciones" aria-expanded="false" aria-controls="collapseExample">
+                                Instrucciones
+                            </button>
+                        </p>
+                        <br /> <br />
+                        <div class="collapse" id="collapseInstrucciones">
+                            <div class="card card-body">
+                                <div align="justify">
+                                    <h3>Evaluacion economica detallada</h3>
+                                    <p>Esta evaluacion consta de <b>5</b> partes , los formularios se encunetran en las pestañas correspendoientes.</p>
+                                    <p>Al final de cada pestaña hay un boton para agregar subir la informacion en caso de que los campos estén incompletos usted vera una alarma como esta:</p>
+                                    <p align="center">
+                                        <span class="badge badge-danger">Error : descripción</span>
+                                    </p>
+
+                                    <p>En caso de que el registro sea exitoso , la pestaña de la sección cambiará de color y se reflajara su estado en esta misma vista , en el area de secciones</p>
+                                    <br />
+                                    <ul class="nav nav-tabs">
+                                        <li class=""><a>Ejemplos</a></li>
+                                        <li class="bg-success" id="evalbtn"><a>Evaluacion</a></li>
+                                        <li class="bg-success" id="histobtn"><a>Historial</a></li>
+                                        <li class="bg-success" id="socringbtn"><a>Scoring</a></li>
+                                        <li class="bg-success" id="calgrupbtn"><a>Calificacion a grupo</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div id="menu1" class="tab-pane fade">
+
+                    <h3>Inf. Patrimonial y BG</h3>
+
+                    <p>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <button class="btn btn-default" type="button" data-toggle="collapse"
+                                            data-target="#collapseDetalleBG" aria-expanded="false" aria-controls="collapseExample">
+                                        Detalle de cuentas por pagar
+
+                                    </button>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <label>
+                                        Total Activos
+
+                                    </label>
+                                    <input type="text" name="name" value="" id="Total_Activos_BG" disabled />
+                                </li>
+
+                                <li class="breadcrumb-item">
+                                    <label>
+                                        Total pasivos
+
+                                    </label>
+                                    <input type="text" name="name" value="" id="Total_pasivos_BG" disabled />
+                                </li>
+
+
+                                <li class="breadcrumb-item">
+                                    <label>
+                                        PATRIMONIO
+
+
+                                    </label>
+                                    <input type="text" name="name" value="" id="PATRIMONIO" disabled />
+                                </li>
+                            </ol>
+                        </nav>
+
+                    </p>
+
+
+                    <div class="collapse" id="collapseDetalleBG">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="addeDetalleBG()">Agregar </button>
+
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>...</th>
+                                                <th>Inventario agropecuario </th>
+                                                <th>UNIDADn De medida</th>
+                                                <th>CANT.</th>
+                                                <th>PRECIO</th>
+                                                <th>VALOR DE COSECHA/HATO/INSUMOS</th>
+                                                <th>% DESARROLLO</th>
+                                                <th>TOTAL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <b> Cosechas en desarrollo</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="cantidad_t1" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="precio_t1" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="insumos_t1" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="porcentaje_t1" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="cosechas_t1" name="cosechas_t" onblur="cosechasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="cosechas_t2" name="cosechas_t" onblur="cosechasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="cosechas_t3" name="cosechas_t" onblur="cosechasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="cosechas_t4" name="cosechas_t" onblur="cosechasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ....
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    Total
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="cosechas_tT" disabled value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> Cosecha almacenada</b>
+                                                </td>
+
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="coseschaAL_T1" name="coseschaAL_T" onblur="cosechas_AlmacenadasT()" value="0" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="coseschaAL_T2" name="coseschaAL_T" onblur="cosechas_AlmacenadasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="coseschaAL_T3" name="coseschaAL_T" onblur="cosechas_AlmacenadasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="coseschaAL_T4" name="coseschaAL_T" onblur="cosechas_AlmacenadasT()" value="0" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ....
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    Total
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="0" id="coseschaAL_T_tT" disabled />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b> Ganado</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="ganado_t1" name="ganado_T" onblur="ganado_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="ganado_t2" name="ganado_T" onblur="ganado_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="ganado_t3" name="ganado_T" onblur="ganado_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="ganado_t4" name="ganado_T" onblur="ganado_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ....
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    Total
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="ganado_tT" disabled value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b>
+                                                        Insumos agropecuarios
+                                                    </b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="insumosAgro_t1" name="insumoAgro_T" onblur="insumoAgro_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="insumosAgro_t2" name="insumoAgro_T" onblur="insumoAgro_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="insumosAgro_t3" name="insumoAgro_T" onblur="insumoAgro_T()" value="0" />
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="" name="name" value="" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="insumosAgro_t4" name="insumoAgro_T" onblur="insumoAgro_T()" value="0" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b> ...</b>
+                                                </td>
+
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    ....
+                                                </td>
+                                                <td>
+                                                    ...
+                                                </td>
+                                                <td>
+                                                    Total
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" id="insumoAgro_tT" disabled value="0" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Total</b>
+                                                </td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="addBienes_agropecuarios()">Agregar </button>
+
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Bienes agropecuarios
+                                                </th>
+                                                <th>
+                                                    ACTIVO
+                                                </th>
+                                                <th>
+                                                    PASIVO
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Tractor</td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Arados y rastras</td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Animales de trabajo</td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Terrenos</td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Equipo agropecuario</td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td> Herramientas </td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Otros bienes del negocio</td>
+                                                <td><input class="form-control" type="text" name="bnagro_activo" value="0" onblur="bnagro_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="bnagro_pasivo" value="0" onblur="bnagro_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SUB TOTAL (B)            </td>
+                                                <td><input class="form-control" type="text" id="bnagro_activo_T" value="0" disabled /></td>
+                                                <td><input class="form-control" type="text" id="bnagro_pasivo_T" value="0" disabled /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-lg-6">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="addBienes_Propios()">Agregar </button>
+
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Bienes propios
+                                                </th>
+                                                <th>
+                                                    ACTIVO
+                                                </th>
+                                                <th>
+                                                    PASIVO
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Casas</td>
+                                                <td><input class="form-control" type="text" name="propios_activo" value="0" onblur="propios_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="propios_pasivo" value="0" onblur="propios_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Terrenos</td>
+                                                <td><input class="form-control" type="text" name="propios_activo" value="0" onblur="propios_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="propios_pasivo" value="0" onblur="propios_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Vehículos</td>
+                                                <td><input class="form-control" type="text" name="propios_activo" value="0" onblur="propios_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="propios_pasivo" value="0" onblur="propios_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Otros (bienes del hogar)</td>
+                                                <td><input class="form-control" type="text" name="propios_activo" value="0" onblur="propios_activo()" /></td>
+                                                <td><input class="form-control" type="text" name="propios_pasivo" value="0" onblur="propios_pasivo()" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>SUB TOTAL (C)            </td>
+                                                <td><input class="form-control" type="text" name=" " value="0" id="propios_activo_T" disabled /></td>
+                                                <td><input class="form-control" type="text" name=" " value="0" id="propios_pasivo_T" disabled /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="addBienes()">Agregar </button>
+
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Activos Totales
+                                                </th>
+                                                <th>
+                                                    ACTIVO
+                                                </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Efectivo
+                                                </td>
+                                                <td><input class="form-control" type="text" name="activosTotales" value="0" onblur="activos_totales()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Bancos (Ahorro)
+                                                </td>
+                                                <td><input class="form-control" type="text" name="activosTotales" value="0" onblur="activos_totales()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Cuentas por cobrar (clientes)
+                                                </td>
+                                                <td><input class="form-control" type="text" name="activosTotales" value="0" onblur="activos_totales()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Inventario agropecuario total ($)
+                                                </td>
+                                                <td><input class="form-control" type="text" name="activosTotales" value="0" onblur="activos_totales()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Bienes agropecuarios
+                                                </td>
+                                                <td><input class="form-control" type="text" name="activosTotales" value="0" onblur="activos_totales()" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Bienes propios
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="activosTotales" value="0" onblur="activos_totales()" /></td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    TOTAL
+
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="" id="activos_totales_T" value="0" disabled /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="jumbotron">
+                                    <div id="errorCuentasPorPagar"></div>
+                                    <button class="btn btn-default pull-right" onclick="addBienes()">Agregar </button>
+
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Pasivos totales
+                                                </th>
+                                                <th>
+                                                    DEUDA TOTAL
+
+                                                </th>
+                                                <th>
+                                                    PAGO MENSUAL
+
+
+                                                </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Micro financiera
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="deudaT" value="0" onblur="deudaT()" /></td>
+                                                <td><input class="form-control" type="text" name="pagoMT" value="0" onblur="pagoMT()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Tandas (cant. x recibir y/o x pagar)
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="deudaT" value="0" onblur="deudaT()" /></td>
+                                                <td><input class="form-control" type="text" name="pagoMT" value="0" onblur="pagoMT()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Deudas casa comercial  o agropecuaria (proveedores)
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="deudaT" value="0" onblur="deudaT()" /></td>
+                                                <td><input class="form-control" type="text" name="pagoMT" value="0" onblur="pagoMT()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Otras deudas (reporte de buro, agiotistas, etc.)
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="deudaT" value="0" onblur="deudaT()" /></td>
+                                                <td><input class="form-control" type="text" name="pagoMT" value="0" onblur="pagoMT()" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Bienes agropecuarios
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="deudaT" value="0" onblur="deudaT()" /></td>
+                                                <td><input class="form-control" type="text" name="pagoMT" value="0" onblur="pagoMT()" /></td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Bienes propios
+
+
+                                                </td>
+                                                <td><input class="form-control" type="text" name="deudaT" value="0" onblur="deudaT()" /></td>
+                                                <td><input class="form-control" type="text" name="pagoMT" value="0" onblur="pagoMT()" /></td>
+
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    TOTAL
+
+
+                                                </td>
+                                                <td><input class="form-control" type="text" id="deudaT" value="" disabled /></td>
+                                                <td><input class="form-control" type="text" id="pagoMT" value="" disabled /></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--COSTOS DE PRODUCCION-->
+
+                    <p>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <button class="btn btn-default" type="button" data-toggle="collapse"
+                                            data-target="#collapseDetallCostoProduccion" aria-expanded="false" aria-controls="collapseExample">
+                                        COSTOS DE PRODUCCION
+
+                                    </button>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <label>
+                                        TOTAL INVERSIÓN
+
+
+                                    </label>
+                                    <input type="text" name="name" value="" id="Total_Activos" disabled />
+                                </li>
+
+
+                            </ol>
+                        </nav>
+
+                    </p>
+
+                    <div class="collapse" id="collapseDetallCostoProduccion">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="jumbotron">
+
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    COSTOS DE PRODUCCION
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th>INSUMO O PRODUCTO</th>
+                                                <th>CANTIDAD</th>
+                                                <th> UNIDAD DE MED.</th>
+                                                <th>COSTO UNIT.</th>
+                                                <th>TOTAL</th>
+                                                <th>APORTACIÓN SUMATE</th>
+                                                <th>...</th>
+                                                <th> #¡DIV/0!</th>
+                                            </tr>
+                                            <tr>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>APORTACIÓN CLIENTE</th>
+                                                <th>...</th>
+                                                <th> #¡DIV/0!</th>
+                                            </tr>
+
+                                            <tr>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>...</th>
+                                                <th>
+                                                    RECURSOS SUMATE
+                                                </th>
+                                                <th>
+                                                    RECURSOS PROPIOS
+                                                </th>
+                                                <th> ... </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--row 1  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+                                            <!--row 2  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+
+                                            <!--row 3  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+                                            <!--row 4  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+                                            <!--row 5  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+
+                                            <!--row 6  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" value="" class="form-control" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+
+                                            <!--row 7  -->
+                                            <tr>
+                                                <td>
+                                                    <hr />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+                                                <td><input type="text" name="totales_t" class="form-control" value="0" onblur="totales_t()" /></td>
+                                                <td><input type="text" name="recursosSumate" value="0" class="form-control" onblur="recursosSumate()" /></td>
+                                                <td><input type="text" name="recursosPropios" value="0" class="form-control" onblur="recursosPropios()" /></td>
+                                                <td><input type="text" name="name" value="" class="form-control" /></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    <hr />
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>TOTALES</th>
+                                                <th>
+                                                    TOTAL RECURSOS SUMATE
+                                                </th>
+                                                <th>
+                                                    TOTAL RECURSOS PROPIOS
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    GRAN TOTAL
+
+                                                </td>
+                                                <td><input type="text" disabled id="totales_Tt" value="0" onblur="granTotal()" /></td>
+                                                <td><input type="text" disabled id="recursosSumate" value="0" /></td>
+                                                <td><input type="text" disabled id="recursosPropios" value="0" /></td>
+                                                <td><input type="text" disabled /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    NIVEL MAXIMO DE ENDEUDAMIENTO
+                                                </td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    GRAN TOTAL
+                                                </td>
+                                                <td><input type="text" disabled id="granTotal" /></td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    NIVEL MAXIMO DE ENDEUDAMIENTO
+                                                </td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                                <td><input type="text" disabled /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <script>
+
+
+
+                                    </script>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr />
+                </div>
+                <div id="menu2" class="tab-pane fade">
+                    <h3>Evaluacion productiva</h3>
+
+
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseSituacionAgricola" aria-expanded="false" aria-controls="collapseExample">
+                                    a.Situación agrícola
+                                </button>
+                            </li>
+                        </ol>
+                    </nav>
+
+                    <div class="col-lg-12">
+
+                        <div class="collapse" id="collapseSituacionAgricola">
+
+                            <div class="jumbotron">
+                                <div id="agricolaError" class="pull-right"></div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Cultivo (s)</th>
+                                            <th> 1</th>
+                                            <th> 2</th>
+                                            <th> 3</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> Hectáreas de producción</td>
+                                            <td> <input type="text" class="form-control" id="hectareas_produccion_1" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="hectareas_produccion_2" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="hectareas_produccion_3" name="name" value="" /> </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>unidad de medida</td>
+                                            <td> <input type="text" class="form-control" id="unidad_medida_1" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="unidad_medida_2" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="unidad_medida_3" name="name" value="" /> </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Rendimiento / Hectárea</td>
+                                            <td> <input type="text" class="form-control" id="rendimiento_1" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="rendimiento_2" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="rendimiento_3" name="name" value="" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Producción esperada</td>
+                                            <td> <input type="text" class="form-control" id="produccion_esperada_1" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="produccion_esperada_2" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="produccion_esperada_3" name="name" value="" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Precio de venta esperado </td>
+                                            <td> <input type="text" class="form-control" id="precio_venta_cultivo_1" name="name" /> </td>
+                                            <td> <input type="text" class="form-control" id="precio_venta_cultivo_2" name="name" /> </td>
+                                            <td> <input type="text" class="form-control" id="precio_venta_cultivo_3" name="name" /> </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>Porcentaje a comercializar</td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_comercial_1" placeholder="%" onblur="situacionAgricola(this.id)" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_comercial_2" placeholder="%" onblur="situacionAgricola(this.id)" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_comercial_3" placeholder="%" onblur="situacionAgricola(this.id)" name="name" value="" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Porcentaje de perdida</td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_perdida_1" placeholder="%" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_perdida_2" placeholder="%" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_perdida_3" placeholder="%" name="name" value="" /> </td>
+                                        </tr>
+                                        <tr>
+                                            <td> Porcentaje de autoconsumo </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_autoconsumo_1" placeholder="%" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_autoconsumo_2" placeholder="%" name="name" value="" /> </td>
+                                            <td> <input type="text" class="form-control" id="porcentaje_autoconsumo_3" placeholder="%" name="name" value="" /> </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>   Porcentaje de producción a guardar</td>
+                                            <td> <input type="text" class="form-control" name="name" id="porcentaje_produccion_1" placeholder="%" value="" /> </td>
+                                            <td> <input type="text" class="form-control" name="name" id="porcentaje_produccion_2" placeholder="%" value="" /> </td>
+                                            <td> <input type="text" class="form-control" name="name" id="porcentaje_produccion_3" placeholder="%" value="" /> </td>
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+
+                                <hr />
+                                <br />
+
+
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Ingresos por venta
+                                            </th>
+                                            <th> Cultivo 1 </th>
+                                            <th> Cultivo 2 </th>
+                                            <th> Cultivo 3 </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Ingresos por venta
+                                            </td>
+                                            <td> <input type="text" class="form-control" name="name" id="total_cultivo_1" value="" disabled /> </td>
+                                            <td> <input type="text" class="form-control" name="name" id="total_cultivo_2" value="" disabled /> </td>
+                                            <td> <input type="text" class="form-control" name="name" id="total_cultivo_3" value="" disabled /> </td>
+                                        </tr>
+
+
+                                    </tbody>
+                                </table>
+                                <br />
+
+                                <button class="pull-right btn btn-default">Agregar</button>
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseSituacionPecuaria" aria-expanded="false" aria-controls="collapseExample">
+                                    b. Situación pecuaria
+
+                                </button>
+                            </li>
+                        </ol>
+                    </nav>
+
+
+
+                    <div class="col-lg-12">
+
+                        <div class="collapse" id="collapseSituacionPecuaria">
+                            <div class="jumbotron">
+
+                                <h4>
+                                    Tipo de ganado
+                                </h4>
+                                <div class="pull-right" id="ganadoError"></div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Concepto</th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Ganado (bovino, ovino, aviar, porcino, etc.)
+                                            </td>
+                                            <td> <input class="form-control" type="text" id="ganado_1" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="ganado_2" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="ganado_3" name="name" value="" /></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Cantidad (cabezas o unidades)
+                                            </td>
+                                            <td> <input class="form-control" type="text" id="cabezas_ganado_1" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="cabezas_ganado_2" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="cabezas_ganado_3" name="name" value="" /></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Objetivo (engorda, leche, doble proposito)
+                                            </td>
+                                            <td> <input class="form-control" type="text" id="objetivo_ganado_1" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="objetivo_ganado_2" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="objetivo_ganado_3" name="name" value="" /></td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Producción esperada
+                                            </td>
+                                            <td> <input class="form-control" type="text" id="produccion_ganado_1" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="produccion_ganado_2" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="produccion_ganado_3" name="name" value="" /></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Mes de venta
+                                            </td>
+                                            <td> <input class="form-control" type="text" id="mes_venta_1" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="mes_venta_2" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="mes_venta_3" name="name" value="" /></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Precio de venta esperado
+                                            </td>
+                                            <td> <input class="form-control" type="text" id="precio_venta_1" onblur="Ganado(this.id)" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="precio_venta_2" onblur="Ganado(this.id)" name="name" value="" /></td>
+                                            <td> <input class="form-control" type="text" id="precio_venta_3" onblur="Ganado(this.id)" name="name" value="" /></td>
+
+                                        </tr>
+
+
+
+
+                                    </tbody>
+                                </table>
+                                <br />
+                                <hr />
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Ingresos por venta
+                                            </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="text" class="form-control" disabled id="ganado_total_1" name="name" value="" /></td>
+                                            <td><input type="text" class="form-control" disabled id="ganado_total_2" name="name" value="" /></td>
+                                            <td><input type="text" class="form-control" disabled id="ganado_total_3" name="name" value="" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <button class="btn btn-default pull-right"> Agregar   </button>
+                                <br />
+                                <hr />
+                                <h4>
+                                    Costos de producción
+                                </h4>
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Concepto</th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                Compra de ganado
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Alimento
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+
+
+
+
+
+
+                                        <tr>
+                                            <td>
+                                                Vacunas, desparasitantes, etc.
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Producción esperada
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Manejo (jornales)
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Veterinario
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>
+                                                Transporte
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                Otros gastos
+                                            </td>
+                                            <td> <input class="form-control" type="text" name="costo_1" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_2" onblur="CostoProduccion(this.name)" value="" /></td>
+                                            <td> <input class="form-control" type="text" name="costo_3" onblur="CostoProduccion(this.name)" value="" /></td>
+
+                                        </tr>
+
+
+
+
+                                    </tbody>
+                                </table>
+
+                                <br />
+                                <hr />
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Total de costos
+
+                                            </th>
+                                            <th> </th>
+                                            <th> </th>
+                                            <th> </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> ... </td>
+                                            <td><input type="text" class="form-control" disabled id="costoprod_total_1" name="name" value="" /></td>
+                                            <td><input type="text" class="form-control" disabled id="costoprod_total_2" name="name" value="" /></td>
+                                            <td><input type="text" class="form-control" disabled id="costoprod_total_3" name="name" value="" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <button class="btn btn-default pull-right"> Agregar   </button>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="col-lg-6">
+                        <h4>
+                            Ingreso por actividad micro empresarial
+                        </h4>
+
+                        <div class="jumbotron">
+
+                            <label> Ventas mensuales</label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label>Costo de venta mensual</label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label> Gastos operativos mensuales</label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label> TOTAL DE INGRESO</label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <h4>
+                            Gastos del negocio
+
+                        </h4>
+
+                        <div class="jumbotron">
+
+                            <label> Gtos. transporte, flete o combustible </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label> Renta o derecho de piso </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label>    Gastos salarios</label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label>  Servicios públicos (luz, agua,etc.) </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label> Impuestos y coop.  </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label> Mtto. Vehiculo o local </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label>  Otros gastos especifique:  </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <label>   Total gastos </label> <br /> <input type="text" name="name" value="" class="form-control" /><br />
+                            <hr />
+                            <button class="btn btn-default pull-right"> Agregar   </button>
+                        </div>
+
+                    </div>
+
+                    <hr />
+
+
+                </div>
+                <div id="menu3" class="tab-pane fade">
+                    <h3>Evaluacion tecnica</h3>
+
+
+
+                    <div class="container">
+                        <div class="row">
+
+
+                            <div class="col-lg-12">
+                                <h4>
+                                    1.      Datos de la actividad agropecuaria
+                                </h4>
+                                <br />
+                                <div class="jumbotron">
+
+                                    <label>Cultivo en invernadero o parcela:</label><br />
+                                    <input class="form-control" id="cultivo" type="text" name="name" value="" /><br />
+                                    <label> Tipo de riego (rodado, goteo, micro aspersión, tuberías emisoras etc.) :</label><br />
+                                    <input class="form-control" id="tipoRiego" type="text" name="name" value="" /><br />
+                                    <label> Topografía de la parcela (llano, laderas, cimas, barrancos, etc.):</label><br />
+                                    <input class="form-control" id="topografia" type="text" name="name" value="" /><br />
+                                    <label> Que cultivos o ganado posee: . </label><br />
+                                    <input class="form-control" id="cultivoGanado" type="text" name="name" value="" /><br />
+                                    <label>  Qué etapa de desarrollo  o crecimiento tienen </label><br />
+                                    <input class="form-control" id="etapa" type="text" name="name" value="" /><br />
+
+                                    <label>En que condición de desarrollo o crecimiento estan:</label><br />
+                                    <input class="form-control" id="condicion" type="text" name="name" value="" /><br />
+
+                                    <label>Que labores agrícolas  están pendientes (mantenimiento, control de plagas y enfermedades, cosecha, etc.):</label><br />
+
+                                    <input class="form-control" id="laboresPendientes" type="text" name="name" value="" /><br />
+                                    <label>Condición climatológica de la zona:</label><br />
+                                    <input class="form-control" id="condicionClimatologica" type="text" name="name" value="" /><br />
+                                    <label>Cultivos o ganadería predominantes en la zona:</label><br />
+                                    <input class="form-control" id="predominantes" type="text" name="name" value="" /><br />
+
+                                </div>
+                                <br />
+                                <hr />
+
+                                <h4>
+                                    2.       Datos de la zona de ubicación de la parcela:
+                                </h4>
+                                <br />
+                                <div class="jumbotron">
+
+
+                                    <label> Hectáreas que Posee:</label><br />
+                                    <input class="form-control" id="hectareas" type="text" name="name" value="" /><br />
+
+                                    <label> Hectáreas Agrícolas</label><br />
+                                    <input class="form-control" id="hectareas_agricolas" type="text" name="name" value="" /><br />
+
+
+                                    <label> Hectáreas Pecuarias:  </label><br />
+                                    <input class="form-control" id="hectareas_pecuarias" type="text" name="name" value="" /><br />
+
+                                    <label> Accesibilidad:</label><br />
+                                    <input class="form-control" id="accesibilidad" type="text" name="name" value="" /><br />
+
+                                    <label>Medios de transporte:</label><br />
+                                    <input class="form-control" id="medios_transporte" type="text" name="name" value="" /><br />
+
+                                    <label> Otra información:</label><br />
+                                    <input class="form-control" id="otraInformacion" type="text" name="name" value="" /><br />
+                                </div>
+
+                                <hr />
+
+                                <h4>
+                                    3.       Información técnica de la actividad y solicitante
+                                </h4>
+                                <br />
+                                <div class="jumbotron">
+
+
+                                    <label> Tiempo y experiencia de realizar esa actividad: </label><br />
+                                    <input class="form-control" id="tiempoExperiencia" type="text" name="name" value="" /><br />
+
+
+                                    <label> Aportación a la capitalización de la familia: </label><br />
+                                    <input class="form-control" id="aportacionCapacitacion" type="text" name="name" value="" /><br />
+
+
+                                    <label> Quienes participan en la administración de la actividad:</label><br />
+                                    <input class="form-control" id="quienesParticipanAdmin" type="text" name="name" value="" /><br />
+
+                                    <label> Estabilidad de los canales de comercialización:</label><br />
+                                    <input class="form-control" id="estabilidadDeCanales" type="text" name="name" value="" /><br />
+
+
+                                    <label> Estabilidad de la tenencia de la tierra y la actividad:</label><br />
+                                    <input class="form-control" id="estabilidadTenenciaDeLaTierra" type="text" name="name" value="" /><br />
+
+
+                                    <label> Referencias de productores:</label><br />
+                                    <input class="form-control" id="referenciaProductores" type="text" name="name" value="" /><br />
+
+
+                                    <label>  Manejo y administración de las actividades:</label><br />
+                                    <input class="form-control" id="manejoYAdministracionDeActividades" type="text" name="name" value="" /><br />
+
+
+                                    <label> Calidad y posesión de activos:</label><br />
+                                    <input class="form-control" id="calidadYPosesion" type="text" name="name" value="" /><br />
+
+                                </div>
+
+                                <hr />
+                                <h4>
+                                    4       Resumen de análisis de riesgos
+
+                                </h4>
+                                <br />
+                                <div class="jumbotron">
+
+
+                                    <label> Riesgos técnicos (clima, tipo de cultivo,caract. De la region, carencia de equipo, etc.): </label><br />
+                                    <input class="form-control" id="riesgos_tecnicos" type="text" name="name" value="" /><br />
+
+
+                                    <label> Riesgos de gestión (Exp. Y habilidad en el negocio): </label><br />
+                                    <input class="form-control" id="riesgos_gestion" type="text" name="name" value="" /><br />
+
+
+                                    <label> Riesgos de comercialización (variaciones en precio o en canales de comercializacion):</label><br />
+                                    <input class="form-control" id="riesgos_comercial" type="text" name="name" value="" /><br />
+
+                                    <label> Riesgo de solvencia moral (conductas fraudulentas):</label><br />
+                                    <input class="form-control" id="riesgos_moral" type="text" name="name" value="" /><br />
+
+
+                                    <label> Riesgo del entorno familiar (vicios, enfermedades, etc.):</label><br />
+                                    <input class="form-control" id="riesgos_familiar" type="text" name="name" value="" /><br />
+
+
+
+
+                                </div>
+
+                                <div id="ErrorEvalTecnica" class="pull-right"></div><br /><br />
+                                <button class="btn btn-default pull-right" onclick="EvalTecnica()">Agregar a evaluacion</button>
+
+                                <script>
+                                    function EvalTecnica() {
+                                        let cultivo, tipoRiego, topografia,
+                                            cultivoGanado, etapa, condicion, laboresPendientes,
+                                            condicionClimatologica, predominantes, hectareas, hectareas_agricolas, hectareas_pecuarias,
+                                            accesibilidad, medios_transporte, otraInformacion, tiempoExperiencia, aportacionCapacitacion,
+                                            quienesParticipanAdmin, estabilidadDeCanales, estabilidadTenenciaDeLaTierra, referenciaProductores,
+                                            manejoYAdministracionDeActividades, calidadYPosesion, riesgos_tecnicos, riesgos_gestion, riesgos_comercial, riesgos_moral
+                                            , riesgos_familiar;
+
+
+
+                                        cultivo = $('#cultivo').val(),
+                                            tipoRiego = $('#tipoRiego').val(),
+                                            topografia = $('#topografia').val(),
+                                            cultivoGanado = $('#cultivoGanado').val(),
+                                            etapa = $('#etapa').val(),
+                                            condicion = $('#condicion').val(),
+                                            laboresPendientes = $('#laboresPendientes').val(),
+                                            condicionClimatologica = $('#condicionClimatologica').val(),
+                                            predominantes = $('#predominantes').val(),
+                                            hectareas = $('#hectareas').val(),
+                                            hectareas_agricolas = $('#hectareas_agricolas').val(),
+                                            hectareas_pecuarias = $('#hectareas_pecuarias').val(),
+                                            accesibilidad = $('#accesibilidad').val(), medios_transporte = $('#medios_transporte').val(),
+                                            otraInformacion = $('#otraInformacion').val(),
+                                            tiempoExperiencia = $('#tiempoExperiencia').val(),
+                                            aportacionCapacitacion = $('#aportacionCapacitacion').val(),
+                                            quienesParticipanAdmin = $('#quienesParticipanAdmin').val(),
+                                            estabilidadDeCanales = $('#estabilidadDeCanales').val(),
+                                            estabilidadTenenciaDeLaTierra = $('#estabilidadTenenciaDeLaTierra').val(),
+                                            referenciaProductores = $('#referenciaProductores').val(),
+                                            manejoYAdministracionDeActividades = $('#manejoYAdministracionDeActividades').val(),
+                                            calidadYPosesion = $('#calidadYPosesion').val(),
+                                            riesgos_tecnicos = $('#riesgos_tecnicos').val(),
+                                            riesgos_gestion = $('#riesgos_gestion').val(),
+                                            riesgos_comercial = $('#riesgos_comercial').val(),
+                                            riesgos_moral = $('#riesgos_moral').val()
+                                            , riesgos_familiar = $('#riesgos_familiar').val();
+
+
+                                        if (
+                                            cultivo.length == 0 || cultivo == ' ' ||
+                                            tipoRiego.length == 0 || tipoRiego == ' ' ||
+                                            topografia.length == 0 || topografia == ' ' ||
+                                            cultivoGanado.length == 0 || cultivoGanado == ' ' ||
+                                            etapa.length == 0 || etapa == ' ' ||
+                                            condicion.length == 0 || condicion == ' ' ||
+                                            laboresPendientes.length == 0 || laboresPendientes == ' ' ||
+                                            condicionClimatologica.length == 0 || condicionClimatologica == ' ' ||
+                                            predominantes.length == 0 || predominantes == ' ' ||
+                                            hectareas.length == 0 || hectareas == ' ' ||
+                                            hectareas_agricolas.length == 0 || hectareas_agricolas == ' ' ||
+                                            hectareas_pecuarias.length == 0 || hectareas_pecuarias == ' ' ||
+                                            accesibilidad.length == 0 || accesibilidad == ' ' ||
+                                            otraInformacion.length == 0 || otraInformacion == ' ' ||
+                                            tiempoExperiencia.length == 0 || tiempoExperiencia == ' ' ||
+                                            aportacionCapacitacion.length == 0 || aportacionCapacitacion == ' ' ||
+                                            quienesParticipanAdmin.length == 0 || quienesParticipanAdmin == ' ' ||
+                                            estabilidadTenenciaDeLaTierra.length == 0 || estabilidadTenenciaDeLaTierra == ' ' ||
+                                            referenciaProductores.length == 0 || referenciaProductores == ' ' ||
+                                            manejoYAdministracionDeActividades.length == 0 || manejoYAdministracionDeActividades == ' ' ||
+                                            calidadYPosesion.length == 0 || calidadYPosesion == ' ' ||
+                                            riesgos_tecnicos.length == 0 || riesgos_tecnicos == ' ' ||
+                                            riesgos_gestion.length == 0 || riesgos_gestion == ' ' ||
+                                            riesgos_comercial.length == 0 || riesgos_comercial == ' ' ||
+                                            riesgos_moral.length == 0 || riesgos_moral == ' ' ||
+                                            estabilidadDeCanales.length == 0 || estabilidadDeCanales == ' ' ||
+                                            riesgos_familiar.length == 0 || riesgos_familiar == ' '
+                                        ) {
+                                            debugger
+                                            $('#ErrorEvalTecnica').html('<span class="badge badge-danger">Error faltan datos</span>');
+                                        } else {
+                                            //
+                                            alert('yeah');
+                                            $('#infopatbtn').addClass('bg-success');
+                                            $('#ErrorEvalTecnica').html(' ');
+                                            //infopatbtn
+                                        }
+                                    }
+
+                                </script>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div id="menu4" class="tab-pane fade">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3> Scoring</h3>
+                                <hr />
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div>
+                                    <b>claificacion </b><br />
+                                    <div id="calficiacion_Sco"></div>
+                                    <input type="hidden" id="nPreguntas" value="" />
+                                    <hr />
+                                </div>
+                                <div class="col-lg-12 ">
+                                    <div class="card card-body">
+                                        <div id="scoring_holder"></div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-lg-12">
+                                    <div id=" ">
+                                        <div id="erroresCal" class="hidden"></div>
+                                        <button onclick="calificacionCalcScor()" class="btn btn-success pull-right">
+                                            Calificación
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+                <div id="menu5" class="tab-pane fade">
+                    <div class="row">
+                        <h3>Flujo de ingresos</h3>
+
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseFlujo" aria-expanded="false" aria-controls="collapseExample">
+                                        Flujo
+
+                                    </button>
+                                </li>
+                            </ol>
+                        </nav>
+
+                        <div class="col-lg-12">
+                            <div class="collapse" id="collapseFlujo">
+                                <div class="jumbotron">
+
+                                    <h4>Ingresos</h4>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+
+
+                                                <th>Concepto</th>
+                                                <th> Enero </th>
+                                                <th>
+                                                    febrero
+                                                </th>
+                                                <th>
+                                                    marzo
+                                                </th>
+                                                <th> abril </th>
+                                                <th> mayo </th>
+                                                <th> junio </th>
+                                                <th>julio  </th>
+                                                <th>  agosto</th>
+                                                <th>septiembre  </th>
+                                                <th> octubre </th>
+                                                <th> noviembre </th>
+                                                <th> diciembre </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td>CERDOS</td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="   " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ENGORDA</td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="   " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>CREDITO SUMATE</td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="   " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td> TOTAL INGRESOS</td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tene_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tfeb_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tmar_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tabr_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tmay_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tjun_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tjul_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tagos_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tsept_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="toct_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tnov_ingresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tdic_ingresos" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <hr />
+                                    <h4>Egresos</h4>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Concepto</th>
+                                                <th> Enero </th>
+                                                <th>
+                                                    febrero
+                                                </th>
+                                                <th>
+                                                    marzo
+                                                </th>
+                                                <th> abril </th>
+                                                <th> mayo </th>
+                                                <th> junio </th>
+                                                <th>julio  </th>
+                                                <th>  agosto</th>
+                                                <th>septiembre  </th>
+                                                <th> octubre </th>
+                                                <th> noviembre </th>
+                                                <th> diciembre </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    CERDOS
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="   " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    GASTOS FAMILIARES
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="   " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    PAGO DE COMISION
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="   " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id=" " /></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    TOTAL EGRESOS
+                                                </td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tene_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tfeb_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tmar_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tabr_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tmay_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tjun_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tjul_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tagos_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tsept_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="toct_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tnov_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tdic_egresos" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <hr />
+                                    <h4>
+                                        UTILIDAD NETA
+                                    </h4>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Concepto</th>
+                                                <th> Enero </th>
+                                                <th>
+                                                    febrero
+                                                </th>
+                                                <th>
+                                                    marzo
+                                                </th>
+                                                <th> abril </th>
+                                                <th> mayo </th>
+                                                <th> junio </th>
+                                                <th>julio  </th>
+                                                <th>  agosto</th>
+                                                <th>septiembre  </th>
+                                                <th> octubre </th>
+                                                <th> noviembre </th>
+                                                <th> diciembre </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    MARGEN DE CONFIABILIDAD
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    UTILIDAD NETA AJUSTADA
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    PAGO CUOTA SUMATE
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    SALDO FINAL DEL MES
+                                                </td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                                <td> <input type="text" name="name" value="" class="form-control" id="" /></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    "COBERTURA DE LA
+                                                    CAPACIDAD DE PAGO"
+
+                                                </td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tene_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tfeb_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tmar_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tabr_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tmay_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tjun_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tjul_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tagos_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tsept_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="toct_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tnov_egresos" /></td>
+                                                <td> <input type="text" name="name" value="" disabled class="form-control" id="tdic_egresos" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#collapseLiquidez" aria-expanded="false" aria-controls="collapseExample">
+                                        Liquidez y Deuda
+
+                                    </button>
+                                </li>
+                            </ol>
+                        </nav>
+                        <div class="col-lg-12">
+                            <div class="collapse" id="collapseLiquidez">
+                                <div class="jumbotron">
+
+                                    <h4>
+                                        Indicadores de liquidez:
+                                    </h4>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+
+
+                                                <th>
+                                                    Indicador
+                                                </th>
+                                                <th>
+                                                    Fórmula
+                                                </th>
+                                                <th>
+                                                    Operación
+
+                                                </th>
+                                                <th>
+                                                    Resultado
+
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Liquidez General</td>
+                                                <td>
+                                                    Activo Circulante /
+                                                    Pasivo circulante
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="name" class="form-control" placeholder="Activo Circulante" value="" /><br />
+                                                    <input type="text" name="name" class="form-control" placeholder="Pasivo circulante" value="" />
+                                                </td>
+                                                <td>
+                                                    <input disabled class="form-control" id="liquidez_t" type="text" name="name" value="" />
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Prueba ácida
+
+                                                </td>
+                                                <td>
+                                                    Activo Circulante – Inventarios /
+                                                    Pasivo circulante
+
+                                                </td>
+                                                <td>
+
+                                                    <input type="text" name="name" class="form-control" placeholder="Activo Circulante" value="" />
+                                                    <input type="text" name="name" class="form-control" placeholder="Inventarios" value="" /><br />
+                                                    <input type="text" name="name" class="form-control" placeholder="Pasivo circulante" value="" />
+                                                </td>
+                                                <td>
+                                                    <input disabled class="form-control" id="prueba_t" type="text" name="name" value="" />
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+
+                                    <br />
+
+                                    <h4>
+                                        Indicadores de deuda:
+                                    </h4>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+
+
+                                                <th>
+                                                    Indicador
+                                                </th>
+                                                <th>
+                                                    Fórmula
+                                                </th>
+                                                <th>
+                                                    Operación
+
+                                                </th>
+                                                <th>
+                                                    Resultado
+
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    Endeudamiento del negocio
+
+                                                </td>
+                                                <td>
+                                                    Pasivo + Crédito sugerido /
+                                                    Activo + Crédito sugerido
+
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="name" class="form-control" placeholder="Crédito sugerido" value="" />
+                                                    <input type="text" name="name" class="form-control" placeholder="Pasivo  " value="" />
+                                                    <br />
+                                                    <input type="text" name="name" class="form-control" placeholder="Activo  " value="" />
+                                                    <input type="text" name="name" class="form-control" placeholder=" Crédito sugerido" value="" />
+                                                </td>
+                                                <td>
+                                                    <input disabled class="form-control" id="endeudamiento_t" type="text" name="name" value="" />
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Endeudamiento futuro
+                                                </td>
+                                                <td>
+                                                    Pasivo + Crédito sugerido /
+                                                    Activo
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="name" class="form-control" placeholder="Crédito sugerid0" value="" />
+                                                    <input type="text" name="name" class="form-control" placeholder="Pasivo  " value="" /><br />
+                                                    <input type="text" name="name" class="form-control" placeholder="Activo" value="" />
+                                                </td>
+                                                <td>
+                                                    <input disabled class="form-control" id="Endeudamiento_futuro_t" type="text" name="name" value="" />
+
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Monto máximo a otorgar
+
+
+                                                </td>
+                                                <td>
+                                                    Pasivo + Crédito sugerido /
+                                                    Activo
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="name" class="form-control" placeholder="Monto propuesto" value="" />
+                                                    <br />
+                                                    <input type="text" name="name" class="form-control" placeholder="Costos de producción" value="" />
+                                                </td>
+                                                <td>
+                                                    <input disabled class="form-control" id="MontoMaximoAOtrogar" type="text" name="name" value="" />
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+       
+        
+
+    </section>
+</div>
+
+
+
+
+<script>
+    function granTotal() {
+        let totales_Tt = $('#totales_Tt').val();
+        $('#granTotal').val(totales_Tt);
+    }
+    function totales_t() {
+        let totales_t = $('[ name = "totales_t"]');
+        let xt_x = 0;
+        for (var i = 0; i < totales_t.length; i++) {
+            xt_x = xt_x + parseInt(totales_t[i].value);
+        }
+        debugger
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#totales_Tt').val(xt_x);
+    }
+    //recursosSumate
+    function recursosSumate() {
+        let recursosSumate = $('[ name = "recursosSumate"]');
+        let xt_x = 0;
+        for (var i = 0; i < recursosSumate.length; i++) {
+            xt_x = xt_x + parseInt(recursosSumate[i].value);
+        }
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#recursosSumate').val(xt_x);
+    }
+    //recursosPropios
+    function recursosPropios() {
+        let recursosPropios = $('[ name = "recursosPropios"]');
+        let xt_x = 0;
+        for (var i = 0; i < recursosPropios.length; i++) {
+            xt_x = xt_x + parseInt(recursosPropios[i].value);
+        }
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#recursosPropios').val(xt_x);
+    }
+    function pagoMT() {
+        let pagoMT = $('[ name = "pagoMT"]');
+        let xt_x = 0;
+        for (var i = 0; i < pagoMT.length; i++) {
+            xt_x = xt_x + parseInt(pagoMT[i].value);
+        }
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#pagoMT').val(xt_x);
+    }
+    function deudaT() {
+        let deudaT = $('[ name = "deudaT"]');
+        let xt_x = 0;
+        for (var i = 0; i < deudaT.length; i++) {
+            xt_x = xt_x + parseInt(deudaT[i].value);
+        }
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#deudaT').val(xt_x);
+    }
+    function activos_totales() {
+        //activosTotales
+
+        let activosTotales = $('[ name = "activosTotales"]');
+        let xt_x = 0;
+        for (var i = 0; i < activosTotales.length; i++) {
+            xt_x = xt_x + parseInt(activosTotales[i].value);
+        }
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#activos_totales_T').val(xt_x);
+
+    }
+
+    function propios_activo() {
+
+
+        let propios_activo = $('[ name = "propios_activo"]');
+
+
+        let xt_x = 0;
+        for (var i = 0; i < propios_activo.length; i++) {
+            xt_x = xt_x + parseInt(propios_activo[i].value);
+        }
+
+        xt_x = parseFloat(xt_x).toFixed(2);
+
+        $('#propios_activo_T').val(xt_x);
+
+    }
+    function propios_pasivo() {
+
+
+        let propios_pasivo = $('[ name = "propios_pasivo"]');
+
+
+        let xt = 0;
+        for (var i = 0; i < propios_pasivo.length; i++) {
+            xt = xt + parseFloat(propios_pasivo[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+
+        $('#propios_pasivo_T').val(xt);
+
+    }
+
+    function bnagro_activo() {
+        //bnagro_activo
+
+        let bnagro_activo = $('[ name = "bnagro_activo"]');
+
+
+        let xt = 0;
+        for (var i = 0; i < bnagro_activo.length; i++) {
+            xt = xt + parseFloat(bnagro_activo[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+
+        $('#bnagro_activo_T').val(xt);
+
+    }
+    function bnagro_pasivo() {
+        //bnagro_pasivo
+
+
+        let bnagro_pasivo = $('[ name = "bnagro_pasivo"]');
+
+
+        let xt = 0;
+        for (var i = 0; i < bnagro_pasivo.length; i++) {
+            xt = xt + parseFloat(bnagro_pasivo[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+
+        $('#bnagro_pasivo_T').val(xt);
+
+    }
+    function insumoAgro_T() {
+        let cosechasT = $('[ name = "insumoAgro_T"]');
+        console.log(cosechasT);
+
+        let xt = 0;
+        for (var i = 0; i < cosechasT.length; i++) {
+            xt = xt + parseFloat(cosechasT[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+        debugger
+        $('#insumoAgro_tT').val(xt);
+    }
+
+    function ganado_T() {
+        let cosechasT = $('[ name = "ganado_T"]');
+        console.log(cosechasT);
+
+        let xt = 0;
+        for (var i = 0; i < cosechasT.length; i++) {
+            xt = xt + parseFloat(cosechasT[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+        debugger
+        $('#ganado_tT').val(xt);
+    }
+    function cosechas_AlmacenadasT() {
+        let cosechasT = $('[ name = "coseschaAL_T"]');
+        console.log(cosechasT);
+
+        let xt = 0;
+        for (var i = 0; i < cosechasT.length; i++) {
+            xt = xt + parseFloat(cosechasT[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+        debugger
+        $('#coseschaAL_T_tT').val(xt);
+    }
+    function cosechasT() {
+
+        let cosechasT = $('[ name = "cosechas_t"]');
+        console.log(cosechasT);
+
+        let xt = 0;
+        for (var i = 0; i < cosechasT.length; i++) {
+            xt = xt + parseFloat(cosechasT[i].value);
+        }
+        xt = parseFloat(xt).toFixed(2);
+        debugger
+        $('#cosechas_tT').val(xt);
+
+    }
+
+
+    function CostoProduccion(id) {
+        let costosT = $('[name="' + id + '"]');
+        let xtotal = 0;
+        let idl = id.substring(6, id.lenght);
+        for (var i = 0; i < costosT.length; i++) {
+            xtotal = parseInt(xtotal) + parseInt(costosT[i].value);
+        }
+
+        $('#costoprod_total_' + idl).val(xtotal);
+
+    }
+    function Ganado(id) {
+
+        let idl = id.substring(13, id.lenght);
+
+        let precio_venta_, produccion_ganado_, total;
+        precio_venta_ = $('#precio_venta_' + idl).val();
+        produccion_ganado_ = $('#produccion_ganado_' + idl).val();
+        // debugger
+        if (precio_venta_.length == 0 || precio_venta_ == "" ||
+            produccion_ganado_.length == 0 || produccion_ganado_ == ""
+        ) {
+            $('#ganadoError').html('<span class="badge badge-danger">Error faltan datos</span>');
+        } else {
+            $('#ganadoError').html(' ');
+            precio_venta_ = parseInt(precio_venta_);
+            produccion_ganado_ = parseInt(produccion_ganado_);
+
+            total = precio_venta_ * produccion_ganado_;
+            total = parseFloat(total).toFixed(2);
+
+            $('#ganado_total_' + idl).val(total);
+        }
+    }
+    function situacionAgricola(id) {
+        let idl = id.substring(21, id.lenght);
+
+        let precio_venta_, produccion_esperada_porcentaje_comercial_, total;
+
+        precio_venta_ = $('#precio_venta_' + idl).val();
+        produccion_esperada_ = $('#produccion_esperada_' + idl).val();
+        porcentaje_comercial_ = $('#porcentaje_comercial_' + idl).val();
+
+
+        if (precio_venta_.length == 0 || precio_venta_ == "" ||
+            produccion_esperada_.length == 0 || produccion_esperada_ == "" ||
+            porcentaje_comercial_.length == 0 || porcentaje_comercial_ == "") {
+
+            $('#agricolaError').html('<span class="badge badge-danger">Error faltan datos</span>');
+        } else {
+            precio_venta_ = parseInt(precio_venta_);
+            produccion_esperada_ = parseInt(produccion_esperada_);
+            porcentaje_comercial_ = parseInt(porcentaje_comercial_);
+            porcentaje_comercial_ = porcentaje_comercial_ * 0.01;
+
+            total = precio_venta_ * produccion_esperada_ * porcentaje_comercial_;
+            total = parseFloat(total).toFixed(2);
+            $('#agricolaError').html(' ');
+
+            $('#total_cultivo_' + idl).val(total);
+
+        }
+
+
+    }
+    function AddEvProductiva() {
+        //total_cultivo_1
+        let total_cultivo_1;
+        total_cultivo_1 = $('#total_cultivo_1').val()
+        if (total_cultivo_1.length == 0 || total_cultivo_1 == "") {
+            $('#agricolaError').html('<span class="badge badge-danger">Error faltan datos</span>');
+        } else {
+            $('#agricolaError').html(' ');
+
+        }
+    }
+
+    function callScoringAns(id_sh, id_scoring, cont) {
+
+        $.ajax({
+            url: `/scoring/SCORING_RESPUESTAS_IDP/` + id_scoring,
+            type: "GET",
+            dataType: "json",
+            //contentType: "application/json; charset=utf-8",
+
+            success: function (response) {
+                //.log(response);
+                let idsh = "scoring_holder_ans" + id_scoring;
+                var rl = response.length;
+
+                for (var i = 0; i < rl; i++) {
+                    document.getElementById(idsh).innerHTML +=
+                        `
+<div>
+            <label class="checkbox-inline">
+                <input type="radio"
+                       name="checkbox_${cont}"
+                       value="${response[i].valor}"> ${response[i].respuesta}
+            </label>
+
+</div>
+                            `;
+                }
+
+
+            },
+
+            error: function (jqXHR, textStatus, err) {
+                //$('#myModalLabel').append(`error: - ${err}`);
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(err);
+
+                alert(err);
+            }
+        });
+
+    }
+</script>
+<!-- /.content-wrapper -->
+@section Scripts
+{
+    <script type="text/javascript">
+        
+    </script>
+}
