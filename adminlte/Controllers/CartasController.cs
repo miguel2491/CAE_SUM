@@ -658,7 +658,35 @@ namespace adminlte.Controllers
             }
             return Json("Ok");
         }
-        [HttpGet]
+
+        [HttpPost]
+        public ActionResult InsertFirma64(string firma, string id_testigos, string id_documento,
+            string nombre, string app, string apm, string cargo)
+        {
+
+            using (DB_CEAEntities db = new DB_CEAEntities())
+            {
+                var FIRMA_TESTIGOS = new FIRMA_TESTIGOS()
+                {
+                    id_documento = Convert.ToInt16(id_documento),
+                    id_testigos = Convert.ToInt16(id_testigos),
+                    nombre = nombre,
+                    app = app,
+                    apm = apm,
+                    cargo = cargo
+
+                };
+
+
+                db.FIRMA_TESTIGOS.Add(FIRMA_TESTIGOS);
+                db.SaveChanges();
+
+                return Json("Firma guardada con éxito.");
+            }
+        }
+
+
+       [HttpGet]
         public JsonResult CVisita(int id)
         {
             using (DB_CEAEntities db = new DB_CEAEntities())
