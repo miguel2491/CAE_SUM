@@ -25,9 +25,14 @@ namespace adminlte.BD
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<ACTA_INTEGRACION_COMITE> ACTA_INTEGRACION_COMITE { get; set; }
         public virtual DbSet<AdminBitacora> AdminBitacora { get; set; }
         public virtual DbSet<ANEXO_EXPEDIENTE> ANEXO_EXPEDIENTE { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AUTORIZACION_REPORTES_CREDITO> AUTORIZACION_REPORTES_CREDITO { get; set; }
         public virtual DbSet<CalificaciondeGrupoSolidario_Preguntas> CalificaciondeGrupoSolidario_Preguntas { get; set; }
         public virtual DbSet<CalificaciondeGrupoSolidario_Respuestas> CalificaciondeGrupoSolidario_Respuestas { get; set; }
@@ -81,7 +86,6 @@ namespace adminlte.BD
         public virtual DbSet<SOLICITUD_GRUPOS_CREDITO> SOLICITUD_GRUPOS_CREDITO { get; set; }
         public virtual DbSet<SOLICITUDES> SOLICITUDES { get; set; }
         public virtual DbSet<SUPERVISION_CLIENTE> SUPERVISION_CLIENTE { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TIPO_PRODUCTIVO> TIPO_PRODUCTIVO { get; set; }
         public virtual DbSet<TOTAL_VENTAS_COMPRAS> TOTAL_VENTAS_COMPRAS { get; set; }
         public virtual DbSet<CalificaciondeGrupoSolidario_RESPUESTA_FORMULARIO> CalificaciondeGrupoSolidario_RESPUESTA_FORMULARIO { get; set; }

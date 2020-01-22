@@ -79,6 +79,7 @@ namespace adminlte.BD
         public string lngD { get; set; }
         public string ubicacion { get; set; }
         public string observaciones { get; set; }
+        public string img_visita { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CARTA_BIENES_MUEBLES> CARTA_BIENES_MUEBLES { get; set; }

@@ -176,202 +176,214 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BD\ACTA_INTEGRACION_COMITE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\AdminBitacora.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\ANEXO_EXPEDIENTE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\AspNetRoles.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\AspNetUserClaims.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\AspNetUserLogins.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\AspNetUsers.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\AUTORIZACION_REPORTES_CREDITO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\CAE.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CAE.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\CAE.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CAE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\CAE.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CAE.edmx</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CalificaciondeGrupoSolidario_Preguntas.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CalificaciondeGrupoSolidario_Respuestas.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CalificaciondeGrupoSolidario_RESPUESTA_FORMULARIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CARTAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CARTA_BIENES_MUEBLES.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CHECK_LIST.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CHECK_LIST_NOTARIA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CONTENIDO_CHECK.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\COSTO_INSUMOS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CREDITO_PYME.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CREDITO_PYME_EXTRA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\CUADRO_INVERSION.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\C__MigrationHistory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\DECLARACION_INGRESOS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\DINAMICA_VENTAS_COMPRAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\DIRECCIONES.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalNuevo.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalNuevo_Preguntas.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalNuevo_Respuestas.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalNuevo_RESPUESTA_FORMULARIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalSecuencial.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalSecuencial_Preguntas.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalSecuencial_Respuestas.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EvaluacionCualitativadeGrupoComunalSecuencial_RESPUESTA_FORMULARIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EVALUACION_ECONOMICA_CLIENTE_EMPRENDEDOR.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EVALUACION_ECONOMICA_SIMPLE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EVALUACION_PRODUCTIVA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EVALUACION_TECNICA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\EXPEDIENTE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\FICHAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\FIRMA_TESTIGOS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\FLUJOS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\FLUJOS_TIPOS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\GASTOS_FAMILIA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\GASTOS_OPERATIVOS_NEGOCIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\HISTORIAL_CREDITICIO_CLIENTE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\INFORMACION_OPERATIVA_DETALLADA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\INFORMACION_OPERATIVA_NEGOCIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\INFORMACION_PATRIMONIAL.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\INFORMACION_PATRIMONIAL_BG.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\Insumos_Productos.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="BD\PATRIMONIO_ACTIVO_BIENES.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\PATRIMONIO_INVENTARIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\PLAN_CONSTRUCCION.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\PLAN_CONSTRUCCION_SUMALE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\PROSPECTOS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\REFERENCIAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SCORING.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SCORING_PREGUNTAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SCORING_RESPUESTAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SCORING_RESPUESTA_FORMULARIO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SITUACION_AGRICOLA.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SOLICITUDES.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SOLICITUD_GRUPOS_CREDITO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\SUPERVISION_CLIENTE.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BD\sysdiagrams.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\TIPO_PRODUCTIVO.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="BD\TOTAL_VENTAS_COMPRAS.cs">
-      <DependentUpon>CAE.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
@@ -416,15 +428,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BD\CAE.Context.tt">
+    <Content Include="BD\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CAE.edmx</DependentUpon>
-      <LastGenOutput>CAE.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="BD\CAE.tt">
+    <Content Include="BD\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CAE.edmx</DependentUpon>
-      <LastGenOutput>CAE.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Content\adminltemvc.png" />
     <Content Include="Content\adminlte\css\AdminLTE.css" />
@@ -4347,12 +4359,12 @@
     <Content Include="Scripts\adminlte\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Scripts\adminlte\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Scripts\adminlte\plugins\timepicker\bootstrap-timepicker.min.js" />
-    <EntityDeploy Include="BD\CAE.edmx">
+    <EntityDeploy Include="BD\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CAE.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="BD\CAE.edmx.diagram">
-      <DependentUpon>CAE.edmx</DependentUpon>
+    <Content Include="BD\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

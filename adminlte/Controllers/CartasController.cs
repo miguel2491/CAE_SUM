@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +13,12 @@ namespace adminlte.Controllers
 {
     public class CartasController : Controller
     {
+
+        public int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
         //Direcciones
         [HttpPost]
         public ActionResult InsertDirecciones(DIRECCIONES dir)
@@ -590,6 +597,7 @@ namespace adminlte.Controllers
             string sucursal, 
             string tipo_carta,
             DateTime fecha,
+              
             string secuencia, 
             string respuesta1, 
             string respuesta2,
@@ -603,19 +611,25 @@ namespace adminlte.Controllers
             string colonia_id, string municipio_id, string ciudad, string estado, string cp_id, string localidad, string referencia, string tipo)
         {
             int idCarta = 0;
+
+
+
+            CARTAS carta = new CARTAS();
+
+
             using (DB_CEAEntities db = new DB_CEAEntities())
             {
                 var cartas = new CARTAS()
                 {
-                    id_documento = Convert.ToInt16(id_documento),
-                    id_sucursal = Convert.ToInt16(id_sucursal),
+                    id_documento = Convert.ToInt32(id_documento),
+                    id_sucursal = Convert.ToInt32(id_sucursal),
                     sucursal = sucursal,
-                    id_cliente = Convert.ToInt16(id_cliente),
+                    id_cliente = Convert.ToInt32(id_cliente),
                     cliente = cliente,
-                    id_asesor = Convert.ToInt16(id_asesor),
+                    id_asesor = Convert.ToInt32(id_asesor),
                     tipo_carta = tipo_carta,
                     fecha = fecha,
-                    secuencia = Convert.ToInt16(secuencia),
+                    secuencia = Convert.ToInt32(secuencia),
                     respuesta1 = respuesta1,
                     respuesta2 = respuesta2,
                     respuesta3 = respuesta3,
@@ -629,34 +643,84 @@ namespace adminlte.Controllers
                     latitud = latitud,
                     longitud = longitud,
                     latD = latD,
-                    lngD = lngD
-                };
+                    lngD = lngD,
+                 };
 
                 db.CARTAS.Add(cartas);
                 db.SaveChanges();
                 idCarta = cartas.id_carta;
 
-                
+
                 //return RedirectToAction("VisitaDomiciliaria", "Cartas", new { id = id });
-                
+                  carta = cartas;
+
             }
-            using(DB_CEAEntities db2 = new DB_CEAEntities())
+
+            
+            using (DB_CEAEntities db2 = new DB_CEAEntities())
             {
                 var direc = new DIRECCIONES()
                 {
                     id_documento = idCarta,
-                    estado_id = Convert.ToInt16(estado),
+                    estado_id = Convert.ToInt32(estado),
                     calle = calle,
                     numero = numero,
-                    colonia_id = Convert.ToInt16(colonia_id),
-                    municipio_id = Convert.ToInt16(municipio_id),
-                    cp_id = Convert.ToInt16(cp_id),
+                    colonia_id = Convert.ToInt32(colonia_id),
+                    municipio_id = Convert.ToInt32(municipio_id),
+                    cp_id = Convert.ToInt32(cp_id),
                     tipo = tipo
                 };
                 db2.DIRECCIONES.Add(direc);
                 db2.SaveChanges();
             }
-            return Json("Ok");
+
+            return Json(carta);
+
+        }
+
+        [HttpPost]
+        public ActionResult InsertImageVisita(HttpPostedFileBase datafiles,int idx) {
+            var fx = datafiles;
+            DateTime dtime = new DateTime();
+            dtime = DateTime.Now;
+
+            int idint = RandomNumber(1, 1000000000);
+            string id = idint.ToString();
+            string filename = "AnuncioCookies" + "_" + id + "_" +
+                               String.Format("{0:d}", dtime) + datafiles.FileName;
+            filename = filename.Replace("/", "_");
+
+            try
+            {
+
+                fx.SaveAs(Path.Combine(@"C:\Users\EjeDesarrolloCS-165\source\repos\CAE_SUM\adminlte\Content", filename));
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            var img_visita = "/WebFiles/Imgs/" + filename;
+
+
+            using (DB_CEAEntities db = new DB_CEAEntities())
+            {
+                
+
+                var carta = db.CARTAS.ToList<CARTAS>().Where(u => u.id_documento.Equals(idx)).FirstOrDefault();
+                carta.img_visita = img_visita;
+
+                
+                db.SaveChanges();
+              
+
+
+                //return RedirectToAction("VisitaDomiciliaria", "Cartas", new { id = id });
+
+            }
+
+            return Json("Imagen de visita guardada con éxito.");
         }
 
         [HttpPost]
@@ -684,7 +748,7 @@ namespace adminlte.Controllers
                 return Json("Firma guardada con éxito.");
             }
         }
-
+   
 
        [HttpGet]
         public JsonResult CVisita(int id)
