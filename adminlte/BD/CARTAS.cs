@@ -14,13 +14,6 @@ namespace adminlte.BD
     
     public partial class CARTAS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CARTAS()
-        {
-            this.CARTA_BIENES_MUEBLES = new HashSet<CARTA_BIENES_MUEBLES>();
-            this.FIRMA_TESTIGOS = new HashSet<FIRMA_TESTIGOS>();
-        }
-    
         public int id_carta { get; set; }
         public int id_sucursal { get; set; }
         public string sucursal { get; set; }
@@ -68,7 +61,7 @@ namespace adminlte.BD
         public string visita_res7 { get; set; }
         public string visita_res8 { get; set; }
         public string visita_describe { get; set; }
-        public string foto_domicilio { get; set; }
+        public byte[] foto_domicilio { get; set; }
         public string latitud { get; set; }
         public string longitud { get; set; }
         public string responsable_nombre { get; set; }
@@ -80,10 +73,5 @@ namespace adminlte.BD
         public string ubicacion { get; set; }
         public string observaciones { get; set; }
         public string img_visita { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CARTA_BIENES_MUEBLES> CARTA_BIENES_MUEBLES { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FIRMA_TESTIGOS> FIRMA_TESTIGOS { get; set; }
     }
 }

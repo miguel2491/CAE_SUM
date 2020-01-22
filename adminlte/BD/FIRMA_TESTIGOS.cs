@@ -24,7 +24,6 @@ namespace adminlte.BD
     
         public virtual ACTA_INTEGRACION_COMITE ACTA_INTEGRACION_COMITE { get; set; }
         public virtual AUTORIZACION_REPORTES_CREDITO AUTORIZACION_REPORTES_CREDITO { get; set; }
-        public virtual CARTAS CARTAS { get; set; }
         public virtual DECLARACION_INGRESOS DECLARACION_INGRESOS { get; set; }
         public virtual EVALUACION_TECNICA EVALUACION_TECNICA { get; set; }
         public virtual EXPEDIENTE EXPEDIENTE { get; set; }

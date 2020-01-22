@@ -251,7 +251,7 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.CalificaciondeGrupoSolidario_RESP
           <Property Name="visita_res7" Type="varchar" MaxLength="250" />
           <Property Name="visita_res8" Type="varchar" MaxLength="250" />
           <Property Name="visita_describe" Type="varchar" MaxLength="250" />
-          <Property Name="foto_domicilio" Type="varchar" MaxLength="250" />
+          <Property Name="foto_domicilio" Type="varbinary(max)" />
           <Property Name="latitud" Type="varchar" MaxLength="100" />
           <Property Name="longitud" Type="varchar" MaxLength="100" />
           <Property Name="responsable_nombre" Type="varchar" MaxLength="150" />
@@ -1670,18 +1670,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CARTA_BIENES_MUEBLES_CARTAS">
-          <End Role="CARTAS" Type="Self.CARTAS" Multiplicity="1" />
-          <End Role="CARTA_BIENES_MUEBLES" Type="Self.CARTA_BIENES_MUEBLES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARTAS">
-              <PropertyRef Name="id_carta" />
-            </Principal>
-            <Dependent Role="CARTA_BIENES_MUEBLES">
-              <PropertyRef Name="id_carta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CONTENIDO_CHECK_CHECK_LIST">
           <End Role="CHECK_LIST" Type="Self.CHECK_LIST" Multiplicity="0..1" />
           <End Role="CONTENIDO_CHECK" Type="Self.CONTENIDO_CHECK" Multiplicity="*" />
@@ -1840,18 +1828,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           <ReferentialConstraint>
             <Principal Role="AUTORIZACION_REPORTES_CREDITO">
               <PropertyRef Name="id_autorizacion_persona_fisica" />
-            </Principal>
-            <Dependent Role="FIRMA_TESTIGOS">
-              <PropertyRef Name="id_documento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FIRMA_TESTIGOS_CARTAS">
-          <End Role="CARTAS" Type="Self.CARTAS" Multiplicity="1" />
-          <End Role="FIRMA_TESTIGOS" Type="Self.FIRMA_TESTIGOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARTAS">
-              <PropertyRef Name="id_carta" />
             </Principal>
             <Dependent Role="FIRMA_TESTIGOS">
               <PropertyRef Name="id_documento" />
@@ -2195,10 +2171,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
             <End Role="EXPEDIENTE" EntitySet="EXPEDIENTE" />
             <End Role="ANEXO_EXPEDIENTE" EntitySet="ANEXO_EXPEDIENTE" />
           </AssociationSet>
-          <AssociationSet Name="FK_CARTA_BIENES_MUEBLES_CARTAS" Association="Self.FK_CARTA_BIENES_MUEBLES_CARTAS">
-            <End Role="CARTAS" EntitySet="CARTAS" />
-            <End Role="CARTA_BIENES_MUEBLES" EntitySet="CARTA_BIENES_MUEBLES" />
-          </AssociationSet>
           <AssociationSet Name="FK_CONTENIDO_CHECK_CHECK_LIST" Association="Self.FK_CONTENIDO_CHECK_CHECK_LIST">
             <End Role="CHECK_LIST" EntitySet="CHECK_LIST" />
             <End Role="CONTENIDO_CHECK" EntitySet="CONTENIDO_CHECK" />
@@ -2249,10 +2221,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           </AssociationSet>
           <AssociationSet Name="FK_FIRMA_TESTIGOS_AUTORIZACION_REPORTES_CREDITO" Association="Self.FK_FIRMA_TESTIGOS_AUTORIZACION_REPORTES_CREDITO">
             <End Role="AUTORIZACION_REPORTES_CREDITO" EntitySet="AUTORIZACION_REPORTES_CREDITO" />
-            <End Role="FIRMA_TESTIGOS" EntitySet="FIRMA_TESTIGOS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FIRMA_TESTIGOS_CARTAS" Association="Self.FK_FIRMA_TESTIGOS_CARTAS">
-            <End Role="CARTAS" EntitySet="CARTAS" />
             <End Role="FIRMA_TESTIGOS" EntitySet="FIRMA_TESTIGOS" />
           </AssociationSet>
           <AssociationSet Name="FK_FIRMA_TESTIGOS_DECLARACION_INGRESOS" Association="Self.FK_FIRMA_TESTIGOS_DECLARACION_INGRESOS">
@@ -2528,7 +2496,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           <Property Name="fecha_responsable" Type="DateTime" Precision="0" />
           <Property Name="firma_responsable" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="status" Type="Boolean" />
-          <NavigationProperty Name="CARTAS" Relationship="Self.FK_CARTA_BIENES_MUEBLES_CARTAS" FromRole="CARTA_BIENES_MUEBLES" ToRole="CARTAS" />
         </EntityType>
         <EntityType Name="CARTAS">
           <Key>
@@ -2581,7 +2548,7 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           <Property Name="visita_res7" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="visita_res8" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="visita_describe" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="foto_domicilio" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="foto_domicilio" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="latitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="longitud" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="responsable_nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
@@ -2593,8 +2560,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           <Property Name="ubicacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="observaciones" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="img_visita" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CARTA_BIENES_MUEBLES" Relationship="Self.FK_CARTA_BIENES_MUEBLES_CARTAS" FromRole="CARTAS" ToRole="CARTA_BIENES_MUEBLES" />
-          <NavigationProperty Name="FIRMA_TESTIGOS" Relationship="Self.FK_FIRMA_TESTIGOS_CARTAS" FromRole="CARTAS" ToRole="FIRMA_TESTIGOS" />
         </EntityType>
         <EntityType Name="CHECK_LIST">
           <Key>
@@ -3369,7 +3334,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           <Property Name="cargo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ACTA_INTEGRACION_COMITE" Relationship="Self.FK_FIRMA_TESTIGOS_ACTA_INTEGRACION_COMITE" FromRole="FIRMA_TESTIGOS" ToRole="ACTA_INTEGRACION_COMITE" />
           <NavigationProperty Name="AUTORIZACION_REPORTES_CREDITO" Relationship="Self.FK_FIRMA_TESTIGOS_AUTORIZACION_REPORTES_CREDITO" FromRole="FIRMA_TESTIGOS" ToRole="AUTORIZACION_REPORTES_CREDITO" />
-          <NavigationProperty Name="CARTAS" Relationship="Self.FK_FIRMA_TESTIGOS_CARTAS" FromRole="FIRMA_TESTIGOS" ToRole="CARTAS" />
           <NavigationProperty Name="DECLARACION_INGRESOS" Relationship="Self.FK_FIRMA_TESTIGOS_DECLARACION_INGRESOS" FromRole="FIRMA_TESTIGOS" ToRole="DECLARACION_INGRESOS" />
           <NavigationProperty Name="EVALUACION_TECNICA" Relationship="Self.FK_FIRMA_TESTIGOS_EVALUACION_TECNICA" FromRole="FIRMA_TESTIGOS" ToRole="EVALUACION_TECNICA" />
           <NavigationProperty Name="EXPEDIENTE" Relationship="Self.FK_FIRMA_TESTIGOS_EXPEDIENTE" FromRole="FIRMA_TESTIGOS" ToRole="EXPEDIENTE" />
@@ -4122,30 +4086,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CARTA_BIENES_MUEBLES_CARTAS">
-          <End Role="CARTAS" Type="Self.CARTAS" Multiplicity="1" />
-          <End Role="CARTA_BIENES_MUEBLES" Type="Self.CARTA_BIENES_MUEBLES" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARTAS">
-              <PropertyRef Name="id_carta" />
-            </Principal>
-            <Dependent Role="CARTA_BIENES_MUEBLES">
-              <PropertyRef Name="id_carta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FIRMA_TESTIGOS_CARTAS">
-          <End Role="CARTAS" Type="Self.CARTAS" Multiplicity="1" />
-          <End Role="FIRMA_TESTIGOS" Type="Self.FIRMA_TESTIGOS" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CARTAS">
-              <PropertyRef Name="id_carta" />
-            </Principal>
-            <Dependent Role="FIRMA_TESTIGOS">
-              <PropertyRef Name="id_documento" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CONTENIDO_CHECK_CHECK_LIST">
           <End Role="CHECK_LIST" Type="Self.CHECK_LIST" Multiplicity="0..1" />
           <End Role="CONTENIDO_CHECK" Type="Self.CONTENIDO_CHECK" Multiplicity="*" />
@@ -4570,14 +4510,6 @@ advertencia 6002: La tabla o vista 'DB_CEA.dbo.EvaluacionCualitativadeGrupoComun
           </AssociationSet>
           <AssociationSet Name="FK_FIRMA_TESTIGOS_AUTORIZACION_REPORTES_CREDITO" Association="Self.FK_FIRMA_TESTIGOS_AUTORIZACION_REPORTES_CREDITO">
             <End Role="AUTORIZACION_REPORTES_CREDITO" EntitySet="AUTORIZACION_REPORTES_CREDITO" />
-            <End Role="FIRMA_TESTIGOS" EntitySet="FIRMA_TESTIGOS" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CARTA_BIENES_MUEBLES_CARTAS" Association="Self.FK_CARTA_BIENES_MUEBLES_CARTAS">
-            <End Role="CARTAS" EntitySet="CARTAS" />
-            <End Role="CARTA_BIENES_MUEBLES" EntitySet="CARTA_BIENES_MUEBLES" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FIRMA_TESTIGOS_CARTAS" Association="Self.FK_FIRMA_TESTIGOS_CARTAS">
-            <End Role="CARTAS" EntitySet="CARTAS" />
             <End Role="FIRMA_TESTIGOS" EntitySet="FIRMA_TESTIGOS" />
           </AssociationSet>
           <AssociationSet Name="FK_CONTENIDO_CHECK_CHECK_LIST" Association="Self.FK_CONTENIDO_CHECK_CHECK_LIST">

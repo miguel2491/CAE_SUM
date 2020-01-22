@@ -38,7 +38,5 @@ namespace adminlte.BD
         public Nullable<System.DateTime> fecha_responsable { get; set; }
         public string firma_responsable { get; set; }
         public Nullable<bool> status { get; set; }
-    
-        public virtual CARTAS CARTAS { get; set; }
     }
 }
